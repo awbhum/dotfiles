@@ -1,0 +1,54 @@
+#!/bin/bash
+
+# if our session isn't a login shell, source ~/.config/shell/profile
+case "$0" in
+    -*) ;;
+     *) [ -r "${XDG_CONFIG_HOME:-$HOME/.config}/shell/profile" ] && . ${XDG_CONFIG_HOME:-$HOME/.config}/shell/profile ;;
+esac
+
+# check if the proper shell is sourcing this file
+case "$SHNAME" in
+    bash) ;;
+       *) . "$ENV"; return 0 ;;
+esac
+
+# if not running interactively, don't do anything else
+case "$-" in
+    *i*) ;;
+      *) return 0 ;;
+esac
+
+# load ~/.config/shell/aliases
+[ -r "${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliases" ] && . ${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliases
+
+# bash supports prompt expansion, so the PS1 variable can just be exported like anything else,
+# but using the function method gives us the ability to use commands in the prompt
+set_ps1() {
+    case "$TERM" in
+        *color) export PS1="\033[1;35m\\u@\\h\033[22;39m:\033[1;34m\\w\033[22;39m\\\$ " ;;
+         linux) export PS1="\033[1;35m\\u@\\h\033[22;39m:\033[1;34m\\w\033[22;39m\\\$ " ;;
+             *) export PS1="\\u@\\h:\\w\\\$ " ;;
+    esac
+}
+
+# bash settings
+shopt -s checkwinsize
+shopt -s cmdhist
+shopt -s histappend
+shopt -s huponexit
+shopt -s xpg_echo
+
+# if we have access to the 'stty' binary, specify args for it
+[ -n "$(command -v stty)" ] && stty -ixon
+
+# enable vi editing mode
+set -o vi
+
+# set the prompt using the function
+set_ps1
+
+# change the behavior of cd, pushd, and popd to run the 'set_ps1' function
+# whenever the working directory is changed
+for i in cd pushd popd; do
+    eval "$i() { command $i \$@; set_ps1; }"
+done

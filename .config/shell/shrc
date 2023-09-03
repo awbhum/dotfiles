@@ -1,0 +1,41 @@
+#!/bin/sh
+
+# if our session isn't a login shell, source ~/.config/shell/profile
+case "$0" in
+    -*) ;;
+     *) [ -r "${XDG_CONFIG_HOME:-$HOME/.config}/shell/profile" ] && . ${XDG_CONFIG_HOME:-$HOME/.config}/shell/profile ;;
+esac
+
+# if not running interactively, don't do anything else
+case "$-" in
+    *i*) ;;
+      *) return 0 ;;
+esac
+
+# load ~/.config/shell/aliases
+[ -r "${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliases" ] && . ${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliases
+
+# POSIX-compliant shells don't support prompt expansion, but we can
+# do this ourselves by executing this function anywhere necessary
+set_ps1() {
+    # tilde substitution for the prompt string
+    case "$PWD" in
+        $HOME*) export PS1="~${PWD##$HOME}\\\$ " ;;
+             *) export PS1="$PWD\\\$ " ;;
+    esac
+}
+
+# if we have access to the 'stty' binary, specify args for it
+[ -n "$(command -v stty)" ] && stty -ixon
+
+# enable vi editing mode
+set -o vi
+
+# set the prompt using the function
+set_ps1
+
+# change the behavior of cd, pushd, and popd to run the 'set_ps1' function
+# whenever the working directory is changed
+for i in cd pushd popd; do
+    eval "$i() { command $i \$@; set_ps1; }"
+done

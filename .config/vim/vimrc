@@ -1,0 +1,149 @@
+" vim options
+set autoread
+set autoindent
+set background=dark
+set backspace=indent,eol,start
+set nobackup
+set clipboard=unnamedplus
+set nocompatible
+set completeopt=menuone
+set cursorline
+set encoding=UTF-8
+set noerrorbells
+set expandtab
+set fileencoding=UTF-8
+set fileformat=unix
+set go=a
+set incsearch
+set hidden
+set history=1024
+set hlsearch
+set laststatus=0
+set lazyredraw
+set listchars=tab:>-,trail:.,extends:>,precedes:<,nbsp:+
+set list
+set magic
+set mouse=a
+set number
+set norelativenumber
+set pumheight=10
+set ruler
+set scrolloff=2048
+set shell=/bin/sh
+set shiftround
+set shiftwidth=4
+"set signcolumn=yes
+set shortmess=atI
+set noshowmode
+set showtabline=1
+set sidescrolloff=4
+set smartcase
+set smarttab
+set softtabstop=4
+set spelllang=en_us
+set splitbelow
+set splitright
+set noswapfile
+set tabstop=4
+set termguicolors
+set timeoutlen=200
+set ttimeoutlen=200
+set undolevels=192
+set updatetime=192
+set viminfo=""
+set visualbell
+set wildmenu
+set wildmode=longest,list,full
+set nowrap
+set writebackup
+
+" enable syntax highlighting
+syntax on
+
+" use better colors
+colorscheme habamax
+
+" automatically-ran commands
+autocmd FileType * setlocal formatoptions-=cro
+
+" update xresources
+autocmd BufWritePost *Xresources silent! !xrdb %
+autocmd BufWritePost *Xdefaults silent! !xrdb %
+autocmd BufWritePost *xresources silent! !xrdb %
+autocmd BufWritePost *xdefaults silent! !xrdb %
+
+" set the leader key
+let mapleader = " "
+let maplocalleader = " "
+
+" unset space
+noremap <Space> <Nop>
+
+" preserve the yank buffer when pasting over selected text
+vnoremap p _dp
+
+" preserve the yank buffer when substituting text
+nnoremap c _dc
+
+" preserve the yank buffer when deleting text
+noremap x "_x
+noremap X "_X
+noremap <Del> "_X
+
+" split management
+noremap <S-Up> :resize +2<LF>
+noremap <S-Down> :resize -2<LF>
+noremap <S-Right> :vertical resize +2<LF>
+noremap <S-Left> :vertical resize -2<LF>
+
+" tab management
+noremap <S-tab> :bnext<LF>
+noremap <S-l> :tabnext<LF>
+noremap <S-h> :tabprevious<LF>
+
+" easier moving on wrapped lines
+noremap j gj
+noremap k gk
+
+" arrow keys use jk behavior
+noremap <Down> gj
+noremap <Up> gk
+
+" use this behavior in insert mode
+inoremap <Down> <C-o>gj
+inoremap <Up> <C-o>gk
+
+" re-select vmode text after indent
+vnoremap < <gv
+vnoremap > >gv
+
+" move text up and down in visual / vblock
+vnoremap J :move '>+1<LF>gv-gv
+vnoremap K :move '<-2<LF>gv-gv
+
+" better multiline insert
+vnoremap i <S-i>
+vnoremap <S-i> ^<S-i>
+vnoremap a <S-a>
+vnoremap <S-a> $<S-a>
+
+" redraw screen, just like in bash
+nnoremap <C-l> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<LF><LF><C-l>
+
+" file manager keybinds
+nnoremap <leader>n :Lexplore 17<LF>
+nnoremap <C-n> :Lexplore 17<LF>
+
+" misc. leader keymaps
+nnoremap <leader>q :qa!<LF>
+nnoremap <leader>w :wa!<LF>:qa!<LF>
+
+" unmap standard keys if they are annoying
+inoremap kj <ESC><C-l>
+inoremap kj <ESC><C-l>
+"vnoremap kj <ESC><C-l>
+
+" force the user to use these alternatives
+"inoremap <ESC> <C-o>:echo \"Press \'k\' and \'j\' in quick succession to exit insert mode.\"<LF>
+"vnoremap <ESC> :<C-u>echo \"Press \'k\' and \'j\' in quick succession to exit visual mode.\"<LF>gv
+"xnoremap <ESC> :<C-u>echo \"Press \'k\' and \'j\' in quick succession to exit visual-block mode.\"<LF>gv

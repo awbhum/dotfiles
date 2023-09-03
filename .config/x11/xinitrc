@@ -1,0 +1,21 @@
+#!/bin/sh
+
+# load the X resource file
+[ -r "${XDG_CONFIG_HOME:-$HOME/.config}/x11/xresources" ] && exec xrdb ${XDG_CONFIG_HOME:-$HOME/.config}/x11/xresources &
+
+# set the wallpaper
+[ -r "${XDG_DATA_HOME:-$HOME/.local/share}/wallpaper" ] && exec feh --no-fehbg --bg-fill "${XDG_DATA_HOME:-$HOME/.local/share}/wallpaper" &
+
+# run dwm commands
+[ "$WM_USE" = "dwm" ] && {
+    exec dwmblocks &
+    exec dwm
+    exit
+}
+
+# invalid wm_use at this point
+[ -n "$WM_USE" ] && {
+    printf "\n${0##*/}: error: No startup rule for $WM_USE\n\n"
+} || {
+    printf "\n${0##*/}: error: No WM_USE specified\n\n"
+}

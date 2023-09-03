@@ -1,0 +1,51 @@
+#!/bin/sh
+
+# reset aliases to ensure that they don't break
+unalias -a
+
+# ls options
+alias \
+    ls="ls --group-directories-first --color=auto -ChN" \
+    l1="ls -1" \
+    ll="ls -l" \
+    la="ls -A" \
+    lla="ls -lA" \
+    l1a="ls -1A" \
+    l="ls"
+
+# shortcuts
+alias \
+    g="git" \
+    cl="clear" \
+    cdd="cd /" \
+    ..="cd ../" \
+    c-="cd -" \
+    o='xdg-open'
+
+# verbosity and confirmation
+alias \
+    cp="cp -iv" \
+    mv="mv -iv" \
+    rm="rm -Iv" \
+    mkdir="mkdir -v" \
+    chmod="chmod -v" \
+    chown="chown -v" \
+    ln="ln -v" \
+    pkill="pkill -e"
+
+# add color to commands
+alias \
+    dir="dir --color=auto" \
+    vdir="vdir --color=auto" \
+    grep="grep --color=auto" \
+    fgrep="rgrep --color=auto" \
+    egrep="egrep --color=auto" \
+    diff="diff --color=auto"
+
+# yt-dlp options
+# also see ${HOME}/.config/yt-dlp, these are just for different presets
+alias \
+    yt="yt-dlp --config-locations \"${XDG_CONFIG_HOME:-$HOME/.config}/yt-dlp/video-config\"" \
+    yta="yt-dlp --config-locations \"${XDG_CONFIG_HOME:-$HOME/.config}/yt-dlp/audio-config\"" \
+    ytc="yt --config-locations \"${XDG_CONFIG_HOME:-$HOME/.config}/yt-dlp/video-config\" --concat-playlist always" \
+    ytca="yt --config-locations \"${XDG_CONFIG_HOME:-$HOME/.config}/yt-dlp/audio-config\" --concat-playlist always"

@@ -1,0 +1,117 @@
+#!/bin/sh
+
+# --------------------------------- Part 1: Run always -------------------------------------
+
+# basic xdg directory definitions - rest in ~/.config/shell/profile.d/01-xdg.sh
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_DATA_DIRS="${XDG_DATA_HOME:-$HOME/.local/share}:/usr/local/share:/usr/share"
+export XDG_STATE_HOME="$HOME/.local/state"
+export XDG_CACHE_HOME="$HOME/.cache"
+
+# session type, can be 'x11' or 'wayland'
+export XDG_SESSION_TYPE="x11"
+
+# specify the window manager to use, see xinitrc for information
+export WM_USE="dwm"
+
+# rust install dir
+export CARGO_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/cargo"
+
+# function to add directories to our path
+pathadd() {
+    case ":${PATH}:" in
+        *:"${1%/}":*) ;;
+        *) export PATH="${1%/}${PATH:+:${PATH}}" ;;
+    esac
+}
+
+# add more directories to the path
+[ -d /opt/texlive ] && pathadd "/opt/texlive/*/bin/*-linux"
+[ -d /usr/local/musl/bin ] && pathadd "/usr/local/musl/bin"
+pathadd "$HOME/.local/bin"
+pathadd "${CARGO_HOME:-${XDG_DATA_HOME:-$HOME/.local/share}/cargo}/bin"
+
+# for each subdir in .local/bin/
+for i in $HOME/.local/bin/*; do
+    [ -d $i ] && {
+        pathadd "$i"
+        for j in $i/*; do
+            [ -d $j ] && pathadd "$j"
+        done
+    }
+done
+
+# set default file permission mode
+umask 022
+
+# determine the name of the shell
+export SHNAME="${0##-}"
+export SHNAME="${SHNAME##*/}"
+
+# find the shell's actual name
+[ -n "$(command -v readlink)" ] && {
+    export SHNAME="$(readlink -f $(command -v $SHNAME))"
+    export SHNAME="${SHNAME##*/}"
+}
+
+# determine the shell init file based on the name of the shell
+[ -r "${XDG_CONFIG_HOME:-$HOME/.config}/shell/${SHNAME}rc" ] && {
+    export ENV="${XDG_CONFIG_HOME:-$HOME/.config}/shell/${SHNAME}rc"
+} || {
+    export ENV="${XDG_CONFIG_HOME:-$HOME/.config}/shell/shrc"
+}
+
+# source everything in ~/.config/shell/profile.d/
+for i in ${XDG_CONFIG_HOME:-$HOME/.config}/shell/profile.d/??-*.sh; do
+    [ -r "$i" ] && . "$i"
+done
+
+# end execution here
+case "$USERPROFILE" in
+    "") export USERPROFILE="y" ;;
+     *) return 0 ;;
+esac 
+
+# --------------------------------- Part 2: Run once -------------------------------------
+
+# source everything in ~/.config/shell/profile.d/run-once/
+for i in ${XDG_CONFIG_HOME:-$HOME/.config}/shell/profile.d/once/??-*.sh; do
+    [ -r "$i" ] && . "$i"
+done
+
+# if our session isn't interactive, return with success and finish execution
+case "$-" in
+    *i*) ;;
+      *) return 0 ;;
+esac
+
+# --------------------------------- Part 3: Run once, when on an interactive shell -------------------------------------
+
+# source the shell init file if needed
+[ -r "$ENV" ] && . "$ENV"
+
+# source everything in ~/.config/shell/profile.d/interactive/
+for i in ${XDG_CONFIG_HOME:-$HOME/.config}/shell/profile.d/interactive/??-*.sh; do
+    [ -r "$i" ] && . "$i"
+done
+
+# if our session isn't a login shell, return with success and finish execution
+case "$0" in
+    -*) ;;
+     *) return 0 ;;
+esac
+
+# --------------------------------- Part 4: Run once, when on a login shell -------------------------------------
+
+# when logging out, execute everything in ~/.config/shell/profile.d/logout
+trap '{
+    for i in ${XDG_CONFIG_HOME:-$HOME/.config}/shell/profile.d/logout/??-*.sh; do
+        [ -r "$i" ] && . "$i"
+    done
+}' 0
+
+# execute everything in ~/.config/shell/profile.d/login
+for i in ${XDG_CONFIG_HOME:-$HOME/.config}/shell/profile.d/login/*.sh; do
+    [ -r "$i" ] && . "$i"
+done

@@ -1,0 +1,25 @@
+! urxvt
+URxvt.font: xft:Fira Code Symbols:style=Regular:size=9
+URxvt.boldFont: xft:Fira Code Symbols:style=Bold:size=9
+URxvt.italicFont: xft:Fira Code Symbols:style=Italic:size=9
+URxvt.boldItalicFont: xft:Fira Code Symbols:style=BoldItalic:size=9
+URxvt.depth: 32
+URxvt.letterSpace: 0
+URxvt.lineSpace: 0
+URxvt.geometry: 92x24
+URxvt.internalBorder: -2
+URxvt.saveline: 8192
+URxvt.scrollBar: false
+URxvt.scrollBar_right: false
+URxvt.cursorBlink: false
+URxvt.cursorUnderline: false
+URxvt.urgentOnBell: true
+URxvt.iso14755: false
+URxvt.transparent: false
+
+! nsxiv
+Nsxiv.window.foreground: #D8DEE9
+Nsxiv.window.background: #2E3440
+Nsxiv.bar.foreground: #D8DEE9
+Nsxiv.bar.background: #3C4252
+Nsxiv.bar.font: Fira Code Symbols:style=Regular:size=9
