@@ -3,6 +3,11 @@
 # reset aliases to ensure that they don't break
 unalias -a
 
+# neovim familiarity
+alias \
+    vim="nvim" \
+    vimdiff="nvim -d"
+
 # ls options
 alias \
     ls="ls --group-directories-first --color=auto -ChN" \

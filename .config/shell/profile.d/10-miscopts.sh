@@ -5,16 +5,6 @@
     export MOZ_ENABLE_WAYLAND="1"
 }
 
-# use strong compression by default in xz
-export XZ_DEFAULTS="-9"
-export XZ_OPT="$XZ_DEFAULTS"
-
-# use strong compression by default in lzop
-export LZOP="-9"
-
-# use strong compression by default in gzip
-export GZIP="-9"
-
 # rc file locations
 export PYTHONSTARTUP="${XDG_CONFIG_HOME:-$HOME/.config}/shell/pythonrc"
 export WGETRC="${XDG_CONFIG_HOME:-$HOME/.config}/wget/wgetrc"
