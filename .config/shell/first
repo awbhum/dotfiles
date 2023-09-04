@@ -1,0 +1,62 @@
+#!/bin/sh
+
+# one-time system setup
+
+# function to ensure a command is available
+has() {
+    [ -n "$1" ] && {
+        command -v "$1" >/dev/null 2>&1 && {
+            return 0
+        } || return 1
+    } || return 2
+}
+
+# function to run a command as root if needed
+authorize() {
+    case "${EUID:-${UID:-$(id -u)}}" in
+        0) eval "$@" ;;
+        *) eval "$elev \"$@\"" ;;
+    esac
+}
+
+# set the permission elevator
+for i in "su -c" doas sudo; do
+    has ${i%% *} && elev="$i"
+done
+
+# set the package install command
+for i in "emerge --quiet --ask=n --color=n" "yum install" "dnf install" "zypper install" "apt install" "apk add" "pacman -S" "xbps-install"; do
+    has ${i%% *} && pkgm="$i"
+done
+
+# install git if required
+if ! has git; then
+    authorize $pkgm git || exit 2
+fi
+
+# install busybox if required
+for i in mkdir id; do
+    if ! has $i; then
+        authorize $pkgm busybox || exit 2
+    fi
+done
+
+# clone private repositories
+[ -d "${XDG_CONFIG_HOME:-$HOME/.config}/git/.git" ] || git clone --force https://github.com/${GITHUB_USER}/gitconfig ${XDG_CONFIG_HOME:-$HOME/.config}/git
+
+# make the source dir
+mkdir -p $HOME/.local/src
+
+# clone suckless software/etc
+[ -d "$HOME/.local/src/dwm/.git" ] || git clone --force https://github.com/${GITHUB_USER}/dwm $HOME/.local/src/dwm
+[ -d "$HOME/.local/src/dmenu/.git" ] || git clone --force https://github.com/${GITHUB_USER}/dmenu $HOME/.local/src/dmenu
+[ -d "$HOME/.local/src/herbe/.git" ] || git clone --force https://github.com/${GITHUB_USER}/herbe $HOME/.local/src/herbe
+[ -d "$HOME/.local/src/dwmblocks/.git" ] || git clone --force https://github.com/${GITHUB_USER}/dwmblocks $HOME/.local/src/dwmblocks
+[ -d "$HOME/.local/src/st/.git" ] || git clone --force https://github.com/${GITHUB_USER}/st $HOME/.local/src/st
+[ -d "$HOME/.local/src/hsetroot/.git" ] || git clone --force https://github.com/${GITHUB_USER}/hsetroot $HOME/.local/src/hsetroot
+
+# tell the environment this script modified it
+printf "# file created by ~/.config/shell/first\n" >${XDG_DATA_HOME:-$HOME/.local/share}/.system_configured.txt
+
+# we're done
+exit 0
