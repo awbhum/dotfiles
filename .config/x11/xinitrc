@@ -9,6 +9,7 @@
 # run dwm commands
 [ "$WM_USE" = "dwm" ] && {
     exec dwmblocks &
+    exec hsetroot ${XDG_DATA_HOME:-$HOME/.local/share}/bg &
     exec dwm
     exit
 }
