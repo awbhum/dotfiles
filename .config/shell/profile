@@ -2,6 +2,9 @@
 
 # --------------------------------- Part 1: Run always -------------------------------------
 
+# github username
+export GITHUB_USER="awbhum"
+
 # basic xdg directory definitions - rest in ~/.config/shell/profile.d/01-xdg.sh
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
