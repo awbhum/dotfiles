@@ -42,18 +42,18 @@ for i in mkdir id; do
 done
 
 # clone private repositories
-[ -d "${XDG_CONFIG_HOME:-$HOME/.config}/git/.git" ] || git clone --force https://github.com/${GITHUB_USER}/gitconfig ${XDG_CONFIG_HOME:-$HOME/.config}/git
+[ -d "${XDG_CONFIG_HOME:-$HOME/.config}/git/.git" ] || git clone https://github.com/${GITHUB_USER}/gitconfig ${XDG_CONFIG_HOME:-$HOME/.config}/git
 
 # make the source dir
 mkdir -p $HOME/.local/src
 
 # clone suckless software/etc
-[ -d "$HOME/.local/src/dwm/.git" ] || git clone --force https://github.com/${GITHUB_USER}/dwm $HOME/.local/src/dwm
-[ -d "$HOME/.local/src/dmenu/.git" ] || git clone --force https://github.com/${GITHUB_USER}/dmenu $HOME/.local/src/dmenu
-[ -d "$HOME/.local/src/herbe/.git" ] || git clone --force https://github.com/${GITHUB_USER}/herbe $HOME/.local/src/herbe
-[ -d "$HOME/.local/src/dwmblocks/.git" ] || git clone --force https://github.com/${GITHUB_USER}/dwmblocks $HOME/.local/src/dwmblocks
-[ -d "$HOME/.local/src/st/.git" ] || git clone --force https://github.com/${GITHUB_USER}/st $HOME/.local/src/st
-[ -d "$HOME/.local/src/hsetroot/.git" ] || git clone --force https://github.com/${GITHUB_USER}/hsetroot $HOME/.local/src/hsetroot
+[ -d "$HOME/.local/src/dwm/.git" ] || git clone https://github.com/${GITHUB_USER}/dwm $HOME/.local/src/dwm
+[ -d "$HOME/.local/src/dmenu/.git" ] || git clone https://github.com/${GITHUB_USER}/dmenu $HOME/.local/src/dmenu
+[ -d "$HOME/.local/src/herbe/.git" ] || git clone https://github.com/${GITHUB_USER}/herbe $HOME/.local/src/herbe
+[ -d "$HOME/.local/src/dwmblocks/.git" ] || git clone https://github.com/${GITHUB_USER}/dwmblocks $HOME/.local/src/dwmblocks
+[ -d "$HOME/.local/src/st/.git" ] || git clone https://github.com/${GITHUB_USER}/st $HOME/.local/src/st
+[ -d "$HOME/.local/src/hsetroot/.git" ] || git clone https://github.com/${GITHUB_USER}/hsetroot $HOME/.local/src/hsetroot
 
 # tell the environment this script modified it
 printf "# file created by ~/.config/shell/first\n" >${XDG_DATA_HOME:-$HOME/.local/share}/.system_configured.txt
