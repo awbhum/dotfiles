@@ -137,7 +137,8 @@ bind("", "<S-Right>", ":vertical resize +2<LF>", opts)
 bind("", "<S-Left>", ":vertical resize -2<LF>", opts)
 
 -- navigate buffers/tabs
-bind("", "<S-tab>", ":bnext<LF>", opts)
+bind("", "<tab>", ":bnext<LF>", opts)
+bind("", "<S-tab>", ":bprevious<LF>", opts)
 bind("", "<S-l>", ":tabnext<LF>", opts)
 bind("", "<S-h>", ":tabprevious<LF>", opts)
 
