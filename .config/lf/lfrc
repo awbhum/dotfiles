@@ -3,7 +3,7 @@ set shell sh
 set shellopts '-eu'
 
 # search case-insensitively unless there are capitals in the query
-set smartcase on
+set smartcase true
 
 # set a different time format on the bottom bar
 set timefmt '01-02-2006 03:04:05 PM'
@@ -18,11 +18,8 @@ set info time:size
 # always leave 8 items above/below the cursor
 set scrolloff 8
 
-# enable mouse
-set mouse on
-
 # enable icons
-set icons on
+set icons true
 
 # tabs are 4 spaces in length
 set tabstop 4
@@ -38,13 +35,13 @@ set ifs "\n"
 set scrolloff 10
 
 # don't show search while typing
-set incsearch off
+set incsearch false
 
 # show directories above normal files
-set dirfirst on
+set dirfirst true
 
 # use enter for shell commands
-map <enter> !lfsubshell
+map <enter> !bash
 
 # execute current file (must be executable)
 map x !$f
@@ -56,13 +53,13 @@ map O $mimeopen --ask $f
 # use mouse buttons to move left and right
 map <m-1> updir
 map <m-2> open
-map <m-3> !lfsubshell
+map <m-3> !bash
 
 # calculate directory size
 map <c-c> calcdirsize
 
 # enable mouse
-set mouse on
+set mouse true
 
 # mouse events
 map <m-down> down
