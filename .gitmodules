@@ -1,6 +1,3 @@
 [submodule ".local/src/st"]
 	path = .local/src/st
 	url = https://github.com/awbhum/st
-[submodule ".local/src/hsetroot"]
-	path = .local/src/hsetroot
-	url = https://github.com/awbhum/hsetroot
