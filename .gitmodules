@@ -4,3 +4,6 @@
 [submodule ".local/src/hsetroot"]
 	path = .local/src/hsetroot
 	url = https://github.com/awbhum/hsetroot
+[submodule ".local/src/dwmblocks"]
+	path = .local/src/dwmblocks
+	url = https://github.com/awbhum/dwmblocks
