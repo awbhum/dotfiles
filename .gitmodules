@@ -10,3 +10,6 @@
 [submodule ".local/src/herbe"]
 	path = .local/src/herbe
 	url = https://github.com/awbhum/herbe
+[submodule ".local/src/dmenu"]
+	path = .local/src/dmenu
+	url = https://github.com/awbhum/dmenu
