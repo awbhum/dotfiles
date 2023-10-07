@@ -10,7 +10,8 @@
 [ "$WM_USE" = "dwm" ] && {
     exec dwmblocks &
     exec hsetroot -fill ${XDG_DATA_HOME:-$HOME/.local/share}/bg &
-    exec dwm
+    exec dbus-launch --exit-with-session dwm
+    #exec dwm
     exit
 }
 
