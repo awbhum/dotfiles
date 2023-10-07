@@ -7,3 +7,6 @@
 [submodule ".local/src/dwmblocks"]
 	path = .local/src/dwmblocks
 	url = https://github.com/awbhum/dwmblocks
+[submodule ".local/src/herbe"]
+	path = .local/src/herbe
+	url = https://github.com/awbhum/herbe
