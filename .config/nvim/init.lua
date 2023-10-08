@@ -31,3 +31,4 @@ require('nord').set()
 
 -- completion
 require('user/cmp')
+require('user/telescope')
