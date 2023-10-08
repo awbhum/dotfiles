@@ -29,7 +29,10 @@ packer.init {
     display = {
         keybindings = {
             toggle_info = '<LF>',
-        }
+        },
+        open_fn = function()
+            return require("packer.util").float { border = "rounded" }
+        end,
     },
     log = {
         -- can be trace, debug, info, warn, error, or fatal
@@ -45,8 +48,22 @@ packer.init {
 
 -- load plugins + packer
 return packer.startup(function(use)
+    -- misc
+    use "nvim-lua/popup.nvim"
+    use "nvim-lua/plenary.nvim"
     use 'wbthomason/packer.nvim'
     use 'shaunsingh/nord.nvim'
+
+    -- completion
+    use "hrsh7th/nvim-cmp" -- the completion plugin
+    use "hrsh7th/cmp-buffer" -- buffer completions
+    use "hrsh7th/cmp-path" -- path completions
+    use "hrsh7th/cmp-cmdline" -- cmdline completions
+    use "saadparwaiz1/cmp_luasnip" -- snippet completions
+
+    -- snippets
+    use "L3MON4D3/LuaSnip" --snippet engine
+    use "rafamadriz/friendly-snippets" -- a bunch of snippets to use
 
     if bootstrapped then
         packer.sync()

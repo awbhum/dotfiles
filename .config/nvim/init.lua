@@ -28,3 +28,6 @@ vim.g.nord_bold = true
 
 -- apply the settings
 require('nord').set()
+
+-- completion
+require('user/cmp')
