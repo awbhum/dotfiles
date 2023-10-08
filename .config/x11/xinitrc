@@ -6,12 +6,14 @@
 # set the wallpaper
 [ -r "${XDG_DATA_HOME:-$HOME/.local/share}/wallpaper" ] && exec feh --no-fehbg --bg-fill "${XDG_DATA_HOME:-$HOME/.local/share}/wallpaper" &
 
+# wallpaper & compositor
+exec picom &
+exec hsetroot -fill ${XDG_DATA_HOME:-$HOME/.local/share}/bg &
+
 # run dwm commands
 [ "$WM_USE" = "dwm" ] && {
     exec dwmblocks &
-    exec hsetroot -fill ${XDG_DATA_HOME:-$HOME/.local/share}/bg &
     exec dbus-launch --exit-with-session dwm
-    #exec dwm
     exit
 }
 
