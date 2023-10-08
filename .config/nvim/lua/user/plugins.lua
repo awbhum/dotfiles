@@ -46,10 +46,7 @@ packer.init {
 -- load plugins + packer
 return packer.startup(function(use)
     use 'wbthomason/packer.nvim'
-    use 'nvim-lua/plenary.nvim'
-    use 'nvim-lua/popup.nvim'
-    use 'kyazdani42/nvim-tree.lua'
-    use 'numToStr/Comment.nvim'
+    use 'shaunsingh/nord.nvim'
 
     if bootstrapped then
         packer.sync()

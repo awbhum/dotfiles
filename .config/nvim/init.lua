@@ -28,10 +28,12 @@ local settings = {
     background = "dark",
     backspace = "indent,eol,start",
     backup = false,
-    clipboard = "unnamed",
+    clipboard = "unnamedplus",
     compatible = false,
     completeopt = { "menuone", "noselect" },
+    cmdheight = 2,
     cursorline = true,
+    conceallevel = 0,
     encoding = "UTF-8",
     errorbells = false,
     expandtab = true,
@@ -49,17 +51,18 @@ local settings = {
     magic = true,
     mouse = "a",
     number = true,
+    numberwidth = 4,
     relativenumber = false,
     pumheight = 10,
     ruler = true,
-    scrolloff = 2048,
+    scrolloff = 14,
     shell = "/bin/sh",
     shiftround = true,
     shiftwidth = 4,
     showmode = false,
     showtabline = 1,
     sidescrolloff = 4,
-    -- signcolumn = "yes",
+    signcolumn = "yes",
     shortmess = "atI",
     smartcase = true,
     smarttab = true,
@@ -72,8 +75,9 @@ local settings = {
     termguicolors = true,
     timeoutlen = 200,
     ttimeoutlen = 200,
-    undolevels = 192,
-    updatetime = 192,
+    undofile = true,
+    undolevels = 1024,
+    updatetime = 256,
     viminfo = "",
     visualbell = true,
     wildmenu = true,
@@ -91,6 +95,18 @@ end
 autocmd("FileType", {
     pattern = "*",
     command = "setlocal formatoptions-=cro",
+})
+
+-- keys that can wrap to the next line
+autocmd("FileType", {
+    pattern = "*",
+    command = "set whichwrap+=<,>,[,],h,l",
+})
+
+-- is keyword
+autocmd("FileType", {
+    pattern = "*",
+    command = "set iskeyword+=-",
 })
 
 -- remove trailing whitespaces from the end of lines
@@ -196,3 +212,17 @@ bind("i", "kj", "<ESC><C-l>", opts)
 --bind("i", "<ESC>", "<C-o>:echo \"Press \'k\' and \'j\' in quick succession to exit insert mode.\"<LF>", opts)
 --bind("v", "<ESC>", ":<C-u>echo \"Press \'k\' and \'j\' in quick succession to exit visual mode.\"<LF>gv", opts)
 --bind("x", "<ESC>", ":<C-u>echo \"Press \'k\' and \'j\' in quick succession to exit visual-block mode.\"<LF>gv", opts)
+
+-- load packer
+require('user/plugins')
+
+-- nord theme settings
+vim.g.nord_borders = true
+vim.g.nord_contrast = true
+vim.g.nord_disable_background = true
+vim.g.nord_italic = true
+vim.g.nord_uniform_diff_background = true
+vim.g.nord_bold = true
+
+-- apply the settings
+require('nord').set()
