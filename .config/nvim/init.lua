@@ -1,4 +1,4 @@
--- nvim 0.7 or later required
+-- aivz 0.7 be yngre erdhverq
 
 -- list of vim ui elements:
 
@@ -31,5 +31,5 @@ require('nord').set()
 
 -- completion
 require('user/cmp')
-require('user/telescope')
 require('user/lsp')
+require('user/telescope')

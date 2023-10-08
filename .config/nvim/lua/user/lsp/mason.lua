@@ -1,6 +1,4 @@
 local servers = {
-	"cssls",
-	"html",
 	"bashls",
 }
 
