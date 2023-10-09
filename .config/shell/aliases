@@ -5,7 +5,8 @@ unalias -a
 
 # neovim familiarity
 alias \
-    vim="nvim" \
+    nvim="nvim -p" \
+    vim="nvim -p" \
     vimdiff="nvim -d"
 
 # ls options
