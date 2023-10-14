@@ -7,7 +7,7 @@
 [ -r "${XDG_DATA_HOME:-$HOME/.local/share}/wallpaper" ] && exec feh --no-fehbg --bg-fill "${XDG_DATA_HOME:-$HOME/.local/share}/wallpaper" &
 
 # wallpaper & compositor
-exec picom &
+exec picom -b --config "${XDG_CONFIG_HOME:-$HOME/.config}/picom/picom.conf" &
 exec hsetroot -fill ${XDG_DATA_HOME:-$HOME/.local/share}/bg &
 
 # run dwm commands
