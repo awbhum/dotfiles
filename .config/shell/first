@@ -41,8 +41,8 @@ for i in mkdir id; do
     fi
 done
 
-# clone private repositories
-[ -d "${XDG_CONFIG_HOME:-$HOME/.config}/git/.git" ] || git clone https://github.com/${GITHUB_USER}/gitconfig ${XDG_CONFIG_HOME:-$HOME/.config}/git
+# clone submodules
+git submodule update --init --recursive
 
 # tell the environment this script modified it
 printf "# file created by ~/.config/shell/first\n" >${XDG_DATA_HOME:-$HOME/.local/share}/.system_configured.txt

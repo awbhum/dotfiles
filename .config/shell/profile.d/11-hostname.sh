@@ -17,7 +17,7 @@ sethostname
 
 # use uname if possible
 [ -n "$(command -v uname)" ] && {
-    HOSTNAME="$(uname -n)"
+    HOSTNAME="$(uname -n)_$(uname -m)"
     sethostname
 }
 
