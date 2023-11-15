@@ -1,11 +1,19 @@
 #!/bin/sh
 
 # load the X resource file
-[ -r "${XDG_CONFIG_HOME:-$HOME/.config}/x11/Xresources" ] && exec xrdb ${XDG_CONFIG_HOME:-$HOME/.config}/x11/Xresources &
+[ -r "$HOME/.themes/Xresources" ] && {
+    exec xrdb $HOME/.themes/Xresources &
+}
+
+# set the wallpaper
+[ -r "$HOME/.wallpapers/bg" ] && {
+    exec hsetroot -fill $HOME/.wallpapers/bg &
+}
 
 # wallpaper & compositor
-exec picom -b --config "${XDG_CONFIG_HOME:-$HOME/.config}/picom/picom.conf" &
-exec hsetroot -fill ${XDG_DATA_HOME:-$HOME/.local/share}/bg &
+[ -r "${XDG_CONFIG_HOME:-$HOME/.config}/picom/picom.conf" ] && {
+    exec picom -b --config "${XDG_CONFIG_HOME:-$HOME/.config}/picom/picom.conf" &
+}
 
 # run dwm commands
 [ "$WM_USE" = "dwm" ] && {
