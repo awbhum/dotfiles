@@ -5,3 +5,5 @@
 - Terminal: [st](https://github.com/awbhum/st)
 - Shell: bash
 - Text Editor: neovim
+- Document Reader: zathura
+- File Manager: lf
