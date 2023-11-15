@@ -1,4 +1,4 @@
-#### System Information
+### System Information
 - **Distribution**: Void Linux
 - **Window Manager**: dwm
 - **Compositor**: picom
