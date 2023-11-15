@@ -1,5 +1,5 @@
 ### system information
-- Distribution: [Void Linux](https://voidlinux.org/)
+- Distribution: Void Linux
 - Window Manager: [dwm](https://github.com/awbhum/dwm) + [dwmblocks](https://github.com/awbhum/dwmblocks)
 - Compositor: picom
 - Terminal: [st](https://github.com/awbhum/st)
