@@ -1,10 +1,7 @@
 #!/bin/sh
 
 # load the X resource file
-[ -r "${XDG_CONFIG_HOME:-$HOME/.config}/x11/xresources" ] && exec xrdb ${XDG_CONFIG_HOME:-$HOME/.config}/x11/xresources &
-
-# set the wallpaper
-[ -r "${XDG_DATA_HOME:-$HOME/.local/share}/wallpaper" ] && exec feh --no-fehbg --bg-fill "${XDG_DATA_HOME:-$HOME/.local/share}/wallpaper" &
+[ -r "${XDG_CONFIG_HOME:-$HOME/.config}/x11/Xresources" ] && exec xrdb ${XDG_CONFIG_HOME:-$HOME/.config}/x11/Xresources &
 
 # wallpaper & compositor
 exec picom -b --config "${XDG_CONFIG_HOME:-$HOME/.config}/picom/picom.conf" &
