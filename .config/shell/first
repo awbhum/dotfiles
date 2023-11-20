@@ -34,13 +34,6 @@ if ! has git; then
     authorize $pkgm git || exit 2
 fi
 
-# install busybox if required
-for i in mkdir id; do
-    if ! has $i; then
-        authorize $pkgm busybox || exit 2
-    fi
-done
-
 # clone submodules
 git submodule update --init --recursive
 
