@@ -48,6 +48,14 @@
 *.color7:  forest9
 *.color15: forest9
 
+! dwm
+dwm.normfgcolor: forest9
+dwm.selfgcolor: forest9
+dwm.normbgcolor: forest1
+dwm.selbgcolor: forest3
+dwm.normbordercolor: forest1
+dwm.selbordercolor: forest3
+
 ! urxvt
 URxvt.font: xft:Fira Code Symbols:style=Regular:size=9
 URxvt.boldFont: xft:Fira Code Symbols:style=Bold:size=9
