@@ -1,4 +1,4 @@
--- aivz 0.7 be yngre erdhverq
+-- version 0.7 or later required
 
 -- list of vim ui elements:
 

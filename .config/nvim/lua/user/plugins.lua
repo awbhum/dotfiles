@@ -80,7 +80,6 @@ return packer.startup(function(use)
         run = ":TSUpdate",
     }
 
-
     if bootstrapped then
         packer.sync()
     end
