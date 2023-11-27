@@ -5,7 +5,7 @@ unalias -a
 
 # use ~/.config/x11/xinitrc
 alias \
-    startx="startx ${XINITRC:-${XDG_CONFIG_HOME:-$HOME/.config}/x11/xinitrc}"
+    startx="startx $XINITRC"
 
 # neovim familiarity
 alias \
