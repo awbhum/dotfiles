@@ -30,7 +30,14 @@ alias \
     cdd="cd /" \
     ..="cd ../" \
     c-="cd -" \
-    o='xdg-open'
+    o="open-file" \
+    reboot="sudo reboot" \
+    poweroff="sudo poweroff"
+
+# package management shortcuts
+alias \
+    xi="sudo xbps-install" \
+    xr="sudo xbps-remove -R"
 
 # verbosity and confirmation
 alias \
