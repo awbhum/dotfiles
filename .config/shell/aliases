@@ -3,6 +3,10 @@
 # reset aliases to ensure that they don't break
 unalias -a
 
+# use ~/.config/x11/xinitrc
+alias \
+    startx="startx ${XINITRC:-${XDG_CONFIG_HOME:-$HOME/.config}/x11/xinitrc}"
+
 # neovim familiarity
 alias \
     nvim="nvim -p" \
