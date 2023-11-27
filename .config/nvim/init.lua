@@ -13,10 +13,16 @@
     VisualNOS,  WarningMsg,  Whitespace,  WildMenu,  Menu,  Scrollbar,  Tooltip, VertSplit
 ]]--
 
--- load packer
 require('user/options')
 require('user/keybinds')
+
+-- load plugins
 require('user/plugins')
+require('user/cmp')
+require('user/telescope')
+require('user/treesitter')
+
+--[[
 
 -- nord theme settings
 vim.g.nord_borders = true
@@ -29,7 +35,4 @@ vim.g.nord_bold = true
 -- apply the settings
 require('nord').set()
 
--- completion
-require('user/cmp')
-require('user/telescope')
-require('user/treesitter')
+]]--
