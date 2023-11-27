@@ -1,0 +1,21 @@
+#!/bin/sh
+
+# set the wallpaper
+
+# location of link to wallpaper
+bgloc="${XDG_DATA_HOME:-$HOME/.local/share}/bg"
+
+# Give -s as parameter to make notifications silent.
+while getopts "s" o; do case "${o}" in
+    s) silent='1' ;;
+esac done
+shift $((OPTIND - 1))
+
+trueloc="$(readlink -f "$1")" &&
+case "$(file --mime-type -b "$trueloc")" in
+    image/* ) ln -sf "$trueloc" "$bgloc" ;;
+    inode/directory ) ln -sf "$(find "$trueloc" -iregex '.*.\(jpg\|jpeg\|png\|gif\)' -type f | shuf -n 1)" "$bgloc" ;;
+    *) exit 1 ;;
+esac
+
+#xwallpaper --zoom "$bgloc"
