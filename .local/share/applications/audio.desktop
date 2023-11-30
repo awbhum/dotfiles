@@ -1,0 +1,5 @@
+[Desktop Entry]
+Type=Application
+Name=Audio Player
+Exec=/usr/bin/env open-program audio-player %f
+Name[C]=audio.desktop

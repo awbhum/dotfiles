@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # editor choice
-for i in nano vi vim.tiny vim.basic vim nvim
+for i in nano micro vi nvi vim.tiny vim.basic vim nvim
     do command -v $i >/dev/null 2>&1 && export EDITOR="$i"
 done
 
@@ -17,14 +17,16 @@ done
 export MANPAGER="$PAGER"
 
 # video player
-for i in mplayer smplayer vlc mpv celluloid
+for i in mplayer smplayer vlc celluloid mpv
     do command -v $i >/dev/null 2>&1 && export VPLAYER="$i"
 done
-
-# open audio files in the video player
-export APLAYER="$VPLAYER"
 
 # open files using open-file
 for i in xdg-open open-file
     do command -v $i >/dev/null 2>&1 && export OPENER="$i"
+done
+
+# choose the terminal emulator
+for i in xterm urxvt aterm terminator kitty konsole gnome-terminal mate-terminal qterminal lxterminal wezterm roxterm alacritty st foot
+    do command -v $i >/dev/null 2>&1 && export TERMINAL="$i"
 done

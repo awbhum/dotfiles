@@ -1,0 +1,8 @@
+#!/bin/sh
+
+# script to open a program
+
+case "$1" in
+    file-manager) ;;
+    document-reader) ;;
+esac
