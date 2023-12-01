@@ -16,11 +16,14 @@ alias \
 # ls options
 alias \
     ls="ls --group-directories-first --color=auto -ChN" \
-    l1="ls -1" \
-    ll="ls -l" \
     la="ls -A" \
-    lla="ls -lA" \
+    l.="ls -d .*" \
+    l1="ls -1" \
     l1a="ls -1A" \
+    l1.="ls -d .* -1" \
+    ll="ls -l" \
+    lla="ls -lA" \
+    ll.="ls -d .* -l" \
     l="ls"
 
 # shortcuts
