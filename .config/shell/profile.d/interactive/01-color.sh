@@ -19,7 +19,6 @@ case "$TERM" in
 \033]PC397cd0\
 \033]PDdd91f3\
 \033]PE93aee5\
-\033]PFffffff\
-\033[H\033[2J"
+\033]PFffffff"
         ;;
 esac
