@@ -123,6 +123,7 @@ map <c-e> down
 map <c-y> up
 map q quit
 map gh
+map H cd ~
 map g top
 map D delete
 map E extract

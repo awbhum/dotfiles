@@ -30,7 +30,6 @@ alias \
     cdd="cd /" \
     ..="cd ../" \
     c-="cd -" \
-    o="open-file" \
     reboot="sudo reboot" \
     poweroff="sudo poweroff"
 
