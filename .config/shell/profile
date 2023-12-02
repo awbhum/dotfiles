@@ -2,7 +2,7 @@
 
 # --------------------------------- Part 1: Run always -------------------------------------
 
-# basic xdg directory definitions - rest in ~/.config/shell/profile.d/01-xdg.sh
+# basic xdg directory definitions - rest in ~/.config/shell/scripts/01-xdg.sh
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_STATE_HOME="$HOME/.local/state"
@@ -59,8 +59,8 @@ export SHNAME="${SHNAME##*/}"
     export ENV="${XDG_CONFIG_HOME:-$HOME/.config}/shell/shrc"
 }
 
-# source everything in ~/.config/shell/profile.d/
-for i in ${XDG_CONFIG_HOME:-$HOME/.config}/shell/profile.d/*.sh; do
+# source everything in ~/.config/shell/scripts/
+for i in ${XDG_CONFIG_HOME:-$HOME/.config}/shell/scripts/*.sh; do
     [ -r "$i" ] && . "$i"
 done
 
@@ -72,8 +72,8 @@ esac
 
 # --------------------------------- Part 2: Run once -------------------------------------
 
-# source everything in ~/.config/shell/profile.d/run-once/
-for i in ${XDG_CONFIG_HOME:-$HOME/.config}/shell/profile.d/once/*.sh; do
+# source everything in ~/.config/shell/scripts/run-once/
+for i in ${XDG_CONFIG_HOME:-$HOME/.config}/shell/scripts/once/*.sh; do
     [ -r "$i" ] && . "$i"
 done
 
@@ -88,8 +88,8 @@ esac
 # source the shell init file if needed
 [ -r "$ENV" ] && . "$ENV"
 
-# source everything in ~/.config/shell/profile.d/interactive/
-for i in ${XDG_CONFIG_HOME:-$HOME/.config}/shell/profile.d/interactive/*.sh; do
+# source everything in ~/.config/shell/scripts/interactive/
+for i in ${XDG_CONFIG_HOME:-$HOME/.config}/shell/scripts/interactive/*.sh; do
     [ -r "$i" ] && . "$i"
 done
 
@@ -101,14 +101,14 @@ esac
 
 # --------------------------------- Part 4: Run once, when on a login shell -------------------------------------
 
-# when logging out, execute everything in ~/.config/shell/profile.d/logout
+# when logging out, execute everything in ~/.config/shell/scripts/logout
 trap '{
-    for i in ${XDG_CONFIG_HOME:-$HOME/.config}/shell/profile.d/logout/*.sh; do
+    for i in ${XDG_CONFIG_HOME:-$HOME/.config}/shell/scripts/logout/*.sh; do
         [ -r "$i" ] && . "$i"
     done
 }' 0
 
-# execute everything in ~/.config/shell/profile.d/login
-for i in ${XDG_CONFIG_HOME:-$HOME/.config}/shell/profile.d/login/*.sh; do
+# execute everything in ~/.config/shell/scripts/login
+for i in ${XDG_CONFIG_HOME:-$HOME/.config}/shell/scripts/login/*.sh; do
     [ -r "$i" ] && . "$i"
 done
