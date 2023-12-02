@@ -61,8 +61,8 @@ cmd open ${{
 cmd mkdir $mkdir -p "$@"
 
 cmd extract ${{
-    printf "\033[H\033[2J\033[$((LINES/3))B\033[1m"
     set -f
+    printf "\033[1m"
     printf "%s\n\t" "$fx"
     printf "extract? [y/N]\033[0m "
     read ans
@@ -84,8 +84,8 @@ cmd extract ${{
 }}
 
 cmd delete ${{
-    printf "\033[H\033[2J\033[$((LINES/3))B\033[1m"
     set -f
+    printf "\033[1m"
     printf "%s\n\t" "$fx"
     printf "delete? [y/N]\033[0m "
     read ans
