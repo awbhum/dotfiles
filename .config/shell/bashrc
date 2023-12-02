@@ -40,11 +40,8 @@ set -o vi
 # set the prompt using the function
 set_ps1
 
-# change the behavior of cd, pushd, and popd to run the 'set_ps1' function
-# whenever the working directory is changed
-for i in cd pushd popd git; do
-    eval "$i() { command $i \$@; set_ps1; }"
-done
+# run set_ps1 before PS1 is printed (thereby setting it)
+export PROMPT_COMMAND="set_ps1"
 
 # load ~/.config/shell/aliases
 [ -r "${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliases" ] && . ${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliases

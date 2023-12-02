@@ -24,11 +24,11 @@ set_ps1() {
 # enable vi editing mode
 set -o vi
 
-# set the prompt using the function
+# set the prompt
 set_ps1
 
-# change the behavior of cd, pushd, and popd to run the 'set_ps1' function
-# whenever the working directory is changed
+# change the behavior of cd, pushd, popd, and git to run the 'set_ps1' function
+# normal shells don't support running a prompt command, but this emulates that behavior
 for i in cd pushd popd git; do
     eval "$i() { command $i \$@; set_ps1; }"
 done
