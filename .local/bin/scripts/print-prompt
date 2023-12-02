@@ -76,7 +76,8 @@ esac
 command -v git >/dev/null 2>&1 && {
     gitbranch="$(git rev-parse --abbrev-ref HEAD)"
     gitcommit="$(git rev-parse --short HEAD)"
+    git status | grep Changes >/dev/null 2>&1 && gitchanged="y"
 }
 
 # print the prompt
-printf "${SHNAME:+${e_bold}${SHNAME}${e_reset}:}${e_bold}${e_fg_purple}${USER:-${LOGNAME:-\\u}}@${HOSTNAME:-\\h}${gitbranch:+${e_reset}:${e_fg_b_cyan}git(${e_fg_green}${e_bold}${gitbranch}${e_fg_b_cyan}:${e_fg_green}${e_no_bold}${gitcommit}${e_fg_b_cyan})}${e_reset}:${e_bold}${e_fg_blue}${dir}${e_reset}${ind} "
+printf "${SHNAME:+${e_bold}${SHNAME}${e_reset}:}${e_bold}${e_fg_purple}${USER:-${LOGNAME:-\\u}}@${HOSTNAME:-\\h}${gitbranch:+${e_reset}:${e_fg_b_cyan}git(${e_fg_green}${e_bold}${gitbranch}${e_fg_b_cyan}:${gitchanged:+${e_bold}${e_fg_red}+}${e_fg_green}${e_no_bold}${gitcommit}${e_fg_b_cyan})}${e_reset}:${e_bold}${e_fg_blue}${dir}${e_reset}${ind} "

@@ -18,9 +18,6 @@ case "$-" in
       *) return 0 ;;
 esac
 
-# load ~/.config/shell/aliases
-[ -r "${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliases" ] && . ${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliases
-
 # bash supports prompt expansion, so the PS1 variable can just be exported like anything else,
 # but using the function method gives us the ability to use commands in the prompt
 set_ps1() {
@@ -45,6 +42,9 @@ set_ps1
 
 # change the behavior of cd, pushd, and popd to run the 'set_ps1' function
 # whenever the working directory is changed
-for i in cd pushd popd; do
+for i in cd pushd popd git; do
     eval "$i() { command $i \$@; set_ps1; }"
 done
+
+# load ~/.config/shell/aliases
+[ -r "${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliases" ] && . ${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliases

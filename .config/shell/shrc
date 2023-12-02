@@ -12,9 +12,6 @@ case "$-" in
       *) return 0 ;;
 esac
 
-# load ~/.config/shell/aliases
-[ -r "${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliases" ] && . ${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliases
-
 # POSIX-compliant shells don't support prompt expansion, but we can
 # do this ourselves by executing this function anywhere necessary
 set_ps1() {
@@ -32,6 +29,9 @@ set_ps1
 
 # change the behavior of cd, pushd, and popd to run the 'set_ps1' function
 # whenever the working directory is changed
-for i in cd pushd popd; do
+for i in cd pushd popd git; do
     eval "$i() { command $i \$@; set_ps1; }"
 done
+
+# load ~/.config/shell/aliases
+[ -r "${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliases" ] && . ${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliases
