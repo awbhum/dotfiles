@@ -12,24 +12,28 @@ case "$-" in
       *) return 0 ;;
 esac
 
-# POSIX-compliant shells don't support prompt expansion, but we can
-# do this ourselves by executing this function anywhere necessary
-set_ps1() {
-    export PS1="$(print-prompt)"
-}
-
 # if we have access to the 'stty' binary, specify args for it
 [ -n "$(command -v stty)" ] && stty -ixon
 
 # enable vi editing mode
 set -o vi
 
-# set the prompt
+# POSIX-compliant shells don't support prompt expansion, but we can
+# do this ourselves by executing this function anywhere necessary
+set_ps1() {
+    # tilde substitution for the prompt string
+    case "$PWD" in
+        $HOME*) export PS1="~${PWD##$HOME}\\\$ " ;;
+             *) export PS1="$PWD\\\$ " ;;
+    esac
+}
+
+# set the prompt using the function
 set_ps1
 
-# change the behavior of cd, pushd, popd, and git to run the 'set_ps1' function
-# normal shells don't support running a prompt command, but this emulates that behavior
-for i in cd pushd popd git; do
+# change the behavior of cd, pushd, and popd to run the 'set_ps1' function
+# whenever the working directory is changed
+for i in cd pushd popd; do
     eval "$i() { command $i \$@; set_ps1; }"
 done
 
