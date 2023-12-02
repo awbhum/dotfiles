@@ -86,4 +86,4 @@ command -v git >/dev/null 2>&1 && {
 }
 
 # print the prompt
-printf "${e_bold}${e_fg_purple}${USER:-${LOGNAME:-\\u}}@${HOSTNAME:-\\h}${gitbranch:+${e_reset}:${e_fg_green}${e_bold}${gitbranch}=>${gitbranchcolor}${e_no_bold}${gitcommit}}${e_reset}:${e_bold}${e_fg_blue}${dir}${e_reset}${ind} "
+printf "${e_bold}${e_fg_purple}${USER:-${LOGNAME:-\\u}}@${HOSTNAME:-\\h}${gitbranch:+${e_reset}:${e_fg_green}${e_bold}${gitbranch}${e_fg_b_black}.${gitbranchcolor}${e_no_bold}${gitcommit}}${e_reset}:${e_bold}${e_fg_blue}${dir}${e_reset}${ind} "
