@@ -1,0 +1,78 @@
+#!/bin/sh
+
+# generate a shell-agnostic prompt
+
+# aliases for color codes to keep things clean
+case "$TERM" in
+    *color|*color*|linux)
+        e_bold="\033[1m"
+        e_no_bold="\033[22m"
+        e_faint="\033[2m"
+        e_no_faint="\033[22m"
+        e_italic="\033[3m"
+        e_no_italic="\033[23m"
+        e_underline="\033[4m"
+        e_no_underline="\033[24m"
+        e_blink="\033[5m"
+        e_no_blink="\033[25m"
+        e_reverse="\033[7m"
+        e_no_reverse="\033[27m"
+        e_strikethrough="\033[9m"
+        e_no_strikethrough="\033[29m"
+        e_fg_red="\033[31m"
+        e_fg_yellow="\033[32m"
+        e_fg_green="\033[33m"
+        e_fg_blue="\033[34m"
+        e_fg_purple="\033[35m"
+        e_fg_pink="\033[36m"
+        e_fg_white="\033[37m"
+        e_fg_b_red="\033[91m"
+        e_fg_b_yellow="\033[92m"
+        e_fg_b_green="\033[93m"
+        e_fg_b_blue="\033[94m"
+        e_fg_b_purple="\033[95m"
+        e_fg_b_pink="\033[96m"
+        e_fg_b_white="\033[97m"
+        e_bg_red="\033[41m"
+        e_bg_yellow="\033[42m"
+        e_bg_green="\033[43m"
+        e_bg_blue="\033[44m"
+        e_bg_purple="\033[45m"
+        e_bg_pink="\033[46m"
+        e_bg_white="\033[47m"
+        e_bg_b_red="\033[101m"
+        e_bg_b_yellow="\033[102m"
+        e_bg_b_green="\033[103m"
+        e_bg_b_blue="\033[104m"
+        e_bg_b_purple="\033[105m"
+        e_bg_b_pink="\033[106m"
+        e_bg_b_white="\033[107m"
+        e_reset="\033[0m"
+        ;;
+esac
+
+# determine the prompt indicator
+case "${EUID:-${UID:-$(id -u)}}" in
+    0) ind="#" ;;
+    *) ind='$' ;;
+esac
+
+# truncate the home directory
+case "$PWD" in
+    $HOME*) dir="~${PWD##$HOME}" ;;
+         *) dir="$PWD" ;;
+esac
+
+# get the hostname
+[ -z "$HOSTNAME" ] && {
+    read -r HOSTNAME </etc/hostname
+}
+
+# get the git info
+command -v git >/dev/null 2>&1 && {
+    gitbranch="$(git rev-parse --abbrev-ref HEAD)"
+    gitcommit="$(git rev-parse --short HEAD)"
+}
+
+# print the prompt
+printf "${SHNAME:+${e_bold}${SHNAME}${e_reset}:}${e_bold}${e_fg_purple}${USER:-${LOGNAME:-\\u}}@${HOSTNAME:-\\h}${e_reset}:${e_bold}${e_fg_blue}${dir}${e_reset}${ind} "
