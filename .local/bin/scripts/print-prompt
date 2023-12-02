@@ -77,13 +77,9 @@ command -v git >/dev/null 2>&1 && {
     git status >/dev/null 2>&1 && {
         gitbranch="$(git rev-parse --abbrev-ref HEAD)"
         gitcommit="$(git rev-parse --short HEAD)"
-        git status | grep Changes >/dev/null 2>&1 && {
-            gitbranchcolor="${e_fg_red}"
-        } || {
-            gitbranchcolor="${e_fg_green}"
-        }
+        git status | grep Changes >/dev/null 2>&1 && gitchanges="y"
     }
 }
 
 # print the prompt
-printf "${e_bold}${e_fg_purple}${USER:-${LOGNAME:-\\u}}@${HOSTNAME:-\\h}${gitbranch:+${e_reset}:${e_fg_green}${e_bold}${gitbranch}${e_fg_b_black}@${e_no_bold}${gitbranchcolor}${gitcommit}}${e_reset}:${e_bold}${e_fg_blue}${dir}${e_reset}${ind} "
+printf "${e_bold}${e_fg_purple}${USER:-${LOGNAME:-\\u}}@${HOSTNAME:-\\h}${gitbranch:+${e_reset}:${e_fg_green}${e_bold}${gitbranch}${gitchanges:+${e_fg_red}*}}${e_reset}:${e_bold}${e_fg_blue}${dir}${e_reset}${ind} "
