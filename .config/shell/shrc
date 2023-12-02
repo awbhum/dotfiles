@@ -18,11 +18,7 @@ esac
 # POSIX-compliant shells don't support prompt expansion, but we can
 # do this ourselves by executing this function anywhere necessary
 set_ps1() {
-    # tilde substitution for the prompt string
-    case "$PWD" in
-        $HOME*) export PS1="~${PWD##$HOME}\\\$ " ;;
-             *) export PS1="$PWD\\\$ " ;;
-    esac
+    export PS1="$(print-prompt)"
 }
 
 # if we have access to the 'stty' binary, specify args for it

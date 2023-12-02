@@ -24,11 +24,7 @@ esac
 # bash supports prompt expansion, so the PS1 variable can just be exported like anything else,
 # but using the function method gives us the ability to use commands in the prompt
 set_ps1() {
-    case "$TERM" in
-        *color) export PS1="\033[1;35m\\u@\\h\033[22;39m:\033[1;34m\\w\033[22;39m\\\$ " ;;
-         linux) export PS1="\033[1;35m\\u@\\h\033[22;39m:\033[1;34m\\w\033[22;39m\\\$ " ;;
-             *) export PS1="\\u@\\h:\\w\\\$ " ;;
-    esac
+    export PS1="$(print-prompt)"
 }
 
 # bash settings
