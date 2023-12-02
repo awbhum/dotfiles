@@ -37,7 +37,7 @@ export WATCH_INTERVAL="0.5"
 
 # set the GPG signing key
 [ -r "${GNUPGHOME:-$HOME/.local/share/gnupg}/key" ] && {
-    IFS="asodasidhuasiduh" read -r GPG_SIGNING_KEY <"${GNUPGHOME:-$HOME/.local/share/gnupg}/key"
+    IFS="$(head -c4 </dev/urandom)" read -r GPG_SIGNING_KEY <"${GNUPGHOME:-$HOME/.local/share/gnupg}/key"
     export GPG_SIGNING_KEY="$GPG_SIGNING_KEY"
 }
 

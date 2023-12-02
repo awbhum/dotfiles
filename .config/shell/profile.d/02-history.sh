@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # history file
-export HISTFILE="${XDG_DATA_HOME:-$HOME/.local/share}/${SHNAME}_history"
+export HISTFILE="${XDG_DATA_HOME:-$HOME/.local/share}/history/${SHNAME}_history"
 
 # 4096 entries of command history
 export HISTSIZE="4096"
@@ -15,10 +15,10 @@ export HISTTIMEFORMAT="(%F %R) "
 export HISTCONTROL="ignoredups:ignorespace"
 
 # sqlite history file
-export SQLITE_HISTORY="${XDG_DATA_HOME:-$HOME/.local/share}/sqlite_history"
+export SQLITE_HISTORY="${XDG_DATA_HOME:-$HOME/.local/share}/history/sqlite_history"
 
 # less history file
-export LESSHISTFILE="${XDG_DATA_HOME:-$HOME/.local/share}/less_history"
+export LESSHISTFILE="${XDG_DATA_HOME:-$HOME/.local/share}/history/less_history"
 
 # python history file
-export PYTHON_HISTORY_FILE="${XDG_DATA_HOME:-$HOME/.local/share}/python_history"
+export PYTHON_HISTORY_FILE="${XDG_DATA_HOME:-$HOME/.local/share}/history/python_history"
