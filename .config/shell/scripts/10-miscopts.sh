@@ -13,6 +13,9 @@ export CURL_HOME="${XDG_CONFIG_HOME:-$HOME/.config}/curl"
 export GIMP2_DIRECTORY="${XDG_CONFIG_HOME:-$HOME/.config}/gimp"
 export NOTMUCH_CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/notmuch/config"
 
+# search for hidden files in fzf by default
+export FZF_DEFAULT_COMMAND="find ."
+
 # xinitrc in .config
 export XINITRC="${XDG_CONFIG_HOME:-$HOME/.config}/x11/xinitrc"
 

@@ -102,6 +102,7 @@ cmd bulkrename ${{
 
     echo "$fs" > "$tmpfile_old"
     echo "$fs" > "$tmpfile_new"
+
     $EDITOR "$tmpfile_new"
 
     [ "$(wc -l < "$tmpfile_old")" -eq "$(wc -l < "$tmpfile_new")" ] || { rm -f "$tmpfile_old" "$tmpfile_new"; exit 1; }
