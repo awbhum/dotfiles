@@ -35,7 +35,7 @@ set smartdia true
 set tabstop 4
 set timefmt '01-02-2006 03:04:05 PM'
 set truncatechar "~"
-set waitmsg "press any key to continue."
+set waitmsg "\n\033[2mpress any key to continue.\033[0m "
 set wrapscan true
 set wrapscroll true
 
@@ -116,6 +116,18 @@ cmd bulkrename ${{
     lf -remote "send $id unselect"
 }}
 
+cmd toggleexecbit ${{
+    set -f
+    for f in $fx; do
+        oldperm="$(stat $f -c '%a')"
+        case $oldperm in
+            1*|3*|7*) chmod -x $f ;;
+            0*|2*|6*) chmod +x $f ;;
+        esac
+    done
+    lf -remote "send $id reload"
+}}
+
 #
 # bindings
 #
@@ -126,6 +138,7 @@ map q quit
 map gh
 map H cd ~
 map g top
+map C toggleexecbit "$f"
 map D delete
 map E extract
 map <c-n> push :mkdir<space>""<left>
