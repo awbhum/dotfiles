@@ -13,6 +13,10 @@ export CURL_HOME="${XDG_CONFIG_HOME:-$HOME/.config}/curl"
 export GIMP2_DIRECTORY="${XDG_CONFIG_HOME:-$HOME/.config}/gimp"
 export NOTMUCH_CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/notmuch/config"
 
+# lynx settings
+export LYNX_CFG="${XDG_CONFIG_HOME:-$HOME/.config}/lynx/lynx.cfg"
+export LYNX_CFG_PATH="${XDG_CONFIG_HOME:-$HOME/.config}/lynx:$HOME/.lynx:$HOME"
+
 # search for hidden files in fzf by default
 export FZF_DEFAULT_COMMAND="find ."
 
