@@ -16,6 +16,11 @@ done
 # render manpages using the normal pager
 export MANPAGER="$PAGER"
 
+# browser
+for i in w3m links lynx elinks
+    do command -v $i >/dev/null 2>&1 && export BROWSER="$i"
+done
+
 # video player
 for i in mplayer smplayer vlc celluloid mpv
     do command -v $i >/dev/null 2>&1 && export VPLAYER="$i"
