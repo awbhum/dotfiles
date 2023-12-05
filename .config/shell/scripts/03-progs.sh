@@ -17,9 +17,16 @@ done
 export MANPAGER="$PAGER"
 
 # browser
-for i in w3m links lynx elinks
+for i in w3m links lynx amfora elinks
     do command -v $i >/dev/null 2>&1 && export BROWSER="$i"
 done
+
+# graphical browser?
+[ -n "$DISPLAY" ] && {
+    for i in chromium netsurf dillo eolie falkon firefox konqueror badwolf librewolf icecat
+        do command -v $i >/dev/null 2>&1 && export BROWSER="$i"
+    done
+}
 
 # video player
 for i in mplayer smplayer vlc celluloid mpv
