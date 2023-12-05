@@ -13,6 +13,14 @@ export CURL_HOME="${XDG_CONFIG_HOME:-$HOME/.config}/curl"
 export GIMP2_DIRECTORY="${XDG_CONFIG_HOME:-$HOME/.config}/gimp"
 export NOTMUCH_CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/notmuch/config"
 
+# change the term name if needed
+case "$TERM" in
+    screen-256color) export TERM="linux" ;;
+esac
+
+# elinks configuration directory
+export ELINKS_CONFDIR="${XDG_CONFIG_HOME:-$HOME/.config}/elinks"
+
 # search for hidden files in fzf by default
 export FZF_DEFAULT_COMMAND="find ."
 
