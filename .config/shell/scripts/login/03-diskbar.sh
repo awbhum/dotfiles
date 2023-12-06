@@ -16,8 +16,16 @@ done
 
 # find the longest disk name, set it as the indentation for printf
 for d in $disks; do
+    # get percentage of fs usage
+    perc="$(lsblk -no FSUSE% $d)"
+    perc="${perc%%%}"
+    perc="${perc##* }"
+
     # find the longest disk name
     [ "$(printf "$d" | wc -c)" -gt ${disknamelen:-0} ] && disknamelen="$(printf "$d" | wc -c)"
+
+    # find the longest percentage string
+    [ "$(printf "$perc" | wc -c)" -gt ${diskperclen:-0} ] && diskperclen="$(printf "$perc" | wc -c)"
 done
 
 printf "\n\033[1mMounted devices:\033[22m\n"
@@ -50,10 +58,10 @@ for d in $disks; do
     # determine the used cell color
     [ "$perc" -gt 0 ] && usedcol="\033[32m"
     [ "$perc" -gt 66 ] && usedcol="\033[33m"
-    [ "$perc" -gt 84 ] && usedcol="\033[31m"
+    [ "$perc" -gt 89 ] && usedcol="\033[31m"
 
     # beginning label
-    printf "%${disknamelen}s: \033[1m${perc}%% [$usedcol" "$d"
+    printf "%${disknamelen}s: \033[1m%${diskperclen}s%% [$usedcol" "$d" "$perc"
 
     # print colored (used) cells
     for i in $(seq 1 $barusage); do
@@ -72,7 +80,7 @@ for d in $disks; do
     done
 
     # newline
-    printf "\033[22m\033[1;39m] ${usedcol}${fsused}\033[39m of \033[22m\033[2m${fssize}\033[22;39m\033[1m ($(lsblk -no MOUNTPOINT $d))\n\033[22m"
+    printf "\033[22m\033[1;39m] ${usedcol}${fsused}\033[39m of \033[22m\033[2m${fssize}\033[22;39m\033[1m ($(lsblk -no MOUNTPOINT $d))\033[22m\n"
 done
 
-unset perc barusage usedcol disknamelen barlen mountpoints disks fssize fsused
+unset perc barusage usedcol disknamelen diskperclen barlen mountpoints disks fssize fsused
