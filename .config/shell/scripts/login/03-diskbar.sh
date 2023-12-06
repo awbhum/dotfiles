@@ -75,6 +75,4 @@ for d in $disks; do
     printf "\033[22m\033[1;39m] ${usedcol}${fsused}\033[39m of \033[22m\033[2m${fssize}\033[22;39m\033[1m ($(lsblk -no MOUNTPOINT $d))\n\033[22m"
 done
 
-printf "\n"
-
 unset perc barusage usedcol disknamelen barlen mountpoints disks fssize fsused
