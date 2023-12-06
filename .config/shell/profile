@@ -45,6 +45,10 @@ done
 # set default file permission mode
 umask 022
 
+# set terminal lines/columns if needed
+[ -z "$LINES" ] && command -v tput >/dev/null 2>&1 && export LINES="$(tput lines)"
+[ -z "$COLUMNS" ] && command -v tput >/dev/null 2>&1 && export COLUMNS="$(tput cols)"
+
 # determine the name of the shell
 export SHNAME="${0##-}"
 export SHNAME="${SHNAME##*/}"
