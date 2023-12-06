@@ -1,5 +1,12 @@
 #!/bin/sh
 
+for c in ls socat; do
+    command -v $c >/dev/null 2>&1 || {
+        printf "$c: command not found\n"
+        exit 1
+    }
+done
+
 for i in $(ls /tmp/mpvSockets/* 2>/dev/null); do
     echo '{ "command": ["set_property", "pause", true] }' | socat - "$i";
 done
