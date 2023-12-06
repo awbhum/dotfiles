@@ -1,5 +1,7 @@
 #!/bin/sh
 
+# posix-compatible shell init file
+
 # if our session isn't a login shell, source ~/.config/shell/profile
 case "$0" in
     -*) ;;
@@ -19,7 +21,7 @@ esac
 set -o vi
 
 # POSIX-compliant shells don't support prompt expansion, but we can
-# do this ourselves by executing this function anywhere necessary
+# do this ourselves by executing this function
 set_ps1() {
     # tilde substitution for the prompt string
     case "$PWD" in

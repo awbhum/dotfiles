@@ -72,7 +72,7 @@ for i in /sys/class/power_supply/BAT*; do
     printf "    \033[1mCapacity: ${b_usecol}$b_perc.$b_decperc%%\033[39m"
 
     # battery remaining
-    printf "${b_rmng_prefix:+ ($b_rmng_prefix, }${b_rmng:+${b_rmng}h }${b_rmng_mins:+${b_rmng_mins}m $b_rmng_suffix)}\033[22m;\033[1m\n"
+    printf "${b_rmng_prefix:+ ($b_rmng_prefix, }${b_rmng:+${b_rmng}h }${b_rmng_mins:+${b_rmng_mins}m $b_rmng_suffix)}\033[22m;\n"
 
     # decide the percentage color
     [ "$b_wh_perc" -gt 40 ] && b_usecol="\033[31m"
@@ -80,7 +80,7 @@ for i in /sys/class/power_supply/BAT*; do
     [ "$b_wh_perc" -gt 49 ] && b_usecol="\033[32m"
 
     # battery health
-    printf "    Health: ${b_usecol}${b_wh_perc}.${b_wh_decperc}%%\033[39m (${b_wh_full}${b_wh_full_dec:+.$b_wh_full_dec}Wh/${b_wh_design}${b_wh_design_dec:+.$b_wh_design_dec}Wh, cycle $b_cc)\033[22m;\033[1m\n"
+    printf "    \033[1mHealth: ${b_usecol}${b_wh_perc}.${b_wh_decperc}%%\033[39m (${b_wh_full}${b_wh_full_dec:+.$b_wh_full_dec}Wh/${b_wh_design}${b_wh_design_dec:+.$b_wh_design_dec}Wh, cycle $b_cc)\033[22m;\n"
 
     # clean variables
     unset b_mfr b_rmng_suffix b_wh_perc b_wh_full b_wh_design b_wh_decperc b_wh_full_dec b_wh_design_dec b_model b_perc b_usecol b_decperc b_status b_cc b_energy_design b_energy_full b_energy_now b_power_now b_volt_min b_volt_now b_rmng b_rmng_mins

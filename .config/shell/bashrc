@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# bash init file
+
 # if our session isn't a login shell, source ~/.config/shell/profile
 case "$0" in
     -*) ;;

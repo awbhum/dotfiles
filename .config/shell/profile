@@ -1,5 +1,7 @@
 #!/bin/sh
 
+# configuration profile for bash & posix-compatible shells
+
 # --------------------------------- Part 1: Run always -------------------------------------
 
 # basic xdg directory definitions - rest in ~/.config/shell/scripts/01-xdg.sh
@@ -10,6 +12,9 @@ export XDG_CACHE_HOME="$HOME/.local/cache"
 
 # browser homepage
 export WWW_HOME="https://duckduckgo.com"
+
+# uncomment to disable gnupg in this setup
+#export DISABLE_GNUPG="y"
 
 # session type, can be 'x11' or 'wayland'
 export XDG_SESSION_TYPE="x11"
