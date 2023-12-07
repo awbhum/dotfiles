@@ -28,7 +28,7 @@ shopt -s huponexit
 shopt -s xpg_echo
 
 # if we have access to the 'stty' binary, specify args for it
-[ -n "$(command -v stty)" ] && stty -ixon
+command -v stty >/dev/null 2>&1 && stty -ixon
 
 # enable vi editing mode
 set -o vi

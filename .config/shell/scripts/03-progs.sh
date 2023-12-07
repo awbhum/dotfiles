@@ -23,9 +23,11 @@ done
 
 # graphical browser?
 [ -n "$DISPLAY" ] && {
-    for i in chromium netsurf midori dillo eolie falkon firefox konqueror badwolf librewolf icecat
-        do command -v $i >/dev/null 2>&1 && export BROWSER="$i"
-    done
+    [ "$XDG_SESSION_TYPE" = "x11" ] && {
+        for i in chromium netsurf midori dillo eolie falkon firefox konqueror badwolf librewolf icecat
+            do command -v $i >/dev/null 2>&1 && export BROWSER="$i"
+        done
+    }
 }
 
 # video player

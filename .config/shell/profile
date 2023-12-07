@@ -59,7 +59,7 @@ export SHNAME="${0##-}"
 export SHNAME="${SHNAME##*/}"
 
 # find the shell's actual name
-[ -n "$(command -v readlink)" ] && {
+command -v readlink >/dev/null 2>&1 && {
     export SHNAME="$(readlink -f $(command -v $SHNAME))"
     export SHNAME="${SHNAME##*/}"
 }

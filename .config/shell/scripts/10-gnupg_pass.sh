@@ -16,13 +16,13 @@ export PASSWORD_STORE_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/password-store"
 command -v tty >/dev/null 2>&1 && export GPG_TTY="$(tty)"
 
 # create the gnupg home dir
-[ -d "${GNUPGHOME:-$HOME/.gnupg}" ] || mkdir -pv "${GNUPGHOME:-$HOME/.gnupg}"
+[ -d "${GNUPGHOME:-$HOME/.gnupg}" ] || mkdir -p "${GNUPGHOME:-$HOME/.gnupg}"
 
 # change permissions for gnupg home if necessary
 command -v stat chmod >/dev/null 2>&1 && {
     case "$(stat -c '%a' ${GNUPGHOME:-$HOME/.gnupg})" in
         *00) ;;
-        *) chmod -v 700 ${GNUPGHOME:-$HOME/.gnupg} ;;
+        *) chmod 700 ${GNUPGHOME:-$HOME/.gnupg} ;;
     esac
 }
 

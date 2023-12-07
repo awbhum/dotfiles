@@ -15,7 +15,7 @@ export NOTMUCH_CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/notmuch/config"
 
 # change the term name if needed
 case "$TERM" in
-    screen-256color) export TERM="linux" ;;
+    screen-256color) alias elinks="TERM=linux elinks" ;;
 esac
 
 # elinks configuration directory

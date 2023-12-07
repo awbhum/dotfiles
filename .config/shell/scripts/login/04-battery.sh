@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # command dependencies
-command -v uname head >/dev/null 2>&1 || return 1
+command -v uname head bc >/dev/null 2>&1 || return 1
 
 # check the operating system name
 case "$(uname -s)" in
