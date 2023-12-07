@@ -3,6 +3,11 @@
 # reset aliases to ensure that they don't break
 unalias -a
 
+# change the term name for elinks if needed
+case "$TERM" in
+    screen-256color) alias elinks="TERM=linux elinks" ;;
+esac
+
 # use ~/.config/x11/xinitrc
 alias \
     startx="startx $XINITRC"
