@@ -4,7 +4,7 @@
 
 # aliases for color codes to keep things clean
 case "$TERM" in
-    *color|*color*|linux)
+    foot|*color|*color*|linux)
         e_bold="\033[1m"
         e_no_bold="\033[22m"
         e_faint="\033[2m"
