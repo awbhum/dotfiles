@@ -1,0 +1,9 @@
+#!/bin/sh
+
+# script to require a command
+for c in $@; do
+    command -v $c >/dev/null 2>&1 || {
+        printf "$c: command not found\n"
+        exit 1
+    }
+done

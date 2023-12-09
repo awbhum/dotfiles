@@ -1,0 +1,8 @@
+#!/bin/sh
+
+# get a selection using slurp if installed
+command -v slurp >/dev/null 2>&1 && {
+    grim -g "$(slurp)" "${XDG_PICTURES_DIR:-$HOME/Pictures}/$(date +screenshot_%Y%m%d_%Hh%Mm%Ss.png)"
+} || {
+    grim "${XDG_PICTURES_DIR:-$HOME/Pictures}/$(date +screenshot_%Y%m%d_%Hh%Mm%Ss.png)"
+}

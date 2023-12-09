@@ -12,6 +12,7 @@ export INPUTRC="${XDG_CONFIG_HOME:-$HOME/.config}/shell/inputrc"
 export CURL_HOME="${XDG_CONFIG_HOME:-$HOME/.config}/curl"
 export GIMP2_DIRECTORY="${XDG_CONFIG_HOME:-$HOME/.config}/gimp"
 export NOTMUCH_CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/notmuch/config"
+export MOST_INITFILE="${XDG_CONFIG_HOME:-$HOME/.config}/most/mostrc"
 
 # elinks configuration directory
 export ELINKS_CONFDIR="${XDG_CONFIG_HOME:-$HOME/.config}/elinks"

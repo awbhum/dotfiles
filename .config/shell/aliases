@@ -44,6 +44,7 @@ alias \
 # package management shortcuts
 alias \
     xi="sudo xbps-install" \
+    xq="sudo xbps-query" \
     xr="sudo xbps-remove -R"
 
 # verbosity and confirmation

@@ -1,0 +1,3 @@
+#!/bin/sh
+
+# volume control independent of the sound server used
