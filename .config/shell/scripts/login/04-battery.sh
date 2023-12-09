@@ -61,7 +61,7 @@ for i in /sys/class/power_supply/BAT*; do
     esac
 
     # decide the percentage color
-    [ "$b_perc" -gt 0 ] && b_usecol="\033[31m"
+    [ "$b_perc" -ge 0 ] && b_usecol="\033[31m"
     [ "$b_perc" -gt 20 ] && b_usecol="\033[33m"
     [ "$b_perc" -gt 49 ] && b_usecol="\033[32m"
 
@@ -75,9 +75,9 @@ for i in /sys/class/power_supply/BAT*; do
     printf "${b_rmng_prefix:+ ($b_rmng_prefix, }${b_rmng:+${b_rmng}h }${b_rmng_mins:+${b_rmng_mins}m $b_rmng_suffix)}\033[22m;\n"
 
     # decide the percentage color
-    [ "$b_wh_perc" -gt 40 ] && b_usecol="\033[31m"
-    [ "$b_wh_perc" -gt 70 ] && b_usecol="\033[33m"
-    [ "$b_wh_perc" -gt 49 ] && b_usecol="\033[32m"
+    [ "$b_wh_perc" -ge 0 ] && b_usecol="\033[31m"
+    [ "$b_wh_perc" -gt 30 ] && b_usecol="\033[33m"
+    [ "$b_wh_perc" -gt 60 ] && b_usecol="\033[32m"
 
     # battery health
     printf "    \033[1mHealth: ${b_usecol}${b_wh_perc}.${b_wh_decperc}%%\033[39m (${b_wh_full}${b_wh_full_dec:+.$b_wh_full_dec}Wh/${b_wh_design}${b_wh_design_dec:+.$b_wh_design_dec}Wh, cycle $b_cc)\033[22m;\n"

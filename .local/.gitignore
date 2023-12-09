@@ -1,4 +1,8 @@
 cache
+state
 share/history
+share/*history
 share/amfora
 share/gnupg
+share/nvim
+share/lf
