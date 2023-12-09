@@ -33,6 +33,7 @@ alias \
 
 # shortcuts
 alias \
+    e="$EDITOR" \
     g="git" \
     cl="clear" \
     cdd="cd /" \
