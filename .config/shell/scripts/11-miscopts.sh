@@ -17,7 +17,8 @@ export MOST_INITFILE="${XDG_CONFIG_HOME:-$HOME/.config}/most/mostrc"
 # elinks configuration directory
 export ELINKS_CONFDIR="${XDG_CONFIG_HOME:-$HOME/.config}/elinks"
 
-# search for hidden files in fzf by default
+# fzf config
+export FZF_DEFAULT_OPTS="--color=16 --extended"
 export FZF_DEFAULT_COMMAND="find ."
 
 # xinitrc in .config

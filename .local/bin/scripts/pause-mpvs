@@ -1,6 +1,6 @@
 #!/bin/sh
 
-require-command ls socat || exit 1
+require-cmd ls socat || exit 1
 
 for i in $(ls /tmp/mpvSockets/* 2>/dev/null); do
     echo '{ "command": ["set_property", "pause", true] }' | socat - "$i";
