@@ -12,7 +12,7 @@
     img="${img%%.bmp}"
 } || {
     command -v date >/dev/null 2>&1 && {
-        img="${XDG_PICTURES_DIR:-$HOME/Pictures}/screenshot$(date +'_%H%M%S_%Y%m%d')"
+        img="${XDG_PICTURES_DIR:-$HOME/Pictures}/screenshot$(date +'_%Y%m%d_%H%M%S')"
     } || {
         img="${XDG_PICTURES_DIR:-$HOME/Pictures}/screenshot"
     }
@@ -36,7 +36,8 @@
 
     # get a selection using slurp if installed
     command -v slurp >/dev/null 2>&1 && {
-        grim -g "$(slurp 2>/dev/null)" "$img" >/dev/null 2>&1
+        xypos="$(slurp 2>/dev/null)"
+        eval "grim${xypos:+ -g \"$xypos\"} \"$img\"" >/dev/null 2>&1
         exit $?
     } || {
         grim "$img" >/dev/null 2>&1

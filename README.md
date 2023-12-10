@@ -6,5 +6,6 @@
 - **Text Editor**: neovim
 - **Document Reader**: mupdf
 - **File Manager**: lf
-- **Media Player**: mpv
+- **Media Player**: mpv *(inc. yt-dlp and ffmpeg)*
 - **Screenshot utility**: scrot *(X11)*, grim *(Wayland)*
+- **Browser**: elinks *(http,https)*, amfora *(gemini)*

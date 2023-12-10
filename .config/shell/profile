@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# configuration profile for bash & posix-compatible shells
+# supported shells: bash, zsh, dash, ksh93, mksh, oksh
 
 # --------------------------------- Part 1: Run always -------------------------------------
 
@@ -25,6 +25,9 @@ export WM_USE="dwm"
 # rust install dir
 export CARGO_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/cargo"
 
+# zsh script dir
+export ZDOTDIR="${XDG_CONFIG_HOME:-$HOME/.config}/shell"
+
 # function to add directories to our path
 pathadd() {
     case ":${PATH}:" in
@@ -38,14 +41,20 @@ pathadd "$HOME/.local/bin"
 pathadd "${CARGO_HOME:-${XDG_DATA_HOME:-$HOME/.local/share}/cargo}/bin"
 
 # for each subdir in .local/bin/
-for i in $HOME/.local/bin/*; do
-    [ -d $i ] && {
-        pathadd "$i"
-        for j in $i/*; do
-            [ -d $j ] && pathadd "$j"
-        done
-    }
-done
+command -v find >/dev/null 2>&1 && {
+    for d in $(find $HOME/.local/bin -type d -printf "%p\n"); do
+        pathadd "$d"
+    done
+} || {
+    for d in $HOME/.local/bin/*; do
+        [ -d $d ] && {
+            pathadd "$d"
+            for sd in $d/*; do
+                [ -d $sd ] && pathadd "$sd"
+            done
+        }
+    done
+}
 
 # set default file permission mode
 umask 022
@@ -55,12 +64,13 @@ umask 022
 [ -z "$COLUMNS" ] && command -v tput >/dev/null 2>&1 && export COLUMNS="$(tput cols)"
 
 # determine the name of the shell
-export SHNAME="${0##-}"
+export SHNAME="${ZSH_ARGZERO:-$0}"
+export SHNAME="${SHNAME##-}"
 export SHNAME="${SHNAME##*/}"
 
 # find the shell's actual name
 command -v readlink >/dev/null 2>&1 && {
-    export SHNAME="$(readlink -f $(command -v $SHNAME))"
+    export SHNAME="$(readlink -f $(command -v ${SHNAME:-$SHELL}))"
     export SHNAME="${SHNAME##*/}"
 }
 

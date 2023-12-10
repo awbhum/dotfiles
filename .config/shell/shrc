@@ -3,7 +3,7 @@
 # posix-compatible shell init file
 
 # if our session isn't a login shell, source ~/.config/shell/profile
-case "$0" in
+case "${ZSH_ARGZERO:-$0}" in
     -*) ;;
      *) [ -r "${XDG_CONFIG_HOME:-$HOME/.config}/shell/profile" ] && . ${XDG_CONFIG_HOME:-$HOME/.config}/shell/profile ;;
 esac
@@ -20,24 +20,30 @@ command -v stty >/dev/null 2>&1 && stty -ixon
 # enable vi editing mode
 set -o vi
 
+# load ~/.config/shell/aliases
+[ -r "${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliases" ] && . ${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliases
+
 # POSIX-compliant shells don't support prompt expansion, but we can
 # do this ourselves by executing this function
 set_ps1() {
-    # tilde substitution for the prompt string
+    case "${EUID:-${UID:-$(id -u)}}" in
+        0) export PS1="# " ;;
+        *) export PS1='$ ' ;;
+    esac
     case "$PWD" in
-        $HOME*) export PS1="~${PWD##$HOME}\\\$ " ;;
-             *) export PS1="$PWD\\\$ " ;;
+        $HOME*) export PS1="~${PWD##$HOME}$PS1" ;;
+             *) export PS1="$PWD$PS1" ;;
     esac
 }
 
 # set the prompt using the function
 set_ps1
 
+# set the PS1 using print-prompt if the shell supports it
+export PROMPT_COMMAND="export PS1=\"\$(print-prompt)\""
+
 # change the behavior of cd, pushd, and popd to run the 'set_ps1' function
 # whenever the working directory is changed
 for i in cd pushd popd; do
-    eval "$i() { command $i \$@; set_ps1; }"
+    eval "_$i() { command $i \$@; set_ps1; }; alias $i=_$i"
 done
-
-# load ~/.config/shell/aliases
-[ -r "${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliases" ] && . ${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliases

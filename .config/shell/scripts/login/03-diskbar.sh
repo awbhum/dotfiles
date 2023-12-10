@@ -6,16 +6,13 @@ command -v lsblk wc grep awk seq >/dev/null 2>&1 || return 1
 # bar size
 barlen="$((COLUMNS/5))"
 
-# mountpoints
-mountpoints="$(lsblk -no MOUNTPOINT)"
-
 # find disk names from mountpoints
-for m in $mountpoints; do
+for m in $(lsblk -no MOUNTPOINT); do
     disks="${disks:+$disks }$(lsblk -no MOUNTPOINT,PATH | grep "^$m " | awk '{print $2}')"
 done
 
 # find the longest disk name, set it as the indentation for printf
-for d in $disks; do
+for d in $(printf "$disks"); do
     # get percentage of fs usage
     perc="$(lsblk -no FSUSE% $d)"
     perc="${perc%%%}"
@@ -31,7 +28,7 @@ done
 printf "\n\033[1mMounted devices:\033[22m\n"
 
 # loop over each disk
-for d in $disks; do
+for d in $(printf "$disks"); do
     # get percentage of fs usage
     perc="$(lsblk -no FSUSE% $d)"
     perc="${perc%%%}"

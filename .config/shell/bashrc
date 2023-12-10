@@ -33,7 +33,7 @@ command -v stty >/dev/null 2>&1 && stty -ixon
 # enable vi editing mode
 set -o vi
 
-# run set_ps1 before PS1 is printed (thereby setting it)
+# set the PS1 using print-prompt if the shell supports it
 export PROMPT_COMMAND="export PS1=\"\$(print-prompt)\""
 
 # load ~/.config/shell/aliases
