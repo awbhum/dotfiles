@@ -18,7 +18,7 @@
 - **[Browser](#browser)**: elinks *(http,https,ftp,gopher)*, amfora *(gemini)*
 - **[Security Utilities](#security)**: `pass` *(Password manager)*, `gpg` *(Public-key encryption & signatures)*
 - **[Other](#misc)**: tlp, seatd, `ncdu`
-### [Operating System] (#){name=os}
+## Operating System (#){name=os}
 ### X Window Manager [](#){name=xwm}
 ### X Compositor [](#){name=xcompositor}
 ### Wayland Compositor [](#){name=wlcompositor}
