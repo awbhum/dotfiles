@@ -3,16 +3,16 @@
 # screenshot utility frontend
 
 # name of the screenshot
-[ -n "$1" ] & {
+[ "$#" -gt 0 ] && {
     # strip file formats
-    img="${1%.png}"
-    img="${1%.jpg}"
-    img="${1%.jpeg}"
-    img="${1%.webp}"
-    img="${1%.bmp}"
+    img="${1%%.png}"
+    img="${img%%.jpg}"
+    img="${img%%.jpeg}"
+    img="${img%%.webp}"
+    img="${img%%.bmp}"
 } || {
     command -v date >/dev/null 2>&1 && {
-        img="${XDG_PICTURES_DIR:-$HOME/Pictures}/screenshot$(date +'_%Hh%Mm%Ss_%Y%m%d')"
+        img="${XDG_PICTURES_DIR:-$HOME/Pictures}/screenshot$(date +'_%H%M%S_%Y%m%d')"
     } || {
         img="${XDG_PICTURES_DIR:-$HOME/Pictures}/screenshot"
     }
@@ -36,7 +36,7 @@
 
     # get a selection using slurp if installed
     command -v slurp >/dev/null 2>&1 && {
-        grim -g "$(slurp)" "$img" >/dev/null 2>&1
+        grim -g "$(slurp 2>/dev/null)" "$img" >/dev/null 2>&1
         exit $?
     } || {
         grim "$img" >/dev/null 2>&1

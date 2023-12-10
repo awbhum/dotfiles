@@ -13,15 +13,16 @@ riverctl border-color-unfocused 0x322425
 # set repeat rate
 riverctl set-repeat 35 250
 
+# set app-ids of views which should float
+riverctl float-filter-add "float"
+riverctl float-filter-add "popup"
+
 # set app-ids of views which should use client side decorations
 riverctl csd-filter-add "firefox"
 riverctl csd-filter-add "gedit"
 riverctl csd-filter-add "emacs"
 
 riverctl focus-follows-cursor normal
-
-# load the riverwm session script
-[ -r "${XDG_CONFIG_HOME:-$HOME/.config}/river/session.sh" ] && . "${XDG_CONFIG_HOME:-$HOME/.config}/river/session.sh"
 
 # set trackpad by grabbing the event
 for pad in $(riverctl list-inputs | grep -i touchpad); do
@@ -36,7 +37,7 @@ riverctl declare-mode passthrough
 riverctl map            normal      Mod4+Shift          Return                  spawn "${TERMINAL:-foot}"
 riverctl map            normal      Mod4+Shift          C                       close
 riverctl map            normal      Mod4                R                       spawn "$HOME/.config/river/init"
-riverctl map            normal      Mod4                P                       spawn "echo hi | wmenu"
+riverctl map            normal      Mod4                P                       spawn "run-cmd"
 riverctl map            normal      Mod4                J                       focus-view next
 riverctl map            normal      Mod4                K                       focus-view previous
 riverctl map            normal      Mod4+Shift          J                       swap next
@@ -90,6 +91,9 @@ riverctl map            $mode       None                XF86AudioPrev           
 riverctl map            $mode       None                XF86AudioNext           spawn 'playerctl next'
 
 done
+
+# load the riverwm session script
+[ -r "${XDG_CONFIG_HOME:-$HOME/.config}/river/session.sh" ] && . "${XDG_CONFIG_HOME:-$HOME/.config}/river/session.sh"
 
 riverctl default-layout rivertile
 exec rivertile -main-ratio 0.5
