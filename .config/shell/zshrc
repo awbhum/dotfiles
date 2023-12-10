@@ -14,6 +14,12 @@ case "$-" in
       *) return 0 ;;
 esac
 
+# check if the proper shell is sourcing this file
+case "$SHNAME" in
+    zsh) ;;
+      *) . "$ENV"; return 0 ;;
+esac
+
 # if we have access to the 'stty' binary, specify args for it
 command -v stty >/dev/null 2>&1 && stty -ixon
 

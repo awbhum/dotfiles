@@ -37,7 +37,7 @@ riverctl declare-mode passthrough
 riverctl map            normal      Mod4+Shift          Return                  spawn "${TERMINAL:-foot}"
 riverctl map            normal      Mod4+Shift          C                       close
 riverctl map            normal      Mod4                R                       spawn "$HOME/.config/river/init"
-riverctl map            normal      Mod4                P                       spawn "run-cmd"
+riverctl map            normal      Mod4                P                       spawn "RUNCMD_USE_WAYLAND=y run-cmd"
 riverctl map            normal      Mod4                J                       focus-view next
 riverctl map            normal      Mod4                K                       focus-view previous
 riverctl map            normal      Mod4+Shift          J                       swap next
