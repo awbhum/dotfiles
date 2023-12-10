@@ -63,7 +63,7 @@ riverctl map            normal      Mod4                0                       
 riverctl map            normal      Mod4+Shift          0                       set-view-tags $all_tags
 riverctl map-pointer    normal      Mod4                BTN_LEFT                move-view
 riverctl map-pointer    normal      Mod4                BTN_RIGHT               resize-view
-riverctl map            normal      None                Print                   spawn "wl-screenshot"
+riverctl map            normal      None                Print                   spawn "take-screenshot"
 
 # tag keys
 for i in $(seq 1 9); do tags=$((1 << ($i - 1)))
