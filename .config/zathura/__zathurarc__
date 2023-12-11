@@ -36,7 +36,7 @@ set page-padding 8
 set scroll-step 64
 set window-title-page true
 set zoom-center true
-set font "Fira Code Symbols 9"
+set font "Fira Code 9"
 set selection-clipboard clipboard
 
 # page recoloring

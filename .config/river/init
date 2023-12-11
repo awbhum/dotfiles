@@ -5,13 +5,22 @@ all_tags=$(((1 << 32) - 1))
 # update env
 riverctl spawn "dbus-update-activation-environment SEATD_SOCK DISPLAY WAYLAND _DISPLAY XDG_CURRENT_DESKTOP=river"
 
+# move the cursor to the center of the new focused window
+riverctl set-cursor-warp on-focus-change
+
+# self explanatory
+riverctl focus-follows-cursor normal
+
+# don't hide the cursor
+riverctl hide-cursor disabled
+
 # set background and border color
 riverctl background-color 0x130e0e
 riverctl border-color-focused 0x64494a
 riverctl border-color-unfocused 0x322425
 
-# set repeat rate
-riverctl set-repeat 35 250
+# repeat 35 times per second, after a 200ms delay
+riverctl set-repeat 40 200
 
 # set app-ids of views which should float
 riverctl float-filter-add "float"
@@ -21,8 +30,6 @@ riverctl float-filter-add "popup"
 riverctl csd-filter-add "firefox"
 riverctl csd-filter-add "gedit"
 riverctl csd-filter-add "emacs"
-
-riverctl focus-follows-cursor normal
 
 # set trackpad by grabbing the event
 for pad in $(riverctl list-inputs | grep -i touchpad); do
@@ -34,46 +41,46 @@ done
 riverctl declare-mode passthrough
 
 # binds: input          mode        modkey              key                     command
-riverctl map            normal      Mod4+Shift          Return                  spawn "${TERMINAL:-foot}"
-riverctl map            normal      Mod4+Shift          C                       close
-riverctl map            normal      Mod4                R                       spawn "$HOME/.config/river/init"
-riverctl map            normal      Mod4                P                       spawn "RUNCMD_USE_WAYLAND=y run-cmd"
-riverctl map            normal      Mod4                J                       focus-view next
-riverctl map            normal      Mod4                K                       focus-view previous
-riverctl map            normal      Mod4+Shift          J                       swap next
-riverctl map            normal      Mod4+Shift          K                       swap previous
-riverctl map            normal      Mod4+Shift          Q                       exit
-riverctl map            normal      Mod4+Shift          x                       spawn "wl_lock_session"
-riverctl map            normal      Mod4                F                       toggle-fullscreen
-riverctl map            normal      Mod4                Space                   toggle-float
-riverctl map            normal      Mod4                Period                  focus-output next
-riverctl map            normal      Mod4                Comma                   focus-output previous
-riverctl map            normal      Mod4+Shift          Period                  send-to-output next
-riverctl map            normal      Mod4+Shift          Comma                   send-to-output previous
-riverctl map            normal      Mod4                F11                     enter-mode passthrough
-riverctl map            passthrough Mod4                F11                     enter-mode normal
-riverctl map            normal      Mod4                Up                      send-layout-cmd rivertile "main-location top"
-riverctl map            normal      Mod4                Right                   send-layout-cmd rivertile "main-location right"
-riverctl map            normal      Mod4                Down                    send-layout-cmd rivertile "main-location bottom"
-riverctl map            normal      Mod4                Left                    send-layout-cmd rivertile "main-location left"
-riverctl map            normal      Mod4                H                       send-layout-cmd rivertile "main-ratio -0.05"
-riverctl map            normal      Mod4                L                       send-layout-cmd rivertile "main-ratio +0.05"
-riverctl map            normal      Mod4+Shift          H                       send-layout-cmd rivertile "main-count +1"
-riverctl map            normal      Mod4+Shift          L                       send-layout-cmd rivertile "main-count -1"
-riverctl map            normal      Mod4                0                       set-focused-tags $all_tags
-riverctl map            normal      Mod4+Shift          0                       set-view-tags $all_tags
-riverctl map-pointer    normal      Mod4                BTN_LEFT                move-view
-riverctl map-pointer    normal      Mod4                BTN_RIGHT               resize-view
+riverctl map            normal      Super+Shift         Return                  spawn "${TERMINAL:-foot}"
+riverctl map            normal      Super+Shift         C                       close
+riverctl map            normal      Super               R                       spawn "$HOME/.config/river/init"
+riverctl map            normal      Super               P                       spawn "RUNCMD_USE_WAYLAND=y run-cmd"
+riverctl map            normal      Super               J                       focus-view next
+riverctl map            normal      Super               K                       focus-view previous
+riverctl map            normal      Super+Shift         J                       swap next
+riverctl map            normal      Super+Shift         K                       swap previous
+riverctl map            normal      Super+Shift         Q                       exit
+riverctl map            normal      Super+Shift         x                       spawn "wl_lock_session"
+riverctl map            normal      Super               F                       toggle-fullscreen
+riverctl map            normal      Super               Space                   toggle-float
+riverctl map            normal      Super               Period                  focus-output next
+riverctl map            normal      Super               Comma                   focus-output previous
+riverctl map            normal      Super+Shift         Period                  send-to-output next
+riverctl map            normal      Super+Shift         Comma                   send-to-output previous
+riverctl map            normal      Super               F11                     enter-mode passthrough
+riverctl map            passthrough Super               F11                     enter-mode normal
+riverctl map            normal      Super               Up                      send-layout-cmd rivertile "main-location top"
+riverctl map            normal      Super               Right                   send-layout-cmd rivertile "main-location right"
+riverctl map            normal      Super               Down                    send-layout-cmd rivertile "main-location bottom"
+riverctl map            normal      Super               Left                    send-layout-cmd rivertile "main-location left"
+riverctl map            normal      Super               H                       send-layout-cmd rivertile "main-ratio -0.05"
+riverctl map            normal      Super               L                       send-layout-cmd rivertile "main-ratio +0.05"
+riverctl map            normal      Super+Shift         H                       send-layout-cmd rivertile "main-count +1"
+riverctl map            normal      Super+Shift         L                       send-layout-cmd rivertile "main-count -1"
+riverctl map            normal      Super               0                       set-focused-tags $all_tags
+riverctl map            normal      Super+Shift         0                       set-view-tags $all_tags
+riverctl map-pointer    normal      Super               BTN_LEFT                move-view
+riverctl map-pointer    normal      Super               BTN_RIGHT               resize-view
 riverctl map            normal      None                Print                   spawn "take-screenshot"
 
 # tag keys
 for i in $(seq 1 9); do tags=$((1 << ($i - 1)))
 
 # binds: input          mode        modkey              key                     command
-riverctl map            normal      Mod4                $i                      set-focused-tags $tags
-riverctl map            normal      Mod4+Shift          $i                      set-view-tags $tags
-riverctl map            normal      Mod4+Control        $i                      toggle-focused-tags $tags
-riverctl map            normal      Mod4+Shift+Control  $i                      toggle-view-tags $tags
+riverctl map            normal      Super               $i                      set-focused-tags $tags
+riverctl map            normal      Super+Shift         $i                      set-view-tags $tags
+riverctl map            normal      Super+Control       $i                      toggle-focused-tags $tags
+riverctl map            normal      Super+Shift+Control $i                      toggle-view-tags $tags
 
 done
 
