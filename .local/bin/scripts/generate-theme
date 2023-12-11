@@ -16,5 +16,10 @@ for i in $(find ${XDG_CONFIG_HOME:-$HOME/.config} ${XDG_DATA_HOME:-$HOME/.local/
     dir="${i%/*}"
     name="${i##*___}"
     printf "sed <$i >$dir/$name\n"
-    cp $i $dir/$name
+    sed \
+        -e "s/#::font-monospace::#/$theme_font_monospace/g" \
+        -e "s/#::font-serif::#/$theme_font_serif/g" \
+        -e "s/#::font-sans::#/$theme_font_sans/g" \
+        -e "s/#::font-sans-serif::#/$theme_font_sans_serif/g" \
+        <$i >$dir/$name
 done
