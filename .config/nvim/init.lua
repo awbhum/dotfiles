@@ -18,9 +18,9 @@ require('user/keybinds')
 
 -- load plugins
 require('user/plugins')
-require('user/cmp')
-require('user/telescope')
-require('user/treesitter')
+-- require('user/cmp')
+-- require('user/telescope')
+-- require('user/treesitter')
 
 -- basic color scheme
 vim.cmd("colorscheme industry")
