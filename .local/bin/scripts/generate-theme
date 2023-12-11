@@ -1,9 +1,20 @@
 #!/bin/sh
 
 # requires find and sed
-require-cmd find set || exit 1
+require-cmd find sed || exit 1
+
+# load the theme config file
+[ -r "${XDG_DATA_HOME:-$HOME/.local/share}/themes/theme.conf" ] && {
+    . "${XDG_DATA_HOME:-$HOME/.local/share}/themes/theme.conf"
+} || {
+    printf "${0##*/}: error: ${XDG_DATA_HOME:-$HOME/.local/share}/themes/theme.conf: File or directory nonexistent or unreadable\n"
+    exit 1
+}
 
 # generate theme-specific config files from templates
-for i in $(find ${XDG_CONFIG_HOME:-$HOME/.config} ${XDG_DATA_HOME:-$HOME/.local/share} -type f -name '__*__'); do
-    echo $i
+for i in $(find ${XDG_CONFIG_HOME:-$HOME/.config} ${XDG_DATA_HOME:-$HOME/.local/share} -type f -name '___*'); do
+    dir="${i%/*}"
+    name="${i##*___}"
+    #cp -vf $i $dir/$name
+    rm -v $dir/$name
 done
