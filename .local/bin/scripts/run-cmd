@@ -50,8 +50,8 @@ searchdirs() {
 termcmd="$TERMINAL -e"
 
 # load the theme config file
-[ -r "${XDG_DATA_HOME:-$HOME/.local/share}/themes/theme.conf" ] && {
-    . "${XDG_DATA_HOME:-$HOME/.local/share}/themes/theme.conf"
+[ -r "${XDG_DATA_HOME:-$HOME/.local/share}/dots/themes/theme.conf" ] && {
+    . "${XDG_DATA_HOME:-$HOME/.local/share}/dots/themes/theme.conf"
 
     # set menu theme if applicable
     case "$menu" in

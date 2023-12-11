@@ -7,7 +7,7 @@ require-cmd find sed || exit 1
 [ -r "${XDG_DATA_HOME:-$HOME/.local/share}/dots/themes/theme.conf" ] && {
     . "${XDG_DATA_HOME:-$HOME/.local/share}/dots/themes/theme.conf"
 } || {
-    printf "${0##*/}: error: ${XDG_DATA_HOME:-$HOME/.local/share}/themes/theme.conf: File or directory nonexistent or unreadable\n"
+    printf "${0##*/}: error: ${XDG_DATA_HOME:-$HOME/.local/share}/dots/themes/theme.conf: File or directory nonexistent or unreadable\n"
     exit 1
 }
 
@@ -21,6 +21,7 @@ for i in $(find ${XDG_CONFIG_HOME:-$HOME/.config} ${XDG_DATA_HOME:-$HOME/.local/
         -e "s/#::font-serif::#/$theme_font_serif/g" \
         -e "s/#::font-sans::#/$theme_font_sans/g" \
         -e "s/#::font-sans-serif::#/$theme_font_sans_serif/g" \
+        -e "s/#::vim-colorscheme::#/${theme_vim_colorscheme:-default}/g" \
         -e "s/#::background0::#/$theme_background0/g" \
         -e "s/#::background1::#/$theme_background1/g" \
         -e "s/#::background2::#/$theme_background2/g" \

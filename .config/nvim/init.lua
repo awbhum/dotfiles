@@ -13,11 +13,10 @@
     VisualNOS,  WarningMsg,  Whitespace,  WildMenu,  Menu,  Scrollbar,  Tooltip, VertSplit
 ]]--
 
+require('user/plugins')
+require('user/theme')
 require('user/options')
 require('user/keybinds')
-
--- load plugins
-require('user/plugins')
 -- require('user/cmp')
 -- require('user/telescope')
 -- require('user/treesitter')
