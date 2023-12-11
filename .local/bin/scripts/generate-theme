@@ -15,6 +15,5 @@ require-cmd find sed || exit 1
 for i in $(find ${XDG_CONFIG_HOME:-$HOME/.config} ${XDG_DATA_HOME:-$HOME/.local/share} -type f -name '___*'); do
     dir="${i%/*}"
     name="${i##*___}"
-    #cp -vf $i $dir/$name
-    rm -v $dir/$name
+    cp -vf $i $dir/$name
 done
