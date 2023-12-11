@@ -4,8 +4,8 @@
 require-cmd find sed || exit 1
 
 # load the theme config file
-[ -r "${XDG_DATA_HOME:-$HOME/.local/share}/themes/theme.conf" ] && {
-    . "${XDG_DATA_HOME:-$HOME/.local/share}/themes/theme.conf"
+[ -r "${XDG_DATA_HOME:-$HOME/.local/share}/dots/themes/theme.conf" ] && {
+    . "${XDG_DATA_HOME:-$HOME/.local/share}/dots/themes/theme.conf"
 } || {
     printf "${0##*/}: error: ${XDG_DATA_HOME:-$HOME/.local/share}/themes/theme.conf: File or directory nonexistent or unreadable\n"
     exit 1
@@ -21,5 +21,19 @@ for i in $(find ${XDG_CONFIG_HOME:-$HOME/.config} ${XDG_DATA_HOME:-$HOME/.local/
         -e "s/#::font-serif::#/$theme_font_serif/g" \
         -e "s/#::font-sans::#/$theme_font_sans/g" \
         -e "s/#::font-sans-serif::#/$theme_font_sans_serif/g" \
+        -e "s/#::background0::#/$theme_background0/g" \
+        -e "s/#::background1::#/$theme_background1/g" \
+        -e "s/#::background2::#/$theme_background2/g" \
+        -e "s/#::background3::#/$theme_background3/g" \
+        -e "s/#::background4::#/$theme_background4/g" \
+        -e "s/#::background5::#/$theme_background5/g" \
+        -e "s/#::background6::#/$theme_background6/g" \
+        -e "s/#::background7::#/$theme_background7/g" \
+        -e "s/#::background8::#/$theme_background8/g" \
+        -e "s/#::background9::#/$theme_background9/g" \
+        -e "s/#::background10::#/$theme_background10/g" \
+        -e "s/#::background11::#/$theme_background11/g" \
+        -e "s/#::background12::#/$theme_background12/g" \
+        -e "s/#::background13::#/$theme_background13/g" \
     <$i >$dir/$name
 done

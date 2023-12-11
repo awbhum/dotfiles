@@ -49,6 +49,17 @@ searchdirs() {
 # command to run
 termcmd="$TERMINAL -e"
 
+# load the theme config file
+[ -r "${XDG_DATA_HOME:-$HOME/.local/share}/themes/theme.conf" ] && {
+    . "${XDG_DATA_HOME:-$HOME/.local/share}/themes/theme.conf"
+
+    # set menu theme if applicable
+    case "$menu" in
+        dmenu) theme="${theme_background2:+-nb $theme_background2 }${theme_foreground6:+-nf $theme_foreground6 }${theme_background4:+-sb $theme_background4 }${theme_foreground9:+-sf $theme_foreground9 }" ;;
+        wmenu) theme="${theme_background2:+-N $theme_background2 }${theme_foreground6:+-n $theme_foreground6 }${theme_background4:+-S $theme_background4 }${theme_foreground9:+-s $theme_foreground9 }" ;;
+    esac
+}
+
 cmd="$(find $(searchdirs) -type f -executable -printf '%f\n' | sort -u | $menu)"
 
 case "$cmd" in
