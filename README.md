@@ -13,7 +13,7 @@
 - **[File Manager](#file-manager)**: lf
 - **[Media Player](#media-player)**: mpv
 - **[Media Utilities](#media-utilities)**: `ffmpeg`, `yt-dlp`, `playerctl`
-- **[Mail Client](#mail-client)**: neomutt (courtesy [`mutt-wizard`](https://github.com/LukeSmithxyz/mutt-wizard))
+- **[Mail Client](#mail-client)**: neomutt
 - **[Screenshotter](#screenshotter)**: fbgrab *(framebuffer)*, scrot *(X11)*, grim *(Wayland)*
 - **[Browser](#browser)**: elinks *(http,https,ftp,gopher)*, amfora *(gemini)*
 - **[Security Utilities](#security-utilities)**: `pass` *(Password manager)*, `gpg` *(Public-key encryption & signatures)*
