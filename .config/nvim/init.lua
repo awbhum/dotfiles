@@ -22,9 +22,6 @@ require('user/plugins')
 -- require('user/telescope')
 -- require('user/treesitter')
 
--- basic color scheme
-vim.cmd("colorscheme industry")
-
 --[[
 
 -- nord theme settings
