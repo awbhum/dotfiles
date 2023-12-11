@@ -57,10 +57,10 @@ dwm.normbordercolor: forest1
 dwm.selbordercolor: forest3
 
 ! urxvt
-URxvt.font: xft:Fira Code Symbols:style=Regular:size=9
-URxvt.boldFont: xft:Fira Code Symbols:style=Bold:size=9
-URxvt.italicFont: xft:Fira Code Symbols:style=Italic:size=9
-URxvt.boldItalicFont: xft:Fira Code Symbols:style=BoldItalic:size=9
+URxvt.font: xft:#::font-monospace::#:style=Regular:size=9
+URxvt.boldFont: xft:#::font-monospace::#:style=Bold:size=9
+URxvt.italicFont: xft:#::font-monospace::#:style=Italic:size=9
+URxvt.boldItalicFont: xft:#::font-monospace::#:style=BoldItalic:size=9
 URxvt.depth: 32
 URxvt.letterSpace: 0
 URxvt.lineSpace: 0
@@ -80,4 +80,4 @@ Nsxiv.window.foreground: forest9
 Nsxiv.window.background: forest0
 Nsxiv.bar.foreground: forest9
 Nsxiv.bar.background: forest2
-Nsxiv.bar.font: Fira Code Symbols:style=Regular:size=9
+Nsxiv.bar.font: #::font-monospace::#:style=Regular:size=9

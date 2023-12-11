@@ -21,5 +21,5 @@ for i in $(find ${XDG_CONFIG_HOME:-$HOME/.config} ${XDG_DATA_HOME:-$HOME/.local/
         -e "s/#::font-serif::#/$theme_font_serif/g" \
         -e "s/#::font-sans::#/$theme_font_sans/g" \
         -e "s/#::font-sans-serif::#/$theme_font_sans_serif/g" \
-        <$i >$dir/$name
+    <$i >$dir/$name
 done
