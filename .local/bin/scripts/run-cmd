@@ -1,0 +1,59 @@
+#!/bin/sh
+
+# command menu on x11
+[ -n "$DISPLAY" ] && {
+    for i in wmenu dmenu-wayland xmenu bemenu dmenu 'rofi -dmenu'; do
+        command -v ${i%% *} >/dev/null 2>&1 && xmenu="$i"
+    done
+}
+
+# command menu on wayland
+[ -n "$WAYLAND_DISPLAY" ] && {
+    for i in xmenu bemenu dmenu 'rofi -dmenu' dmenu-wayland wmenu; do
+        command -v ${i%% *} >/dev/null 2>&1 && wmenu="$i"
+    done
+}
+
+# command menu on tty
+[ "$TERMINAL_EXEC" = "y" ] && {
+    for i in fzy skim fzf; do
+        command -v $i >/dev/null 2>&1 && menu="$i"
+    done
+}
+
+# use the x11 menu
+[ "$RUNCMD_USE_X11" = "y" ] && menu="$xmenu"
+
+# use the wayland menu
+[ "$RUNCMD_USE_WAYLAND" = "y" ] && menu="$wmenu"
+
+# dirs to search for commands
+searchdirs() {
+    # vars
+    IFS=":"
+    dirs=""
+
+    # add everything from the path
+    for i in $PATH; do
+        [ -d "$i" ] && dirs="${dirs:+$dirs }$i"
+    done
+
+    # reset the field separator
+    unset IFS
+
+    # print dirs
+    printf "$dirs"
+    unset dirs
+}
+
+# command to run
+termcmd="$TERMINAL -e"
+
+cmd="$(find $(searchdirs) -type f -executable -printf '%f\n' | sort -u | $menu)"
+
+case "$cmd" in
+    *\!) $termcmd ${cmd%!} ;;
+    *) ${cmd} ;;
+esac
+
+exit

@@ -1,4 +1,5 @@
 gh
+fontconfig/fonts.conf
 elinks/bookmarks
 elinks/*hist
 elinks/mouse.lock
