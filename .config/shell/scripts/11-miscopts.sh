@@ -37,6 +37,6 @@ export TMUX_TMPDIR="${XDG_RUNTIME_DIR:-/run/user/${EUID:-${UID:-$(id -u)}}}"
 export WATCH_INTERVAL="0.5"
 
 # other misc. environment variables
-export MOZ_USE_XINPUT2="1"
+export MOZ_USE_XINPUT2="2"
 export QT_QPA_PLATFORMTHEME="gtk3"
 export _JAVA_AWT_WM_NONREPARENTING=1

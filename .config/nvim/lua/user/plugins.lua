@@ -25,33 +25,10 @@ local plugins = {
         version = false,
         lazy = false,
         priority = 1000, -- make sure to load this before all the other start plugins
-        config = function()
-            require("everforest").setup({
-                on_highlights = function (hl, palette)
-                    hl.DiagnosticError = { fg = palette.none, bg = palette.none, sp = palette.red }
-                    hl.DiagnosticWarn = { fg = palette.none, bg = palette.none, sp = palette.yellow }
-                    hl.DiagnosticInfo = { fg = palette.none, bg = palette.none, sp = palette.blue }
-                    hl.DiagnosticHint = { fg = palette.none, bg = palette.none, sp = palette.green }
-                end
-            })
-        end,
     },
     "nvim-lua/popup.nvim",
     "nvim-lua/plenary.nvim",
     "folke/lazy.nvim",
-    -- "hrsh7th/nvim-cmp",
-    -- "hrsh7th/cmp-buffer",
-    -- "hrsh7th/cmp-path",
-    -- "hrsh7th/cmp-cmdline",
-    -- "saadparwaiz1/cmp_luasnip",
-    -- "L3MON4D3/LuaSnip",
-    -- "rafamadriz/friendly-snippets",
-    -- "neovim/nvim-lspconfig",
-    -- "williamboman/mason.nvim",
-    -- "williamboman/mason-lspconfig.nvim",
-    -- "nvim-telescope/telescope.nvim",
-    -- 'nvim-telescope/telescope-media-files.nvim',
-    -- { "nvim-treesitter/nvim-treesitter", cmd = "TSUpdate" }
 }
 
 local opts = {
@@ -77,6 +54,7 @@ local opts = {
 
     install = {
         missing = true,
+        colorscheme = { "default" },
     },
 
     ui = {
