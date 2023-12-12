@@ -61,7 +61,7 @@ set writebackup
 syntax on
 
 " use better colors
-colorscheme habamax
+colorscheme #::vim-colorscheme::#
 
 " automatically-ran commands
 autocmd FileType * setlocal formatoptions-=cro
