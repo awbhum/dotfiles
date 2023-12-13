@@ -26,6 +26,8 @@ local plugins = {
         lazy = false,
         priority = 1000, -- make sure to load this before all the other start plugins
     },
+    "nvim-tree/nvim-web-devicons",
+    "nvim-telescope/telescope.nvim",
     "nvim-lua/popup.nvim",
     "nvim-lua/plenary.nvim",
     "folke/lazy.nvim",

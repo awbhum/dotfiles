@@ -1,5 +1,3 @@
-local autocmd = vim.api.nvim_create_autocmd
-
 local settings = {
     autoread = true,
     autoindent = true,
@@ -68,33 +66,3 @@ local settings = {
 for k, v in pairs(settings) do
     vim.opt[k] = v
 end
-
--- disable continuation of comments
-autocmd("FileType", {
-    pattern = "*",
-    command = "setlocal formatoptions-=cro",
-})
-
--- keys that can wrap to the next line
-autocmd("FileType", {
-    pattern = "*",
-    command = "set whichwrap+=<,>,[,],h,l",
-})
-
--- is keyword
-autocmd("FileType", {
-    pattern = "*",
-    command = "set iskeyword+=-",
-})
-
--- remove trailing whitespaces from the end of lines
---autocmd("BufWritePre", {
---    pattern = "*",
---    command = ":%s/\\s\\+$//e",
---})
-
--- when Xresources is modified, update it
-autocmd("BufWritePost", {
-    pattern = { "*Xresources", "*Xdefaults", "*xresources", "*xdefaults", },
-    command = "silent! !xrdb %",
-})

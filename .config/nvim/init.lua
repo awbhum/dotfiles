@@ -1,6 +1,7 @@
-
--- version 0.7 or later required
 require('user/options')
 require('user/keybinds')
+require('user/autocmds')
 require('user/plugins')
 require('user/theme')
+require('user/devicons')
+require('user/telescope')

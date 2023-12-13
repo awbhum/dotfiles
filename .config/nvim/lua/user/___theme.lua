@@ -54,6 +54,6 @@ vim.cmd([[colorscheme #::vim-colorscheme::#]])
 
 -- the basic color scheme made by `generate-theme` shall only be used
 -- if no custom color scheme is used
-if not (vim.g.colors_name == 'default') then
+if not vim.g.colors_name == 'default' then
     return
 end

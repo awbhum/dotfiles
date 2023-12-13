@@ -8,6 +8,7 @@
 -- command_mode = 'c',
 
 local opts = { noremap = true, silent = true }
+local buf_opts = { silent = true, noremap = true, buffer = true }
 local term_opts = { silent = true }
 local bind = vim.api.nvim_set_keymap
 
@@ -72,9 +73,6 @@ bind("x", "<S-a>", "$<S-a>", opts)
 
 -- redraw screen, just like in bash
 bind("n", "<C-l>", ":nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<LF><LF><C-l>", opts)
-
--- file manager keybinds
-bind("n", "<leader>n", ":Lexplore 17<LF>", opts)
 
 -- misc. leader keymaps
 bind("n", "<leader>q", ":qa!<LF>", opts)
