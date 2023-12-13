@@ -1,3 +1,7 @@
+-- pre-initialization that the other scripts need
+require('user')
+
+-- everything else
 require('user/options')
 require('user/keybinds')
 require('user/autocmds')

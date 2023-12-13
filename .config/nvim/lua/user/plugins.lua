@@ -17,20 +17,15 @@ end
 -- add lazy.nvim to the runtime path
 vim.opt.rtp:prepend(install_path)
 
-
 -- lazy.nvim plugins
 local plugins = {
-    {
-        "neanias/everforest-nvim",
-        version = false,
-        lazy = false,
-        priority = 1000, -- make sure to load this before all the other start plugins
-    },
+    "folke/lazy.nvim",
+    { "neanias/everforest-nvim", version = false, priority = 1000, },
     "nvim-tree/nvim-web-devicons",
     "nvim-telescope/telescope.nvim",
+    { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
     "nvim-lua/popup.nvim",
     "nvim-lua/plenary.nvim",
-    "folke/lazy.nvim",
 }
 
 local opts = {

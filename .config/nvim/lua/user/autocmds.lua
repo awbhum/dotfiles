@@ -30,12 +30,14 @@ autocmd({ "FileType" }, {
     end,
 })
 
+-- close cmd windows (they're useless)
 autocmd({ "CmdWinEnter" }, {
     callback = function()
         vim.cmd("quit")
     end,
 })
 
+-- highlight delay
 autocmd({ "TextYankPost" }, {
     callback = function()
         vim.highlight.on_yank { higroup = "Visual", timeout = 40 }
@@ -54,6 +56,7 @@ autocmd("FileType", {
     command = "set iskeyword+=-",
 })
 
+-- splits stay equal
 autocmd({ "VimResized" }, {
     callback = function()
         vim.cmd "tabdo wincmd ="

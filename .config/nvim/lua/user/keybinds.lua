@@ -1,4 +1,4 @@
--- keybindings
+-- plugin-specific binds located in their respective files
 
 -- normal_mode = 'n',
 -- insert_mode = 'i',
@@ -14,8 +14,6 @@ local bind = vim.api.nvim_set_keymap
 
 -- leader is mapped to space
 bind("", "<Space>", "<Nop>", opts)
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
 
 -- don't overwrite the yank buffer when pasting over selected text
 bind("v", "p", '"_dp', opts)

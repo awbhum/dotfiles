@@ -1,15 +1,5 @@
--- default color scheme modifications
-
---[[
-    ColorColumn,  Conceal,  Cursor,  lCursor,  CursorIM,  CursorColumn,  CursorLine,  Directory
-    DiffAdd,  DiffChange,  DiffDelete,  DiffText,  EndOfBuffer,  TermCursor,  TermCursorNC,  ErrorMsg
-    WinSeparator,  Folded,  FoldColumn,  SignColumn,  IncSearch,  Substitute,  LineNr,  LineNrAbove
-    LineNrBelow,  CursorLineNr,  CursorLineSign,  CursorLineFold,  MatchParen,  ModeMsg,  MsgArea,  MsgSeparator
-    MoreMsg,  NonText,  Normal,  NormalFloat,  NormalNC,  Pmenu,  PmenuSel,  PmenuSbar
-    PmenuThumb,  Question,  QuickFixLine,  Search,  SpecialKey,  SpellBad,  SpellCap,  SpellLocal
-    SpellRare,  StatusLine,  StatusLineNC,  TabLine,  TabLineFill,  TabLineSel,  Title,  Visual
-    VisualNOS,  WarningMsg,  Whitespace,  WildMenu,  Menu,  Scrollbar,  Tooltip, VertSplit
-]]--
+local autocmd = vim.api.nvim_create_autocmd
+local hl = vim.api.nvim_set_hl
 
 -- everforest theme config
 local ok, everforest = pcall(require, "everforest")
@@ -49,11 +39,44 @@ if ok then
     nord.set()
 end
 
--- set the color scheme specified in theme.conf
-vim.cmd([[colorscheme #::vim-colorscheme::#]])
+--[[
+    ColorColumn,  Conceal,  Cursor,  lCursor,  CursorIM,  CursorColumn,  CursorLine,  Directory
+    DiffAdd,  DiffChange,  DiffDelete,  DiffText,  EndOfBuffer,  TermCursor,  TermCursorNC,  ErrorMsg
+    WinSeparator,  Folded,  FoldColumn,  SignColumn,  IncSearch,  Substitute,  LineNr,  LineNrAbove
+    LineNrBelow,  CursorLineNr,  CursorLineSign,  CursorLineFold,  MatchParen,  ModeMsg,  MsgArea,  MsgSeparator
+    MoreMsg,  NonText,  Normal,  NormalFloat,  NormalNC,  Pmenu,  PmenuSel,  PmenuSbar
+    PmenuThumb,  Question,  QuickFixLine,  Search,  SpecialKey,  SpellBad,  SpellCap,  SpellLocal
+    SpellRare,  StatusLine,  StatusLineNC,  TabLine,  TabLineFill,  TabLineSel,  Title,  Visual
+    VisualNOS,  WarningMsg,  Whitespace,  WildMenu,  Menu,  Scrollbar,  Tooltip, VertSplit
 
--- the basic color scheme made by `generate-theme` shall only be used
--- if no custom color scheme is used
-if not vim.g.colors_name == 'default' then
-    return
+    TelescopeBorder, TelescopeMatching, TelescopeMultiIcon, TelescopeMultiSelection, TelescopeNormal,
+    TelescopePreviewBlock, TelescopePreviewBorder, TelescopePreviewCharDev, TelescopePreviewDate,
+    TelescopePreviewDirectory, TelescopePreviewExecute, TelescopePreviewGroup, TelescopePreviewHyphen,
+    TelescopePreviewLine, TelescopePreviewLink, TelescopePreviewMatch, TelescopePreviewMessage,
+    TelescopePreviewMessageFillchar, TelescopePreviewNormal, TelescopePreviewPipe, TelescopePreviewRead,
+    TelescopePreviewSize, TelescopePreviewSocket, TelescopePreviewSticky, TelescopePreviewTitle,
+    TelescopePreviewUser, TelescopePreviewWrite, TelescopePromptBorder, TelescopePromptCounter,
+    TelescopePromptNormal, TelescopePromptPrefix, TelescopePromptTitle, TelescopeResultsBorder,
+    TelescopeResultsClass, TelescopeResultsComment, TelescopeResultsConstant, TelescopeResultsDiffAdd,
+    TelescopeResultsDiffChange, TelescopeResultsDiffDelete, TelescopeResultsDiffUntracked,
+    TelescopeResultsField, TelescopeResultsFunction, TelescopeResultsIndentifier, TelescopeResultsLineNr,
+    TelescopeResultsMethod, TelescopeResultsNormal, TelescopeResultsNumber, TelescopeResultsOperator,
+    TelescopeResultsSpecialComment, TelescopeResultsStruct, TelescopeResultsTitle, TelescopeResultsVariable,
+    TelescopeSelection, TelescopeSelectionCaret, TelescopeTitle
+]]--
+
+-- called everywhere necessary 
+function customize()
 end
+
+-- apply modifications every time the default theme is set
+autocmd({ "ColorScheme" }, {
+    callback = function()
+        if vim.g.colors_name == "default" then
+            customize()
+        end
+    end,
+})
+
+-- set the color scheme specified in theme.conf, or the default
+vim.cmd([[colorscheme #::vim-colorscheme::#]])
