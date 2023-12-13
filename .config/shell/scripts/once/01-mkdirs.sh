@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# create .hushlogin
+:>$HOME/.hushlogin
+
 # create XDG directories
 mkdir -p \
     ${XDG_CONFIG_HOME:-$HOME/.config} \
