@@ -36,5 +36,26 @@ for i in $(find ${XDG_CONFIG_HOME:-$HOME/.config} ${XDG_DATA_HOME:-$HOME/.local/
         -e "s/#::background11::#/$theme_background11/g" \
         -e "s/#::background12::#/$theme_background12/g" \
         -e "s/#::background13::#/$theme_background13/g" \
-    <$i >$dir/$name
+        -e "s/#::foreground0::#/$theme_foreground0/g" \
+        -e "s/#::foreground1::#/$theme_foreground1/g" \
+        -e "s/#::foreground2::#/$theme_foreground2/g" \
+        -e "s/#::foreground3::#/$theme_foreground3/g" \
+        -e "s/#::foreground4::#/$theme_foreground4/g" \
+        -e "s/#::foreground5::#/$theme_foreground5/g" \
+        -e "s/#::blue0::#/$theme_blue0/g" \
+        -e "s/#::blue1::#/$theme_blue1/g" \
+        -e "s/#::blue2::#/$theme_blue2/g" \
+        -e "s/#::blue3::#/$theme_blue3/g" \
+        -e "s/#::blue4::#/$theme_blue4/g" \
+        -e "s/#::red0::#/$theme_red0/g" \
+        -e "s/#::red1::#/$theme_red1/g" \
+        -e "s/#::red2::#/$theme_red2/g" \
+        -e "s/#::red3::#/$theme_red3/g" \
+        -e "s/#::red4::#/$theme_red4/g" \
+        -e "s/#::green0::#/$theme_green0/g" \
+        -e "s/#::green1::#/$theme_green1/g" \
+        -e "s/#::green2::#/$theme_green2/g" \
+        -e "s/#::green3::#/$theme_green3/g" \
+        -e "s/#::green4::#/$theme_green4/g" \
+    <"$i" >"$dir/$name"
 done
