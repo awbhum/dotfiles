@@ -14,6 +14,8 @@ local bind = vim.api.nvim_set_keymap
 
 -- leader is mapped to space
 bind("", "<Space>", "<Nop>", opts)
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 
 -- don't overwrite the yank buffer when pasting over selected text
 bind("v", "p", '"_dp', opts)
@@ -86,3 +88,13 @@ bind("i", "kj", "<ESC><C-l>", opts)
 bind("i", "<ESC>", "<C-o>:echo \"Press \'k\' and \'j\' in quick succession to exit insert mode.\"<LF>", opts)
 --bind("v", "<ESC>", ":<C-u>echo \"Press \'k\' and \'j\' in quick succession to exit visual mode.\"<LF>gv", opts)
 --bind("x", "<ESC>", ":<C-u>echo \"Press \'k\' and \'j\' in quick succession to exit visual-block mode.\"<LF>gv", opts)
+
+-- telescope keybinds
+bind("n", "<leader>ff", ":Telescope find_files<LF>", opts)
+bind("n", "<leader>fb", ":Telescope buffers<LF>", opts)
+bind("n", "<leader>fh", ":Telescope help_tags<LF>", opts)
+bind("n", "<leader>fs", ":Telescope lsp_document_symbols<LF>", opts)
+bind("n", "<leader>fo", ":Telescope oldfiles<LF>", opts)
+bind("n", "<leader>fw", ":Telescope grep_string<LF>", opts)
+bind("n", "<leader>gc", ":Telescope git_commits<LF>", opts)
+bind("n", "<leader>gb", ":Telescope git_bcommits<LF>", opts)

@@ -1,11 +1,18 @@
--- pre-initialization that the other scripts need
-require('user')
+-- plugin spec
+require "user.spec"
 
--- everything else
-require('user/options')
-require('user/keybinds')
-require('user/autocmds')
-require('user/plugins')
-require('user/theme')
-require('user/devicons')
-require('user/telescope')
+-- user config
+require "user.options"
+require "user.keymaps"
+require "user.autocmds"
+
+-- plugin configuration
+spec "user.plugin.devicons"
+spec "user.plugin.telescope"
+spec "user.plugin.theme-everforest"
+
+-- plugin manager (lazy.nvim)
+require "user.lazy"
+
+-- color scheme
+require "user.theme"

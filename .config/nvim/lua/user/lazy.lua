@@ -17,18 +17,13 @@ end
 -- add lazy.nvim to the runtime path
 vim.opt.rtp:prepend(install_path)
 
--- lazy.nvim plugins
-local plugins = {
-    "folke/lazy.nvim",
-    { "neanias/everforest-nvim", version = false, priority = 1000, },
-    "nvim-tree/nvim-web-devicons",
-    "nvim-telescope/telescope.nvim",
-    { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
-    "nvim-lua/popup.nvim",
-    "nvim-lua/plenary.nvim",
-}
+-- try to require lazy.nvim
+local ok, lazy = pcall(require, "lazy")
+if not ok then
+    return
+end
 
-local opts = {
+lazy.setup {
     -- plugin install dir
     root = vim.fn.stdpath("data") .. "/lazy",
     lockfile = vim.fn.stdpath("data") .. "/lazy-lock.json", -- lockfile generated after running update.
@@ -40,7 +35,7 @@ local opts = {
     },
 
     -- leave nil when passing the spec as the first argument to setup()
-    spec = nil, ---@type LazySpec
+    spec = LAZY_PLUGIN_SPEC, ---@type LazySpec
 
     git = {
         log = { "-8" },
@@ -108,8 +103,8 @@ local opts = {
 
     change_detection = {
         -- automatically check for config file changes and reload the ui
-        enabled = true,
-        notify = true, -- get a notification when changes are found
+        enabled = false,
+        notify = false, -- get a notification when changes are found
     },
 
     performance = {
@@ -159,5 +154,3 @@ local opts = {
         require = false,
     },
 }
-
-require("lazy").setup(plugins, opts)
