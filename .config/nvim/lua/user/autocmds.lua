@@ -1,6 +1,6 @@
 local autocmd = vim.api.nvim_create_autocmd
 local bind = vim.api.nvim_set_keymap
-local buf_opts = { silent = true, noremap = true, buffer = true }
+local buf_opts = { silent = true, noremap = true }
 
 -- disable continuation of comments
 autocmd("FileType", {

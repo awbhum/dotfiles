@@ -89,6 +89,13 @@ bind("i", "<ESC>", "<C-o>:echo \"Press \'k\' and \'j\' in quick succession to ex
 --bind("v", "<ESC>", ":<C-u>echo \"Press \'k\' and \'j\' in quick succession to exit visual mode.\"<LF>gv", opts)
 --bind("x", "<ESC>", ":<C-u>echo \"Press \'k\' and \'j\' in quick succession to exit visual-block mode.\"<LF>gv", opts)
 
+-- split movement
+bind("n", "<leader>j", "<C-w>h", opts)
+bind("n", "<leader>k", "<C-w>l", opts)
+
+-- lazy keybinds
+bind("n", "<leader>p", ":Lazy<LF>", opts)
+
 -- telescope keybinds
 bind("n", "<leader>ff", ":Telescope find_files<LF>", opts)
 bind("n", "<leader>fb", ":Telescope buffers<LF>", opts)
@@ -98,3 +105,6 @@ bind("n", "<leader>fo", ":Telescope oldfiles<LF>", opts)
 bind("n", "<leader>fw", ":Telescope grep_string<LF>", opts)
 bind("n", "<leader>gc", ":Telescope git_commits<LF>", opts)
 bind("n", "<leader>gb", ":Telescope git_bcommits<LF>", opts)
+
+-- nvim tree keybinds
+bind("n", "<leader>n", ":NvimTreeToggle<LF>", opts)

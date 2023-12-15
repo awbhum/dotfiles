@@ -8,10 +8,13 @@ require "user.autocmds"
 require "user.themedefault"
 
 -- plugin configuration
+spec "user.plugins.autopairs"
+spec "user.plugins.nvimtree"
 spec "user.plugins.devicons"
 spec "user.plugins.telescope"
 spec "user.plugins.everforest"
 spec "user.plugins.nord"
+spec "user.plugins.alpha"
 
 -- plugin manager (lazy.nvim)
 require "user.lazy"
