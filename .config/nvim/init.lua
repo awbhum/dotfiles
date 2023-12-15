@@ -5,14 +5,16 @@ require "user.spec"
 require "user.options"
 require "user.keymaps"
 require "user.autocmds"
+require "user.themedefault"
 
 -- plugin configuration
-spec "user.plugin.devicons"
-spec "user.plugin.telescope"
-spec "user.plugin.theme-everforest"
+spec "user.plugins.devicons"
+spec "user.plugins.telescope"
+spec "user.plugins.everforest"
+spec "user.plugins.nord"
 
 -- plugin manager (lazy.nvim)
 require "user.lazy"
 
--- color scheme
+-- set the color scheme specified in theme.conf, or the default
 require "user.theme"
