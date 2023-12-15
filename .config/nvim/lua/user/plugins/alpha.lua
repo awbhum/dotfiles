@@ -30,6 +30,7 @@ function M.config()
         button("r", icons.ui.History .. " Recent files", ":Telescope oldfiles<LF>"),
         button("t", icons.ui.Text .. " Find text", ":Telescope live_grep<LF>"),
         button("c", icons.ui.Gear .. " Config", ":e ~/.config/nvim/init.lua<LF>"),
+        button("m", icons.ui.Package .. " Manage Packages", ":Lazy<LF>"),
         button("q", icons.ui.SignOut .. " Quit", ":qa<CR>"),
     }
 

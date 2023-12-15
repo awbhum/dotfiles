@@ -15,6 +15,9 @@ spec "user.plugins.telescope"
 spec "user.plugins.everforest"
 spec "user.plugins.nord"
 spec "user.plugins.alpha"
+spec "user.plugins.comment"
+spec "user.plugins.project"
+spec "user.plugins.toggleterm"
 
 -- plugin manager (lazy.nvim)
 require "user.lazy"

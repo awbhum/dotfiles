@@ -98,6 +98,8 @@ bind("n", "<leader>p", ":Lazy<LF>", opts)
 
 -- telescope keybinds
 bind("n", "<leader>ff", ":Telescope find_files<LF>", opts)
+bind("n", "<leader>fd", ":Telescope lsp_definitions<LF>", opts)
+bind("n", "<leader>fg", ":Telescope live_grep<LF>", opts)
 bind("n", "<leader>fb", ":Telescope buffers<LF>", opts)
 bind("n", "<leader>fh", ":Telescope help_tags<LF>", opts)
 bind("n", "<leader>fs", ":Telescope lsp_document_symbols<LF>", opts)
@@ -105,6 +107,9 @@ bind("n", "<leader>fo", ":Telescope oldfiles<LF>", opts)
 bind("n", "<leader>fw", ":Telescope grep_string<LF>", opts)
 bind("n", "<leader>gc", ":Telescope git_commits<LF>", opts)
 bind("n", "<leader>gb", ":Telescope git_bcommits<LF>", opts)
+
+-- toggle a terminal
+bind("n", "<leader>t", ":ToggleTerm<LF>", opts)
 
 -- nvim tree keybinds
 bind("n", "<leader>n", ":NvimTreeToggle<LF>", opts)
