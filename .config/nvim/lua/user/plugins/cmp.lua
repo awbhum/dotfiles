@@ -185,7 +185,7 @@ function M.config()
             { name = "calc" },
             { name = "emoji" },
             --{ name = "cmdline" },
-            --{ name = "treesitter" },
+            { name = "treesitter" },
             --{ name = "crates" },
             --{ name = "tmux" },
         },

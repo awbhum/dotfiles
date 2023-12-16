@@ -24,6 +24,7 @@ spec "user.plugins.toggleterm"
 require "user.plugins.lsp"
 spec "user.plugins.navic"
 spec "user.plugins.breadcrumbs"
+spec "user.plugins.treesitter"
 spec "user.plugins.luasnip"
 spec "user.plugins.cmp"
 
