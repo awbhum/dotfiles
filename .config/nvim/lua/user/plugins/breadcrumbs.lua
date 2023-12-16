@@ -3,7 +3,7 @@ local M = {
     dependencies = {
         "SmiteshP/nvim-navic",
     },
-    event = "VeryLazy",
+    event = "BufRead",
 }
 
 function M.config()

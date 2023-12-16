@@ -195,6 +195,19 @@ function M.config()
             select = false,
         },
 
+        window = {
+            completion = {
+                --winhighlight = "Normal:Pmenu,CursorLine:PmenuSel,FloatBorder:FloatBorder,Search:None",
+                --col_offset = -3,
+                --side_padding = 1,
+                scrollbar = false,
+                scrolloff = 8,
+            },
+            documentation = {
+                --winhighlight = "Normal:Pmenu,FloatBorder:FloatBorder,Search:None",
+            },
+        },
+
         experimental = {
             ghost_text = false,
             native_menu = false,

@@ -1,6 +1,6 @@
 local M = {
     "windwp/nvim-autopairs",
-    event = "BufEnter",
+    event = "BufRead",
 }
 
 M.config = function()
