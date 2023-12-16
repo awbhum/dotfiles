@@ -8,8 +8,27 @@ local M = {
 }
 
 function M.config()
+    -- language servers for lua, awk, bash, c, c++, css, go, html, json, latex, luau, perl, python, rust, sql, toml, typescript, javascript, v, vimscript, yaml
     local servers = {
         "lua_ls",
+        "awk_ls",
+        "bashls",
+        "clangd",
+        "cssls",
+        "html",
+        "jsonls",
+        "ltex",
+        "luau_lsp",
+        "perlnavigator",
+        "pylsp",
+        "rust_analyzer",
+        "sqlls",
+        "taplo",
+        "tsserver",
+        "v_analyzer",
+        "vls",
+        "vimls",
+        "yamlls",
     }
 
     local settings = {

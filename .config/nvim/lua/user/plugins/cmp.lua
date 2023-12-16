@@ -5,13 +5,21 @@ local M = {
         "hrsh7th/cmp-path",
         "hrsh7th/cmp-cmdline",
         "hrsh7th/cmp-calc",
+        "hrsh7th/cmp-emoji",
         "hrsh7th/cmp-nvim-lsp",
         "L3MON4D3/LuaSnip",
     },
-    event = "VeryLazy",
+    event = "InsertEnter",
 }
 
 function M.config()
+    vim.api.nvim_set_hl(0, "CmpItemKindCopilot", { fg = "#6CC644" })
+    vim.api.nvim_set_hl(0, "CmpItemKindTabnine", { fg = "#CA42F0" })
+    vim.api.nvim_set_hl(0, "CmpItemKindCrate", { fg = "#F64D00" })
+    vim.api.nvim_set_hl(0, "CmpItemKindEmoji", { fg = "#FDE030" })
+
+    local icons = require("user.icons")
+
     local cmp_status_ok, cmp = pcall(require, "cmp")
     if not cmp_status_ok then
         return
@@ -23,6 +31,7 @@ function M.config()
     end
 
     require("luasnip/loaders/from_vscode").lazy_load()
+    require("luasnip").filetype_extend("typescriptreact", { "html" })
 
     local check_backspace = function()
         local col = vim.fn.col "." - 1
@@ -112,33 +121,78 @@ function M.config()
         formatting = {
             fields = { "kind", "abbr", "menu" },
             format = function(entry, vim_item)
-                -- Kind icons
-                vim_item.kind = string.format("%s", kind_icons[vim_item.kind])
-                -- vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind) -- This concatonates the icons with the name of the item kind
+                vim_item.kind = icons.kind[vim_item.kind]
                 vim_item.menu = ({
-                    luasnip = "[Snippet]",
-                    buffer = "[Buffer]",
-                    path = "[Path]",
+                    nvim_lsp = "",
+                    nvim_lua = "",
+                    luasnip = "",
+                    buffer = "",
+                    path = "",
+                    emoji = "",
                 })[entry.source.name]
+                if entry.source.name == "copilot" then
+                    vim_item.kind = icons.git.Octoface
+                    vim_item.kind_hl_group = "CmpItemKindCopilot"
+                end
+
+                if entry.source.name == "cmp_tabnine" then
+                    vim_item.kind = icons.misc.Robot
+                    vim_item.kind_hl_group = "CmpItemKindTabnine"
+                end
+
+                if entry.source.name == "crates" then
+                    vim_item.kind = icons.misc.Package
+                    vim_item.kind_hl_group = "CmpItemKindCrate"
+                end
+
+                if entry.source.name == "lab.quick_data" then
+                    vim_item.kind = icons.misc.CircuitBoard
+                    vim_item.kind_hl_group = "CmpItemKindConstant"
+                end
+
+                if entry.source.name == "emoji" then
+                    vim_item.kind = icons.misc.Smiley
+                    vim_item.kind_hl_group = "CmpItemKindEmoji"
+                end
+
                 return vim_item
             end,
         },
 
         sources = {
+            {
+                name = "nvim-lsp",
+                entry_filter = function(entry, ctx)
+                    local kind = require("cmp.types.lsp").CompletionItemKind[entry:get_kind()]
+                    if kind == "Snippet" and ctx.prev_context.filetype == "java" then
+                        return false
+                    end
+
+                    if ctx.prev_context.filetype == "markdown" then
+                        return true
+                    end
+
+                    if kind == "Text" then
+                        return false
+                    end
+
+                    return true
+                end,
+            },
             { name = "luasnip" },
             { name = "buffer" },
             { name = "path" },
-            { name = "cmdline" },
             { name = "calc" },
+            { name = "emoji" },
+            --{ name = "cmdline" },
+            --{ name = "treesitter" },
+            --{ name = "crates" },
+            --{ name = "tmux" },
         },
 
         confirm_opts = {
             behavior = cmp.ConfirmBehavior.Replace,
             select = false,
-        },
-
-        window = {
-            documentation = cmp.config.window.bordered(),
         },
 
         experimental = {

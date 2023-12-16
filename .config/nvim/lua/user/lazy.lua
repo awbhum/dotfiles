@@ -2,7 +2,7 @@ local install_path = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 
 -- install lazy.nvim if we don't have it
 if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
-    print("Installing folke/lazy.nvim for plugin management... ")
+    print("Installing folke/lazy.nvim (plugin manager)... ")
     bootstrapped = vim.fn.system({
         "git",
         "clone",
@@ -12,6 +12,7 @@ if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
         "https://github.com/folke/lazy.nvim",
         install_path,
     })
+    print("lazy.nvim successfully installed!")
 end
 
 -- add lazy.nvim to the runtime path

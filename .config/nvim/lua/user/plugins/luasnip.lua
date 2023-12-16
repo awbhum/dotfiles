@@ -4,7 +4,6 @@ local M = {
         "saadparwaiz1/cmp_luasnip",
         "rafamadriz/friendly-snippets",
     },
-    event = "VeryLazy",
 }
 
 return M

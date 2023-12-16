@@ -12,3 +12,4 @@ river/theme.sh
 zathura/zathurarc
 vim/vimrc
 mpv/mpv_sub-delay.json
+window-geometry.conf
