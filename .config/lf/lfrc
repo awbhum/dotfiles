@@ -54,7 +54,7 @@ cmd open ${{
         audio/*|video/x-ms-asf) mpv --audio-display=no $f ;;
         video/*) setsid -f mpv $f -quiet >/dev/null 2>&1 ;;
         application/pgp-encrypted) $EDITOR $fx ;;
-        *) for f in $fx; do setsid $OPENER $f >/dev/null 2>&1 & done ;;
+        *) for f in $fx; do setsid xdg-open $f >/dev/null 2>&1 & done ;;
     esac
 }}
 

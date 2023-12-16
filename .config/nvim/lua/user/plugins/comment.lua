@@ -1,6 +1,5 @@
 local M = {
     "numToStr/Comment.nvim",
-    lazy = true,
     event = "BufEnter",
 }
 

@@ -1,5 +1,6 @@
 [Desktop Entry]
 Type=Application
+Terminal=true
 Name=Text Editor
 Exec=/usr/bin/env open-program text-editor %f
 Name[C]=text.desktop

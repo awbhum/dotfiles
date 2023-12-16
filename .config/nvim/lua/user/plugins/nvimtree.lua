@@ -1,7 +1,6 @@
 local M = {
-  "nvim-tree/nvim-tree.lua",
-  lazy = true,
-  cmd = "NvimTreeToggle",
+    "nvim-tree/nvim-tree.lua",
+    cmd = "NvimTreeToggle",
 }
 
 function M.config()

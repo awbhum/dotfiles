@@ -5,7 +5,6 @@ local M = {
         "nvim-lua/plenary.nvim",
         "nvim-lua/popup.nvim",
     },
-    lazy = true,
     cmd = "Telescope",
 }
 

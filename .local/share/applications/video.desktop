@@ -3,3 +3,4 @@ Type=Application
 Name=Video Player
 Exec=/usr/bin/env open-program video-player %f
 Name[C]=video.desktop
+PrefersNonDefaultGPU=true

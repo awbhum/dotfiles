@@ -1,6 +1,5 @@
 local M = {
     "windwp/nvim-autopairs",
-    lazy = true,
     event = "BufEnter",
 }
 

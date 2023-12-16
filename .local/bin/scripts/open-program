@@ -3,6 +3,9 @@
 # script to open a program
 
 case "$1" in
-    file-manager) ;;
-    document-reader) ;;
+            browser) setsid -f $BROWSER "$2" ;;
+       file-manager) setsid -f $FILEMGR "$2" ;;
+    document-reader) setsid -f $READER "$2" ;;
+       image-viewer) setsid -f $SHOWIMAGE "$2" ;;
+        text-editor) setsid -f xdg-terminal-exec $EDITOR "$2" ;;
 esac

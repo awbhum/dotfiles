@@ -1,6 +1,6 @@
 local M = {
     "shaunsingh/nord.nvim",
-    lazy = false,
+    event = "VimEnter",
 }
 
 function M.config()

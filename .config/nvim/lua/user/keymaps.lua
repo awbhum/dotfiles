@@ -6,7 +6,6 @@
 -- visual_block_mode = 'x',
 -- term_mode = 't',
 -- command_mode = 'c',
-
 local opts = { noremap = true, silent = true }
 local buf_opts = { silent = true, noremap = true, buffer = true }
 local term_opts = { silent = true }
@@ -90,8 +89,10 @@ bind("i", "<ESC>", "<C-o>:echo \"Press \'k\' and \'j\' in quick succession to ex
 --bind("x", "<ESC>", ":<C-u>echo \"Press \'k\' and \'j\' in quick succession to exit visual-block mode.\"<LF>gv", opts)
 
 -- split movement
-bind("n", "<leader>j", "<C-w>h", opts)
-bind("n", "<leader>k", "<C-w>l", opts)
+bind("n", "<C-h>", "<C-w>h", opts)
+bind("n", "<C-j>", "<C-w>j", opts)
+bind("n", "<C-k>", "<C-w>k", opts)
+bind("n", "<C-l>", "<C-w>l", opts)
 
 -- lazy keybinds
 bind("n", "<leader>p", ":Lazy<LF>", opts)

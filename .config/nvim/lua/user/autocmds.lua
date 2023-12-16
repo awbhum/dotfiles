@@ -1,6 +1,4 @@
 local autocmd = vim.api.nvim_create_autocmd
-local bind = vim.api.nvim_set_keymap
-local buf_opts = { silent = true, noremap = true }
 
 -- disable continuation of comments
 autocmd("FileType", {
@@ -25,7 +23,7 @@ autocmd({ "FileType" }, {
         "",
     },
     callback = function()
-        bind("n", "q", ":close<LF>", buf_opts)
+        vim.cmd("nnoremap <silent> <buffer> q :close<LF>")
         vim.opt.buflisted = false
     end,
 })

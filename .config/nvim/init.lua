@@ -19,6 +19,11 @@ spec "user.plugins.lualine"
 spec "user.plugins.comment"
 spec "user.plugins.project"
 spec "user.plugins.toggleterm"
+require "user.plugins.lsp"
+spec "user.plugins.navic"
+spec "user.plugins.breadcrumbs"
+spec "user.plugins.luasnip"
+spec "user.plugins.cmp"
 
 -- plugin manager (lazy.nvim)
 require "user.lazy"

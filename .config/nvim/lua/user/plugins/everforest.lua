@@ -1,8 +1,6 @@
 local M = {
     "neanias/everforest-nvim",
-    version = false,
-    lazy = false,
-    priority = 1000,
+    event = "VimEnter",
 }
 
 function M.config()
