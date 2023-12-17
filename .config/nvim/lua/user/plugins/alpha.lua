@@ -1,5 +1,5 @@
-local ok, alpha = pcall(require, "alpha")
-if not ok then
+local alpha_status_ok, alpha = pcall(require, "alpha")
+if not alpha_status_ok then
     return
 end
 
@@ -13,7 +13,6 @@ local function button(sc, txt, keybind, keybind_opts)
 end
 
 dashboard.section.header.val = {
-    [[                                         ]],
     [[    _   __            _    __            ]],
     [[   / | / /___   ____ | |  / /_  ____ ___ ]],
     [[  /  |/ // _ \ / __ \| | / /(_)/ __ `__ \]],
@@ -25,7 +24,6 @@ dashboard.section.buttons.val = {
     button("f", icons.ui.Files .. " Find file", ":Telescope find_files<LF>"),
     button("n", icons.ui.NewFile .. " New file", ":ene<LF>"),
     -- button("s", icons.ui.SignIn .. " Load session", ":lua require('persistence').load()<CR>"),
-    button("p", icons.git.Repo .. " Find project", ":lua require('telescope').extensions.projects.projects()<LF>"),
     button("r", icons.ui.History .. " Recent files", ":Telescope oldfiles<LF>"),
     button("t", icons.ui.Text .. " Find text", ":Telescope live_grep<LF>"),
     button("c", icons.ui.Gear .. " Config", ":e ~/.config/nvim/init.lua<LF>"),
@@ -45,7 +43,8 @@ dashboard.section.buttons.opts.hl = "Macro"
 dashboard.section.footer.opts.hl = "Type"
 
 dashboard.opts.opts.noautocmd = true
-require("alpha").setup(dashboard.opts)
+
+alpha.setup(dashboard.opts)
 
 vim.api.nvim_create_autocmd("User", {
     pattern = "LazyVimStarted",

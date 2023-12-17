@@ -1,4 +1,4 @@
--- plugin-specific binds located in their respective files
+-- some plugin-specific binds located in their respective files
 
 -- normal_mode = 'n',
 -- insert_mode = 'i',
@@ -8,8 +8,6 @@
 -- command_mode = 'c',
 
 local opts = { noremap = true, silent = true }
-local buf_opts = { silent = true, noremap = true, buffer = true }
-local term_opts = { silent = true }
 local bind = vim.api.nvim_set_keymap
 
 -- leader is mapped to space

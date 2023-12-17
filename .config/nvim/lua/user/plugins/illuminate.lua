@@ -1,49 +1,47 @@
---local M = {
---    "RRethy/vim-illuminate",
---    event = "BufRead",
---}
---
---function M.config()
-    require("illuminate").configure {
-        providers = {
-            'lsp',
-            'treesitter',
-            'regex',
-        },
+local illuminate_status_ok, illuminate = pcall(require, "illuminate")
+if not illuminate_status_ok then
+    return
+end
 
-        delay = 100,
+local opts = {
+    providers = {
+        'lsp',
+        'treesitter',
+        'regex',
+    },
 
-        under_cursor = true,
-        min_count_to_highlight = 1,
-        should_enable = function(bufnr) return true end,
-        case_insensitive_regex = false,
+    delay = 100,
 
-        filetypes_denylist = {
-            "mason",
-            "harpoon",
-            "DressingInput",
-            "NeogitCommitMessage",
-            "qf",
-            "dirbuf",
-            "dirvish",
-            "minifiles",
-            "fugitive",
-            "alpha",
-            "NvimTree",
-            "lazy",
-            "NeogitStatus",
-            "Trouble",
-            "netrw",
-            "lir",
-            "DiffviewFiles",
-            "Outline",
-            "Jaq",
-            "spectre_panel",
-            "toggleterm",
-            "DressingSelect",
-            "TelescopePrompt",
-        },
-    }
---end
---
---return M
+    under_cursor = true,
+    min_count_to_highlight = 1,
+    should_enable = function(bufnr) return true end,
+    case_insensitive_regex = false,
+
+    filetypes_denylist = {
+        "mason",
+        "harpoon",
+        "DressingInput",
+        "NeogitCommitMessage",
+        "qf",
+        "dirbuf",
+        "dirvish",
+        "minifiles",
+        "fugitive",
+        "alpha",
+        "NvimTree",
+        "lazy",
+        "NeogitStatus",
+        "Trouble",
+        "netrw",
+        "lir",
+        "DiffviewFiles",
+        "Outline",
+        "Jaq",
+        "spectre_panel",
+        "toggleterm",
+        "DressingSelect",
+        "TelescopePrompt",
+    },
+}
+
+illuminate.configure(opts)

@@ -3,7 +3,7 @@ local install_path = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 -- install lazy.nvim if we don't have it
 if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
     print("Installing folke/lazy.nvim (plugin manager)... ")
-    bootstrapped = vim.fn.system({
+    Bootstrapped = vim.fn.system({
         "git",
         "clone",
         "--depth",
@@ -19,23 +19,29 @@ end
 vim.opt.rtp:prepend(install_path)
 
 local plugins = {
-    { "awbhum/base46",
-        event = "VimEnter",
+    -- lsp / breadcrumbs
+    --require("user.plugins.lsp"),
+
+    -- comment
+    { "numToStr/Comment.nvim",
+        event = {
+            "BufRead",
+            "BufNewFile"
+        },
         config = function()
-            require "user.plugins.base46"
+            require "user.plugins.comment"
         end,
     },
 
+    -- splash screen
     { "goolord/alpha-nvim",
-        dependencies = {
-            "ahmedkhalf/project.nvim",
-        },
         event = "VimEnter",
         config = function()
             require "user.plugins.alpha"
         end,
     },
 
+    -- self explanatory
     { "windwp/nvim-autopairs",
         event = {
             "BufRead",
@@ -46,18 +52,7 @@ local plugins = {
         end,
     },
 
-    { "LunarVim/breadcrumbs.nvim",
-        dependencies = {
-            "SmiteshP/nvim-navic",
-        }, event = {
-            "BufRead",
-            "BufNewFile",
-        },
-        config = function()
-            require "user.plugins.breadcrumbs"
-        end,
-    },
-
+    -- completion/snippets
     { "hrsh7th/nvim-cmp",
         dependencies = {
             "hrsh7th/cmp-buffer",
@@ -75,18 +70,10 @@ local plugins = {
         end,
     },
 
-    { "numToStr/Comment.nvim",
-        event = {
-            "BufRead",
-            "BufNewFile"
-        },
-        config = function()
-            require "user.plugins.comment"
-        end,
-    },
-
+    -- language icons
     "nvim-tree/nvim-web-devicons",
 
+    -- highlight current word
     { "RRethy/vim-illuminate",
         event = {
             "BufRead",
@@ -97,6 +84,7 @@ local plugins = {
         end,
     },
 
+    -- vscode-like indent indicator
     { "lukas-reineke/indent-blankline.nvim",
         event = {
             "BufRead",
@@ -108,6 +96,7 @@ local plugins = {
         end,
     },
 
+    -- status line
     { "nvim-lualine/lualine.nvim",
         event = {
             "BufRead",
@@ -118,47 +107,7 @@ local plugins = {
         end,
     },
 
-    --{
-    --    "williamboman/mason.nvim",
-    --    dependencies = {
-    --        "williamboman/mason-lspconfig.nvim",
-    --        "neovim/nvim-lspconfig",
-    --        "nvimtools/none-ls.nvim",
-    --    },
-    --    --cmd = { "Mason", "MasonInstall", "MasonUninstall", "MasonUninstallAll", "MasonLog", "MasonUpdate" },
-    --    event = {
-    --        "BufRead",
-    --        "BufNewFile",
-    --    },
-    --    build = ":MasonUpdate",
-    --    config = function()
-    --        require "user.plugins.lsp"
-    --    end,
-    --},
-
-    { "SmiteshP/nvim-navic",
-        dependencies = {
-            "neovim/nvim-lspconfig",
-        },
-        config = function()
-            require "user.plugins.navic"
-        end,
-    },
-
-    --{ "neanias/everforest-nvim",
-    --    event = "VimEnter",
-    --    config = function()
-    --        require "user.plugins.everforest"
-    --    end,
-    --},
-
-    --{ "shaunsingh/nord.nvim",
-    --    event = "VimEnter",
-    --    config = function()
-    --        require "user.plugins.nord"
-    --    end,
-    --},
-
+    -- file explorer
     { "nvim-tree/nvim-tree.lua",
         cmd = "NvimTreeToggle",
         config = function()
@@ -166,6 +115,7 @@ local plugins = {
         end,
     },
 
+    -- file/fuzzy finder
     { "nvim-telescope/telescope.nvim",
         dependencies = {
             { "nvim-telescope/telescope-fzf-native.nvim", build = "make", lazy = true },
@@ -178,6 +128,7 @@ local plugins = {
         end,
     },
 
+    -- terminal popup window
     { "akinsho/toggleterm.nvim",
         cmd = "ToggleTerm",
         config = function()
@@ -185,6 +136,7 @@ local plugins = {
         end,
     },
 
+    -- treesitter syntax highlighting
     { "nvim-treesitter/nvim-treesitter",
         event = {
             "BufRead",
@@ -205,7 +157,7 @@ local opts = {
     defaults = {
         lazy = true,
         version = "*",
-        cond = nil, --- @type boolean|fun(self:LazyPlugin):boolean|nil
+        cond = nil,
     },
 
     -- leave nil when passing the spec as the first argument to setup()
@@ -288,9 +240,7 @@ local opts = {
         reset_packpath = true, -- reset the package path to improve startup time
         rtp = {
             reset = true, -- reset the runtime path to $VIMRUNTIME and your config directory
-            ---@type string[]
-            paths = {}, -- add any custom paths here that you want to includes in the rtp
-            ---@type string[] list any plugins you want to disable here
+            paths = {},
             disabled_plugins = {
                 "2html_plugin",
                 "tohtml",
@@ -350,8 +300,8 @@ local opts = {
 }
 
 -- try to require lazy.nvim
-local ok, lazy = pcall(require, "lazy")
-if not ok then
+local lazy_status_ok, lazy = pcall(require, "lazy")
+if not lazy_status_ok then
     return
 end
 

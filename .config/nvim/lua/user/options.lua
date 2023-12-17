@@ -1,3 +1,12 @@
+local globals = {
+    nord_borders = true,
+    nord_contrast = true,
+    nord_disable_background = false,
+    nord_italic = true,
+    nord_uniform_diff_background = true,
+    nord_bold = true,
+}
+
 local settings = {
     autoread = true,
     autoindent = true,
@@ -68,4 +77,9 @@ local settings = {
 -- parse the 'settings' variable as vim options
 for k, v in pairs(settings) do
     vim.opt[k] = v
+end
+
+-- parse the 'globals' variable as vim options
+for k, v in pairs(globals) do
+    vim.g[k] = v
 end
