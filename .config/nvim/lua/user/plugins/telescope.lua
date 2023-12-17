@@ -1,14 +1,14 @@
-local M = {
-    "nvim-telescope/telescope.nvim",
-    dependencies = {
-        { "nvim-telescope/telescope-fzf-native.nvim", build = "make", lazy = true },
-        "nvim-lua/plenary.nvim",
-        "nvim-lua/popup.nvim",
-    },
-    cmd = "Telescope",
-}
-
-function M.config()
+--local M = {
+--    "nvim-telescope/telescope.nvim",
+--    dependencies = {
+--        { "nvim-telescope/telescope-fzf-native.nvim", build = "make", lazy = true },
+--        "nvim-lua/plenary.nvim",
+--        "nvim-lua/popup.nvim",
+--    },
+--    cmd = "Telescope",
+--}
+--
+--function M.config()
     local telescope = require("telescope")
     local actions = require("telescope.actions")
     local builtin = require("telescope.builtin")
@@ -17,14 +17,28 @@ function M.config()
     -- misc config
     telescope.setup {
         defaults = {
+            vimgrep_arguments = {
+                "rg",
+                "-L",
+                "--color=never",
+                "--no-heading",
+                "--with-filename",
+                "--line-number",
+                "--column",
+                "--smart-case",
+            },
+
             color_devicons = true,
             border = true,
-            borderchars = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
+            borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
             entry_prefix = "  ",
             prompt_prefix = "  ",
             selection_caret = "  ",
             initial_mode = "insert",
             scroll_strategy = "cycle",
+            sorting_strategy = "ascending",
+            layout_strategy = "horizontal",
+
             mappings = {
                 i = {
                     ["<C-h>"] = "which_key",
@@ -34,6 +48,7 @@ function M.config()
                     [ "q" ] = actions.close,
                 }
             },
+
             layout_config = {
                 horizontal = {
                     prompt_position = "top",
@@ -48,6 +63,7 @@ function M.config()
                 preview_cutoff = 120,
             },
         },
+
         pickers = {
             -- Default configuration for builtin pickers goes here:
             -- picker_name = {
@@ -57,6 +73,7 @@ function M.config()
             -- Now the picker_config_key will be applied every time you call this
             -- builtin picker
         },
+
         extensions = {
             fzf = {
                 fuzzy = true,
@@ -69,6 +86,6 @@ function M.config()
 
     -- extensions
     telescope.load_extension('fzf')
-end
-
-return M
+--end
+--
+--return M

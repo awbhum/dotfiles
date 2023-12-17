@@ -1,9 +1,9 @@
-local M = {
-    "akinsho/toggleterm.nvim",
-    cmd = "ToggleTerm",
-}
-
-function M.config()
+--local M = {
+--    "akinsho/toggleterm.nvim",
+--    cmd = "ToggleTerm",
+--}
+--
+--function M.config()
     local execs = {
         { nil, "<M-1>", "Horizontal Terminal", "horizontal", 0.3 },
         { nil, "<M-2>", "Vertical Terminal", "vertical", 0.4 },
@@ -118,6 +118,6 @@ function M.config()
         vim.api.nvim_buf_set_keymap(0, "t", "<m-k>", [[<C-\><C-n><C-W>k]], opts)
         vim.api.nvim_buf_set_keymap(0, "t", "<m-l>", [[<C-\><C-n><C-W>l]], opts)
     end
-end
-
-return M
+--end
+--
+--return M

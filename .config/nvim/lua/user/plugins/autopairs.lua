@@ -1,9 +1,9 @@
-local M = {
-    "windwp/nvim-autopairs",
-    event = "BufRead",
-}
-
-M.config = function()
+--local M = {
+--    "windwp/nvim-autopairs",
+--    event = "BufRead",
+--}
+--
+--M.config = function()
     require("nvim-autopairs").setup {
         map_char = {
             all = "(",
@@ -40,6 +40,6 @@ M.config = function()
             highlight_grey = "Comment",
         },
     }
-end
-
-return M
+--end
+--
+--return M

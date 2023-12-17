@@ -22,6 +22,7 @@ for i in $(find ${XDG_CONFIG_HOME:-$HOME/.config} ${XDG_DATA_HOME:-$HOME/.local/
         -e "s/#::font-sans::#/$theme_font_sans/g" \
         -e "s/#::font-sans-serif::#/$theme_font_sans_serif/g" \
         -e "s/#::vim-colorscheme::#/${theme_vim_colorscheme:-default}/g" \
+        -e "s/#::vim-colorscheme-alt::#/${theme_vim_colorscheme_alt:-default}/g" \
         -e "s/#::background0::#/$theme_background0/g" \
         -e "s/#::background1::#/$theme_background1/g" \
         -e "s/#::background2::#/$theme_background2/g" \

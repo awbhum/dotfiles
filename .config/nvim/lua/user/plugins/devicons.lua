@@ -1,8 +1,8 @@
-local M = {
-    "nvim-tree/nvim-web-devicons",
-}
-
-function M.config()
+--local M = {
+--    "nvim-tree/nvim-web-devicons",
+--}
+--
+--function M.config()
     require("nvim-web-devicons").setup {
         -- your personnal icons can go here (to override)
         -- you can specify color or cterm_color instead of specifying both of them
@@ -48,6 +48,6 @@ function M.config()
             }
         };
     }
-end
-
-return M
+--end
+--
+--return M

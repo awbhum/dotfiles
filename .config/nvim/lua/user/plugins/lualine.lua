@@ -1,10 +1,10 @@
-local M = {
-    "nvim-lualine/lualine.nvim",
-    lazy = true,
-    event = "BufRead"
-}
-
-function M.config()
+--local M = {
+--    "nvim-lualine/lualine.nvim",
+--    lazy = true,
+--    event = "BufRead"
+--}
+--
+--function M.config()
     local sl_hl = vim.api.nvim_get_hl_by_name("StatusLine", true)
     vim.api.nvim_set_hl(0, "Copilot", { fg = "#6CC644", bg = sl_hl.background })
 
@@ -67,6 +67,6 @@ function M.config()
         },
         extensions = { "quickfix", "man", "fugitive" },
     }
-end
-
-return M
+--end
+--
+--return M

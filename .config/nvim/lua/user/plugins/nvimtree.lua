@@ -1,9 +1,9 @@
-local M = {
-    "nvim-tree/nvim-tree.lua",
-    cmd = "NvimTreeToggle",
-}
-
-function M.config()
+--local M = {
+--    "nvim-tree/nvim-tree.lua",
+--    cmd = "NvimTreeToggle",
+--}
+--
+--function M.config()
     local function my_on_attach(bufnr)
         local api = require "nvim-tree.api"
 
@@ -26,6 +26,9 @@ function M.config()
         on_attach = my_on_attach,
         sync_root_with_cwd = true,
         hijack_cursor = true,
+        disable_netrw = true,
+        hijack_netrw = true,
+        hijack_unnamed_buffer_when_opening = false,
 
         renderer = {
 
@@ -50,9 +53,17 @@ function M.config()
             },
 
             icons = {
+                show = {
+                    file = true,
+                    folder = true,
+                    folder_arrow = true,
+                    git = false,
+                },
+
                 git_placement = "before",
                 padding = " ",
                 symlink_arrow = " ➛ ",
+
                 glyphs = {
                     default = icons.ui.Text,
                     symlink = icons.ui.FileSymlink,
@@ -80,8 +91,18 @@ function M.config()
                     },
                 },
             },
+
             special_files = { "Cargo.toml", "Makefile", "README.md", "readme.md" },
-            symlink_destination = true,
+            symlink_destination = false,
+        },
+
+        git = {
+            enable = false,
+            ignore = true,
+        },
+
+        filesystem_watchers = {
+            enable = true,
         },
 
         update_focused_file = {
@@ -111,9 +132,12 @@ function M.config()
         },
 
         view = {
-            width = 40,
+            adaptive_size = true,
+            side = "left",
+            --width = 40,
+            preserve_window_proportions = true,
         },
     }
-end
-
-return M
+--end
+--
+--return M

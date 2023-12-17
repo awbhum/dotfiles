@@ -7,6 +7,7 @@ elinks/socket*
 amfora/config.toml
 foot/foot.ini
 nvim/lua/user/theme.lua
+nvim/lua/user/plugins/base46.lua
 nvim/lua/user/themedefault.lua
 river/theme.sh
 zathura/zathurarc

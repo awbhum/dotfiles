@@ -1,8 +1,8 @@
-local M = {
-    "ahmedkhalf/project.nvim",
-}
-
-function M.config()
+--local M = {
+--    "ahmedkhalf/project.nvim",
+--}
+--
+--function M.config()
     require("project_nvim").setup {
         active = true,
         on_config_done = nil,
@@ -15,6 +15,6 @@ function M.config()
         silent_chdir = true,
         scope_chdir = "global",
     }
-end
-
-return M
+--end
+--
+--return M

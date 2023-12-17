@@ -1,9 +1,9 @@
-local M = {
-    "RRethy/vim-illuminate",
-    event = "BufRead",
-}
-
-function M.config()
+--local M = {
+--    "RRethy/vim-illuminate",
+--    event = "BufRead",
+--}
+--
+--function M.config()
     require("illuminate").configure {
         providers = {
             'lsp',
@@ -44,6 +44,6 @@ function M.config()
             "TelescopePrompt",
         },
     }
-end
-
-return M
+--end
+--
+--return M

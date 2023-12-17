@@ -1,10 +1,10 @@
-local M = {
-    "nvim-treesitter/nvim-treesitter",
-    event = "VeryLazy",
-    build = ":TSUpdate",
-}
-
-function M.config()
+--local M = {
+--    "nvim-treesitter/nvim-treesitter",
+--    event = { "BufRead", "BufWrite", "BufNewFile" },
+--    build = ":TSUpdate",
+--}
+--
+--function M.config()
     require("nvim-treesitter.configs").setup {
         ensure_installed = {
             "arduino",
@@ -65,6 +65,6 @@ function M.config()
             additional_vim_regex_highlighting = false,
         },
     }
-end
-
-return M
+--end
+--
+--return M

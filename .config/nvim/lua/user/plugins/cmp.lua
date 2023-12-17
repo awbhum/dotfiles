@@ -1,18 +1,18 @@
-local M = {
-    "hrsh7th/nvim-cmp",
-    dependencies = {
-        "hrsh7th/cmp-buffer",
-        "hrsh7th/cmp-path",
-        "hrsh7th/cmp-cmdline",
-        "hrsh7th/cmp-calc",
-        "hrsh7th/cmp-emoji",
-        "hrsh7th/cmp-nvim-lsp",
-        "L3MON4D3/LuaSnip",
-    },
-    event = "InsertEnter",
-}
-
-function M.config()
+--local M = {
+--    "hrsh7th/nvim-cmp",
+--    dependencies = {
+--        "hrsh7th/cmp-buffer",
+--        "hrsh7th/cmp-path",
+--        "hrsh7th/cmp-cmdline",
+--        "hrsh7th/cmp-calc",
+--        "hrsh7th/cmp-emoji",
+--        "hrsh7th/cmp-nvim-lsp",
+--        "L3MON4D3/LuaSnip",
+--    },
+--    event = "InsertEnter",
+--}
+--
+--function M.config()
     vim.api.nvim_set_hl(0, "CmpItemKindCopilot", { fg = "#6CC644" })
     vim.api.nvim_set_hl(0, "CmpItemKindTabnine", { fg = "#CA42F0" })
     vim.api.nvim_set_hl(0, "CmpItemKindCrate", { fg = "#F64D00" })
@@ -213,6 +213,6 @@ function M.config()
             native_menu = false,
         },
     }
-end
-
-return M
+--end
+--
+--return M

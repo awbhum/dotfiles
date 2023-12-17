@@ -1,13 +1,13 @@
-local M = {
-    "LunarVim/breadcrumbs.nvim",
-    dependencies = {
-        "SmiteshP/nvim-navic",
-    },
-    event = "BufRead",
-}
-
-function M.config()
+--local M = {
+--    "LunarVim/breadcrumbs.nvim",
+--    dependencies = {
+--        "SmiteshP/nvim-navic",
+--    },
+--    event = "BufRead",
+--}
+--
+--function M.config()
     require("breadcrumbs").setup()
-end
-
-return M
+--end
+--
+--return M

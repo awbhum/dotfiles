@@ -1,9 +1,9 @@
-local M = {
-    "numToStr/Comment.nvim",
-    event = "BufRead",
-}
-
-function M.config()
+--local M = {
+--    "numToStr/Comment.nvim",
+--    event = "BufRead",
+--}
+--
+--function M.config()
     require("Comment").setup {
         padding = true,
         sticky = true,
@@ -39,6 +39,6 @@ function M.config()
 
         post_hook = nil,
     }
-end
-
-return M
+--end
+--
+--return M

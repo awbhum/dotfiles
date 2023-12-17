@@ -1,9 +1,9 @@
-local M = {
-    "neanias/everforest-nvim",
-    event = "VimEnter",
-}
-
-function M.config()
+--local M = {
+--    "neanias/everforest-nvim",
+--    event = "VimEnter",
+--}
+--
+--function M.config()
     local ok, everforest = pcall(require, "everforest")
     if ok then
         everforest.setup({
@@ -28,6 +28,6 @@ function M.config()
             float_style = "bright",                 -- whether floating windows should have a 'dim' or 'bright' dark mode background
         })
     end
-end
-
-return M
+--end
+--
+--return M

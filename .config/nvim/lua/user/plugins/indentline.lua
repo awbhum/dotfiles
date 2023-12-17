@@ -1,10 +1,10 @@
-local M = {
-    "lukas-reineke/indent-blankline.nvim",
-    event = "BufRead",
-    main = "ibl",
-}
-
-function M.config()
+--local M = {
+--    "lukas-reineke/indent-blankline.nvim",
+--    event = "BufRead",
+--    main = "ibl",
+--}
+--
+--function M.config()
     local icons = require "user.icons"
 
     require('ibl').setup {
@@ -88,6 +88,6 @@ function M.config()
             },
         },
     }
-end
-
-return M
+--end
+--
+--return M

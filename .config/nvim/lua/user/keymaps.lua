@@ -6,6 +6,7 @@
 -- visual_block_mode = 'x',
 -- term_mode = 't',
 -- command_mode = 'c',
+
 local opts = { noremap = true, silent = true }
 local buf_opts = { silent = true, noremap = true, buffer = true }
 local term_opts = { silent = true }

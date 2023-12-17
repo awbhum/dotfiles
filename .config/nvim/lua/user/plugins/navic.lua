@@ -1,11 +1,11 @@
-local M = {
-    "SmiteshP/nvim-navic",
-    dependencies = {
-        "neovim/nvim-lspconfig",
-    },
-}
-
-function M.config()
+--local M = {
+--    "SmiteshP/nvim-navic",
+--    dependencies = {
+--        "neovim/nvim-lspconfig",
+--    },
+--}
+--
+--function M.config()
     local icons = require "user.icons"
     require("nvim-navic").setup {
         icons = icons.kind,
@@ -18,6 +18,6 @@ function M.config()
         depth_limit = 0,
         depth_limit_indicator = "..",
     }
-end
-
-return M
+--end
+--
+--return M
