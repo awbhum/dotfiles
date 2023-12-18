@@ -5,6 +5,9 @@
     export MOZ_ENABLE_WAYLAND="1"
 }
 
+# rm elinks junk file
+command -v rm >/dev/null 2>&1 && rm $HOME/.rnd >/dev/null 2>&1
+
 # rc file locations
 export PYTHONSTARTUP="${XDG_CONFIG_HOME:-$HOME/.config}/shell/pythonrc"
 export WGETRC="${XDG_CONFIG_HOME:-$HOME/.config}/wget/wgetrc"
