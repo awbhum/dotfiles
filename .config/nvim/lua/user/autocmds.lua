@@ -7,7 +7,7 @@ autocmd("FileType", {
 })
 
 -- close these windows with 'q'
-autocmd({ "FileType" }, {
+autocmd("FileType", {
     pattern = {
         "netrw",
         "Jaq",
@@ -29,16 +29,16 @@ autocmd({ "FileType" }, {
 })
 
 -- close cmd windows (they're useless)
-autocmd({ "CmdWinEnter" }, {
+autocmd("CmdWinEnter", {
     callback = function()
         vim.cmd("quit")
     end,
 })
 
 -- highlight delay
-autocmd({ "TextYankPost" }, {
+autocmd("TextYankPost", {
     callback = function()
-        vim.highlight.on_yank { higroup = "Visual", timeout = 40 }
+        vim.highlight.on_yank { higroup = "Visual", timeout = 50 }
     end,
 })
 
@@ -55,9 +55,14 @@ autocmd("FileType", {
 })
 
 -- splits stay equal
-autocmd({ "VimResized" }, {
+autocmd("VimResized", {
+    command = "tabdo wincmd ="
+})
+
+-- set theme asynchronously
+autocmd("VimEnter", {
     callback = function()
-        vim.cmd "tabdo wincmd ="
+        require "user.theme"
     end,
 })
 

@@ -33,16 +33,6 @@ local plugins = {
         end,
     },
 
-    --{ "tpope/vim-commentary",
-    --    event = {
-    --        "BufRead",
-    --        "BufNewFile",
-    --    },
-    --    config = function()
-    --        require "user.plugins.comment"
-    --    end,
-    --},
-
     -- splash screen
     { "goolord/alpha-nvim",
         event = "VimEnter",
