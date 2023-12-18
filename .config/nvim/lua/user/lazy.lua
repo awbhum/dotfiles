@@ -12,7 +12,7 @@ if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
         "https://github.com/folke/lazy.nvim",
         install_path,
     })
-    print("lazy.nvim successfully installed!")
+    -- print("lazy.nvim successfully installed!")
 end
 
 -- add lazy.nvim to the runtime path
@@ -25,13 +25,23 @@ local plugins = {
     -- comment
     { "numToStr/Comment.nvim",
         event = {
-            "BufRead",
-            "BufNewFile"
+           "BufRead",
+           "BufNewFile"
         },
         config = function()
             require "user.plugins.comment"
         end,
     },
+
+    --{ "tpope/vim-commentary",
+    --    event = {
+    --        "BufRead",
+    --        "BufNewFile",
+    --    },
+    --    config = function()
+    --        require "user.plugins.comment"
+    --    end,
+    --},
 
     -- splash screen
     { "goolord/alpha-nvim",

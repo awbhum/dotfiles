@@ -12,8 +12,6 @@ local bind = vim.api.nvim_set_keymap
 
 -- leader is mapped to space
 bind("", "<Space>", "<Nop>", opts)
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
 
 -- don't overwrite the yank buffer when pasting over selected text
 bind("v", "p", '"_dp', opts)
@@ -69,9 +67,6 @@ bind("x", "<S-i>", "^<S-i>", opts)
 bind("x", "a", "<S-a>", opts)
 bind("x", "<S-a>", "$<S-a>", opts)
 
--- redraw screen, just like in bash
-bind("n", "<C-l>", ":nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<LF><LF><C-l>", opts)
-
 -- misc. leader keymaps
 bind("n", "<leader>q", ":qa!<LF>", opts)
 bind("n", "<leader>w", ":wa!<LF>:qa!<LF>", opts)
@@ -91,7 +86,8 @@ bind("i", "<ESC>", "<C-o>:echo \"Press \'k\' and \'j\' in quick succession to ex
 bind("n", "<C-h>", "<C-w>h", opts)
 bind("n", "<C-j>", "<C-w>j", opts)
 bind("n", "<C-k>", "<C-w>k", opts)
-bind("n", "<C-l>", "<C-w>l", opts)
+-- redraw screen, just like in bash
+bind("n", "<C-l>", ":nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<LF><LF><C-l><C-w>l", opts)
 
 -- lazy keybinds
 bind("n", "<leader>p", ":Lazy<LF>", opts)

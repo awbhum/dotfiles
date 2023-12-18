@@ -5,6 +5,8 @@ local globals = {
     nord_italic = true,
     nord_uniform_diff_background = true,
     nord_bold = true,
+    mapleader = " ",
+    maplocalleader = " ",
 }
 
 local settings = {

@@ -9,3 +9,6 @@ require "user.autocmds"
 
 -- lazy.nvim package manager
 require "user.lazy"
+
+-- set the theme
+require "user.theme"

@@ -9,24 +9,16 @@ return {
         "nvimtools/none-ls.nvim",
         { "neovim/nvim-lspconfig",
             dependencies = {
-                { "SmiteshP/nvim-navbuddy",
-                    dependencies = {
-                        { "SmiteshP/nvim-navic",
-                            config = function()
-                                require "user.plugins.lsp.navic"
-                            end,
-                        },
-                        "MunifTanjim/nui.nvim",
-                        { "LunarVim/breadcrumbs.nvim",
-                            config = function()
-                                require "user.plugins.lsp.breadcrumbs"
-                            end,
-                        },
+                    { "SmiteshP/nvim-navic",
+                        config = function()
+                            require "user.plugins.lsp.navic"
+                        end,
                     },
-                    opts = { lsp = { auto_attach = true } },
-                    config = function()
-                        require "user.plugins.lsp.navbuddy"
-                    end,
+                    { "LunarVim/breadcrumbs.nvim",
+                        config = function()
+                            require "user.plugins.lsp.breadcrumbs"
+                        end,
+                    },
                 },
             },
         },
