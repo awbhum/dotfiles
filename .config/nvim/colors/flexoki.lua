@@ -1,7 +1,8 @@
+vim.g.colors_name = "flexoki"
 vim.cmd.syntax("reset")
 vim.opt.background = "dark"
 
-Base30 = {
+local base30 = {
     white = "#CECDC3",
     darker_black = "#171616",
     black = "#100F0F", --  nvim bg
@@ -34,38 +35,48 @@ Base30 = {
     folder_bg = "#4385BE",
 }
 
-Base16 = {
-    color00 = Base30.black,
-    color01 = Base30.black2,
-    color02 = Base30.one_bg,
-    color03 = Base30.grey,
-    color04 = Base30.grey_fg,
-    color05 = Base30.white,
+local base16 = {
+    color00 = base30.black,
+    color01 = base30.black2,
+    color02 = base30.one_bg,
+    color03 = base30.grey,
+    color04 = base30.grey_fg,
+    color05 = base30.white,
     color06 = "#b6bdca",
     color07 = "#c8ccd4",
-    color08 = Base30.red,
-    color09 = Base30.orange,
-    color0A = Base30.purple,
-    color0B = Base30.green,
-    color0C = Base30.cyan,
-    color0D = Base30.blue,
-    color0E = Base30.yellow,
-    color0F = Base30.teal,
+    color08 = base30.red,
+    color09 = base30.orange,
+    color0A = base30.purple,
+    color0B = base30.green,
+    color0C = base30.cyan,
+    color0D = base30.blue,
+    color0E = base30.yellow,
+    color0F = base30.teal,
 }
 
-PolishHL = {
+vim.g.flexoki_base30 = base30
+vim.g.flexoki_base16 = base16
+
+local polishhl = {
     syntax = {
-        Keyword = { fg = Base30.cyan },
-        Include = { fg = Base30.yellow },
-        Tag = { fg = Base30.blue },
+        Keyword = { fg = base30.cyan },
+        Include = { fg = base30.yellow },
+        Tag = { fg = base30.blue },
     },
     treesitter = {
-        ["@keyword"] = { fg = Base30.cyan },
-        ["@parameter"] = { fg = Base30.baby_pink },
-        ["@tag.attribute"] = { fg = Base30.orange },
-        ["@tag"] = { fg = Base30.blue },
-        ["@string"] = { fg = Base30.green },
-        ["@text.uri"] = { fg = Base30.green },
-        ["@punctuation.bracket"] = { fg = Base30.yellow },
+        ["@keyword"] = { fg = base30.cyan },
+        ["@parameter"] = { fg = base30.baby_pink },
+        ["@tag.attribute"] = { fg = base30.orange },
+        ["@tag"] = { fg = base30.blue },
+        ["@string"] = { fg = base30.green },
+        ["@text.uri"] = { fg = base30.green },
+        ["@punctuation.bracket"] = { fg = base30.yellow },
     },
 }
+
+for _, file in pairs(vim.g.themeintegrations) do
+    local path = "user.theme.integrations." .. file
+    for k, v in pairs(require(path).set(base16, base30)) do
+        vim.api.nvim_set_hl(0, k, v)
+    end
+end

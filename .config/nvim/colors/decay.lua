@@ -1,7 +1,8 @@
+vim.g.colors_name = "decay"
 vim.cmd.syntax("reset")
 vim.opt.background = "dark"
 
-Base30 = {
+local base30 = {
     white = "#dee1e6",
     darker_black = "#111519",
     black = "#171B20", --  nvim bg
@@ -34,7 +35,7 @@ Base30 = {
     folder_bg = "#78DBA9",
 }
 
-Base16 = {
+local base16 = {
     color00 = "#171B20",
     color01 = "#21262e",
     color02 = "#242931",
@@ -53,8 +54,18 @@ Base16 = {
     color0F = "#9cd1ff",
 }
 
-PolishHL = {
+vim.g.decay_base30 = base30
+vim.g.decay_base16 = base16
+
+local polishhl = {
     treesitter = {
-        ["@constant"] = { fg = Base30.yellow },
+        ["@constant"] = { fg = base30.yellow },
     },
 }
+
+for _, file in pairs(vim.g.themeintegrations) do
+    local path = "user.theme.integrations." .. file
+    for k, v in pairs(require(path).set(base16, base30)) do
+        vim.api.nvim_set_hl(0, k, v)
+    end
+end

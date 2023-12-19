@@ -1,7 +1,8 @@
+vim.g.colors_name = "catppuccin"
 vim.cmd.syntax("reset")
 vim.opt.background = "dark"
 
-Base30 = {
+local base30 = {
     white = "#D9E0EE",
     darker_black = "#191828",
     black = "#1E1D2D", --  nvim bg
@@ -35,7 +36,7 @@ Base30 = {
     lavender = "#c7d1ff",
 }
 
-Base16 = {
+local base16 = {
     color00 = "#1E1D2D",
     color01 = "#282737",
     color02 = "#2f2e3e",
@@ -54,10 +55,20 @@ Base16 = {
     color0F = "#F38BA8",
 }
 
-PolishHL = {
+vim.g.catppuccin_base30 = base30
+vim.g.catppuccin_base16 = base16
+
+local polishhl = {
     treesitter = {
-        ["@variable"] = { fg = Base30.lavender },
-        ["@property"] = { fg = Base30.teal },
-        ["@variable.builtin"] = { fg = Base30.red },
+        ["@variable"] = { fg = base30.lavender },
+        ["@property"] = { fg = base30.teal },
+        ["@variable.builtin"] = { fg = base30.red },
     },
 }
+
+for _, file in pairs(vim.g.themeintegrations) do
+    local path = "user.theme.integrations." .. file
+    for k, v in pairs(require(path).set(base16, base30)) do
+        vim.api.nvim_set_hl(0, k, v)
+    end
+end

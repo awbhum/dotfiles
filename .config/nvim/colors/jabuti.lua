@@ -1,7 +1,8 @@
+vim.g.colors_name = "jabuti"
 vim.cmd.syntax("reset")
 vim.opt.background = "dark"
 
-Base30 = {
+local base30 = {
     white = "#d9e0ee",
     darker_black = "#272734",
     black = "#292A37",
@@ -35,33 +36,43 @@ Base30 = {
     -- lavender = "#c7d1ff",
 }
 
-Base16 = {
+local base16 = {
     color00 = "#292A37",
-    color01 = Base30.one_bg,
-    color02 = Base30.one_bg2,
-    color03 = Base30.one_bg3,
-    color04 = Base30.grey,
+    color01 = base30.one_bg,
+    color02 = base30.one_bg2,
+    color03 = base30.one_bg3,
+    color04 = base30.grey,
     color05 = "#c0cbe3",
     color06 = "#d9e0ee",
     color07 = "#ffffff",
     color08 = "#ec6a88",
     color09 = "#efb993",
-    color0A = Base30.yellow,
+    color0A = base30.yellow,
     color0B = "#3FDAA4",
     color0C = "#ff7eb6",
     color0D = "#3FC6DE",
-    color0E = Base30.purple,
+    color0E = base30.purple,
     color0F = "#8b8da9",
 }
 
-PolishHL = {
+vim.g.jabuti_base30 = base30
+vim.g.jabuti_base16 = base16
+
+local polishhl = {
     syntax = {
         Conditional = {
-            fg = Base30.nord_blue,
+            fg = base30.nord_blue,
         },
 
         Tag = {
-            fg = Base30.red,
+            fg = base30.red,
         },
     },
 }
+
+for _, file in pairs(vim.g.themeintegrations) do
+    local path = "user.theme.integrations." .. file
+    for k, v in pairs(require(path).set(base16, base30)) do
+        vim.api.nvim_set_hl(0, k, v)
+    end
+end

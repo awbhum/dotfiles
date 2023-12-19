@@ -1,7 +1,8 @@
+vim.g.colors_name = "nano_light"
 vim.cmd.syntax("reset")
 vim.opt.background = "light"
 
-Base30 = {
+local base30 = {
     deep_black = "#263238",
     white = "#37474F",
     darker_black = "#f7f7f7",
@@ -39,43 +40,53 @@ Base30 = {
     folder_bg = "#4C566A",
 }
 
-Base16 = {
-    color00 = Base30.black,
-    color01 = Base30.black2,
-    color02 = Base30.one_bg,
-    color03 = Base30.grey,
-    color04 = Base30.grey_fg,
-    color05 = Base30.white,
-    color06 = Base30.folder_bg,
-    color07 = Base30.deep_black,
-    color08 = Base30.purple,
-    color09 = Base30.faded_grey,
-    color0A = Base30.purple,
-    color0B = Base30.faded_grey,
-    color0C = Base30.purple,
-    color0D = Base30.deep_black,
-    color0E = Base30.white,
-    color0F = Base30.faded_grey,
+local base16 = {
+    color00 = base30.black,
+    color01 = base30.black2,
+    color02 = base30.one_bg,
+    color03 = base30.grey,
+    color04 = base30.grey_fg,
+    color05 = base30.white,
+    color06 = base30.folder_bg,
+    color07 = base30.deep_black,
+    color08 = base30.purple,
+    color09 = base30.faded_grey,
+    color0A = base30.purple,
+    color0B = base30.faded_grey,
+    color0C = base30.purple,
+    color0D = base30.deep_black,
+    color0E = base30.white,
+    color0F = base30.faded_grey,
 }
 
-PolishHL = {
+vim.g.nano_light_base30 = base30
+vim.g.nano_light_base16 = base16
+
+local polishhl = {
     treesitter = {
         ["@function"] = { bold = true },
         ["@function.builtin"] = { bold = true },
         ["@function.call"] = { bold = true },
-        ["@constructor"] = { fg = Base30.purple },
-        ["@parameter"] = { fg = Base30.white },
-        ["@namespace"] = { fg = Base30.deep_black },
-        ["@symbol"] = { fg = Base30.purple },
-        ["@keyword"] = { fg = Base30.purple },
+        ["@constructor"] = { fg = base30.purple },
+        ["@parameter"] = { fg = base30.white },
+        ["@namespace"] = { fg = base30.deep_black },
+        ["@symbol"] = { fg = base30.purple },
+        ["@keyword"] = { fg = base30.purple },
         ["@method.call"] = { bold = true },
     },
 
     telescope = {
-        TelescopeMatching = { fg = Base30.purple, bg = Base30.one_bg2 },
+        TelescopeMatching = { fg = base30.purple, bg = base30.one_bg2 },
     },
 
     nvdash = {
-        NvDashAscii = { fg = Base30.gray_fg, bg = Base30.purple },
+        NvDashAscii = { fg = base30.gray_fg, bg = base30.purple },
     },
 }
+
+for _, file in pairs(vim.g.themeintegrations) do
+    local path = "user.theme.integrations." .. file
+    for k, v in pairs(require(path).set(base16, base30)) do
+        vim.api.nvim_set_hl(0, k, v)
+    end
+end

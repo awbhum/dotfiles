@@ -1,7 +1,8 @@
+vim.g.colors_name = "everforest_light"
 vim.cmd.syntax("reset")
 vim.opt.background = "light"
 
-Base30 = {
+local base30 = {
     white = "#272f35",
     darker_black = "#f5efde",
     black = "#fff9e8", --  nvim bg
@@ -34,7 +35,7 @@ Base30 = {
     folder_bg = "#747b6e",
 }
 
-Base16 = {
+local base16 = {
     color00 = "#fff9e8",
     color01 = "#f6f0df",
     color02 = "#ede7d6",
@@ -53,14 +54,17 @@ Base16 = {
     color0F = "#c85552",
 }
 
-PolishHL = {
+vim.g.everforest_light_base30 = base30
+vim.g.everforest_light_base16 = base16
+
+local polishhl = {
     git = {
-        DiffAdd = { fg = Base30.green },
+        DiffAdd = { fg = base30.green },
     },
 
     whichkey = {
-        WhichKeyDesc = { fg = Base30.white },
-        WhichKey = { fg = Base30.white },
+        WhichKeyDesc = { fg = base30.white },
+        WhichKey = { fg = base30.white },
     },
 
     nvimtree = {
@@ -68,22 +72,29 @@ PolishHL = {
     },
 
     tbline = {
-        TbLineThemeToggleBtn = { bg = Base30.one_bg },
+        TbLineThemeToggleBtn = { bg = base30.one_bg },
     },
 
     defaults = {
-        Pmenu = { bg = Base30.black2 },
+        Pmenu = { bg = base30.black2 },
     },
-    -- IndentBlanklineContextStart = { bg = Base30.black2 },
+    -- IndentBlanklineContextStart = { bg = base30.black2 },
 
     statusline = {
-        St_pos_text = { fg = Base30.white },
+        St_pos_text = { fg = base30.white },
     },
 
     treesitter = {
-        ["@tag"] = { fg = Base30.orange },
-        ["@field"] = { fg = Base16.color05 },
-        ["@include"] = { fg = Base16.color08 },
-        ["@constructor"] = { fg = Base30.blue },
+        ["@tag"] = { fg = base30.orange },
+        ["@field"] = { fg = base16.color05 },
+        ["@include"] = { fg = base16.color08 },
+        ["@constructor"] = { fg = base30.blue },
     },
 }
+
+for _, file in pairs(vim.g.themeintegrations) do
+    local path = "user.theme.integrations." .. file
+    for k, v in pairs(require(path).set(base16, base30)) do
+        vim.api.nvim_set_hl(0, k, v)
+    end
+end

@@ -1,7 +1,8 @@
+vim.g.colors_name = "chadtain"
 vim.cmd.syntax("reset")
 vim.opt.background = "dark"
 
-Base30 = {
+local base30 = {
     white = "#b0b0b0",
     darker_black = "#151b21",
     black = "#1a2026", --  nvim bg
@@ -34,7 +35,7 @@ Base30 = {
     folder_bg = "#6b8bab",
 }
 
-Base16 = {
+local base16 = {
     color00 = "#1a2026",
     color01 = "#242a30",
     color02 = "#292f35",
@@ -53,4 +54,14 @@ Base16 = {
     color0F = "#ac8a8c",
 }
 
-PolishHL = {}
+vim.g.chadtain_base30 = base30
+vim.g.chadtain_base16 = base16
+
+local polishhl = {}
+
+for _, file in pairs(vim.g.themeintegrations) do
+    local path = "user.theme.integrations." .. file
+    for k, v in pairs(require(path).set(base16, base30)) do
+        vim.api.nvim_set_hl(0, k, v)
+    end
+end

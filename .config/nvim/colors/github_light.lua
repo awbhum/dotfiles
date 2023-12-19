@@ -1,7 +1,8 @@
+vim.g.colors_name = "github_light"
 vim.cmd.syntax("reset")
 vim.opt.background = "light"
 
-Base30 = {
+local base30 = {
     white = "#24292e",
     darker_black = "#f3f5f7",
     black = "#ffffff", --  nvim bg
@@ -34,7 +35,7 @@ Base30 = {
     folder_bg = "#6a737d",
 }
 
-Base16 = {
+local base16 = {
     color00 = "#ffffff", -- Default bg
     color01 = "#edeff1", -- Lighter bg (status bar, line number, folding mks)
     color02 = "#e1e3e5", -- Selection bg
@@ -53,16 +54,26 @@ Base16 = {
     color0F = "#044289", -- Deprecated, open/close embedded tags
 }
 
-PolishHL = {
+vim.g.github_light_base30 = base30
+vim.g.github_light_base16 = base16
+
+local polishhl = {
     treesitter = {
-        ["@punctuation.bracket"] = { fg = Base30.blue },
-        ["@field.key"] = { fg = Base30.white },
-        ["@constructor"] = { fg = Base30.vibrant_green },
-        ["@operator"] = { fg = Base30.orange },
+        ["@punctuation.bracket"] = { fg = base30.blue },
+        ["@field.key"] = { fg = base30.white },
+        ["@constructor"] = { fg = base30.vibrant_green },
+        ["@operator"] = { fg = base30.orange },
     },
 
     syntax = {
-        Constant = { fg = Base16.color07 },
-        Tag = { fg = Base30.vibrant_green },
+        Constant = { fg = base16.color07 },
+        Tag = { fg = base30.vibrant_green },
     },
 }
+
+for _, file in pairs(vim.g.themeintegrations) do
+    local path = "user.theme.integrations." .. file
+    for k, v in pairs(require(path).set(base16, base30)) do
+        vim.api.nvim_set_hl(0, k, v)
+    end
+end

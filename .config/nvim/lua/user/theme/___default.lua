@@ -1,4 +1,3 @@
-local autocmd = vim.api.nvim_create_autocmd
 local highlight = vim.api.nvim_set_hl
 
 --[[

@@ -1,7 +1,8 @@
+vim.g.colors_name = "oceanic_light"
 vim.cmd.syntax("reset")
 vim.opt.background = "light"
 
-Base30 = {
+local base30 = {
     white = "#26292f",
     darker_black = "#d1d7e2",
     black = "#d8dee9", --  nvim bg
@@ -34,7 +35,7 @@ Base30 = {
     folder_bg = "#526f93",
 }
 
-Base16 = {
+local base16 = {
     color00 = "#d8dee9",
     color01 = "#cdd3de",
     color02 = "#c0c5ce",
@@ -53,18 +54,28 @@ Base16 = {
     color0F = "#9a806d",
 }
 
-PolishHL = {
+vim.g.oceanic_light_base30 = base30
+vim.g.oceanic_light_base16 = base16
+
+local polishhl = {
     statusline = {
-        St_NTerminalMode = { fg = Base30.white },
-        St_VisualMode = { bg = Base30.teal },
-        St_VisualModeSep = { fg = Base30.teal },
+        St_NTerminalMode = { fg = base30.white },
+        St_VisualMode = { bg = base30.teal },
+        St_VisualModeSep = { fg = base30.teal },
     },
 
     treesitter = {
-        ["@field"] = { fg = Base16.color0C },
+        ["@field"] = { fg = base16.color0C },
     },
 
     syntax = {
-        Constant = { fg = Base16.color09 },
+        Constant = { fg = base16.color09 },
     },
 }
+
+for _, file in pairs(vim.g.themeintegrations) do
+    local path = "user.theme.integrations." .. file
+    for k, v in pairs(require(path).set(base16, base30)) do
+        vim.api.nvim_set_hl(0, k, v)
+    end
+end

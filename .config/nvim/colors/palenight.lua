@@ -1,7 +1,8 @@
+vim.g.colors_name = "palenight"
 vim.cmd.syntax("reset")
 vim.opt.background = "dark"
 
-Base30 = {
+local base30 = {
     white = "#ffffff", -- custom
     darker_black = "#232738",
     black = "#292D3E", --  nvim bg
@@ -34,7 +35,7 @@ Base30 = {
     folder_bg = "#82aaff",
 }
 
-Base16 = {
+local base16 = {
     color00 = "#292d3e",
     color01 = "#444267",
     color02 = "#32374d",
@@ -53,9 +54,19 @@ Base16 = {
     color0F = "#ff5370",
 }
 
-PolishHL = {
+vim.g.palenight_base30 = base30
+vim.g.palenight_base16 = base16
+
+local polishhl = {
     treesitter = {
-        ["@include"] = { fg = Base30.purple },
-        ["@field.key"] = { fg = Base30.orange },
+        ["@include"] = { fg = base30.purple },
+        ["@field.key"] = { fg = base30.orange },
     },
 }
+
+for _, file in pairs(vim.g.themeintegrations) do
+    local path = "user.theme.integrations." .. file
+    for k, v in pairs(require(path).set(base16, base30)) do
+        vim.api.nvim_set_hl(0, k, v)
+    end
+end

@@ -1,7 +1,8 @@
+vim.g.colors_name = "chocolate"
 vim.cmd.syntax("reset")
 vim.opt.background = "dark"
 
-Base30 = {
+local base30 = {
     white = "#cdc0ad",
     darker_black = "#201d1c",
     black = "#252221", --  nvim bg
@@ -35,7 +36,7 @@ Base30 = {
     beige = "#ab9382",
 }
 
-Base16 = {
+local base16 = {
     color00 = "#252221",
     color01 = "#2b2827",
     color02 = "#2f2c2b",
@@ -54,19 +55,29 @@ Base16 = {
     color0F = "#ab9382",
 }
 
-PolishHL = {
+vim.g.chocolate_base30 = base30
+vim.g.chocolate_base16 = base16
+
+local polishhl = {
     syntax = {
-        Operator = { fg = Base30.blue },
+        Operator = { fg = base30.blue },
     },
 
     treesitter = {
-        ["@field"] = { fg = Base30.purple },
-        ["@variable"] = { fg = Base16.color06 },
-        ["@module"] = { fg = Base30.beige },
-        ["@attribute"] = { fg = Base30.cyan },
-        ["@punctuation.bracket"] = { fg = Base16.color06 },
+        ["@field"] = { fg = base30.purple },
+        ["@variable"] = { fg = base16.color06 },
+        ["@module"] = { fg = base30.beige },
+        ["@attribute"] = { fg = base30.cyan },
+        ["@punctuation.bracket"] = { fg = base16.color06 },
         ["@parenthesis"] = { link = "@punctuation.bracket" },
-        ["@parameter"] = { fg = Base30.green },
-        ["@function.builtin"] = { fg = Base30.yellow },
+        ["@parameter"] = { fg = base30.green },
+        ["@function.builtin"] = { fg = base30.yellow },
     },
 }
+
+for _, file in pairs(vim.g.themeintegrations) do
+    local path = "user.theme.integrations." .. file
+    for k, v in pairs(require(path).set(base16, base30)) do
+        vim.api.nvim_set_hl(0, k, v)
+    end
+end

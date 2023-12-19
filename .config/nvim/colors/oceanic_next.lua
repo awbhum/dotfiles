@@ -1,7 +1,8 @@
+vim.g.colors_name = "oceanic_next"
 vim.cmd.syntax("reset")
 vim.opt.background = "dark"
 
-Base30 = {
+local base30 = {
     white = "#D8DEE9", -- confirmed
     darker_black = "#15252e",
     black = "#1B2B34", --  nvim bg
@@ -34,8 +35,8 @@ Base30 = {
     folder_bg = "#598cbf",
 }
 
--- Base16 colors taken from:
-Base16 = {
+-- base16 colors taken from:
+local base16 = {
     color00 = "#1B2B34",
     color01 = "#343D46",
     color02 = "#4F5B66",
@@ -54,12 +55,22 @@ Base16 = {
     color0F = "#EC5F67",
 }
 
-PolishHL = {
+vim.g.oceanic_next_base30 = base30
+vim.g.oceanic_next_base16 = base16
+
+local polishhl = {
     treesitter = {
-        ["@parameter"] = { fg = Base16.color0A },
+        ["@parameter"] = { fg = base16.color0A },
     },
 
     syntax = {
-        Constant = { fg = Base16.color09 },
+        Constant = { fg = base16.color09 },
     },
-}
+
+
+for _, file in pairs(vim.g.themeintegrations) do
+    local path = "user.theme.integrations." .. file
+    for k, v in pairs(require(path).set(base16, base30)) do
+        vim.api.nvim_set_hl(0, k, v)
+    end
+end

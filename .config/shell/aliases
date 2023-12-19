@@ -14,8 +14,8 @@ alias \
 
 # neovim familiarity
 alias \
-    nvim="nvim -p" \
-    vim="nvim -p" \
+    nvim="nvim" \
+    vim="nvim" \
     vimdiff="nvim -d"
 
 # ls options

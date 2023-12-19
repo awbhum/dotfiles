@@ -1,7 +1,8 @@
+vim.g.colors_name = "tokyonight"
 vim.cmd.syntax("reset")
 vim.opt.background = "dark"
 
-Base30 = {
+local base30 = {
     white = "#c0caf5",
     darker_black = "#16161e",
     black = "#1a1b26", --  nvim bg
@@ -34,7 +35,7 @@ Base30 = {
     folder_bg = "#7aa2f7",
 }
 
-Base16 = {
+local base16 = {
     color00 = "#1a1b26",
     color01 = "#16161e",
     color02 = "#2f3549",
@@ -53,13 +54,23 @@ Base16 = {
     color0F = "#f7768e",
 }
 
-PolishHL = {
+vim.g.tokyonight_base30 = base30
+vim.g.tokyonight_base16 = base16
+
+local polishhl = {
     treesitter = {
-        ["@variable"] = { fg = Base16.color05 },
-        ["@punctuation.bracket"] = { fg = Base30.purple },
-        ["@method.call"] = { fg = Base30.red },
-        ["@function.call"] = { fg = Base30.blue },
-        ["@constant"] = { fg = Base30.orange },
-        ["@parameter"] = { fg = Base30.orange },
+        ["@variable"] = { fg = base16.color05 },
+        ["@punctuation.bracket"] = { fg = base30.purple },
+        ["@method.call"] = { fg = base30.red },
+        ["@function.call"] = { fg = base30.blue },
+        ["@constant"] = { fg = base30.orange },
+        ["@parameter"] = { fg = base30.orange },
     },
 }
+
+for _, file in pairs(vim.g.themeintegrations) do
+    local path = "user.theme.integrations." .. file
+    for k, v in pairs(require(path).set(base16, base30)) do
+        vim.api.nvim_set_hl(0, k, v)
+    end
+end

@@ -1,7 +1,8 @@
+vim.g.colors_name = "oxocarbon"
 vim.cmd.syntax("reset")
 vim.opt.background = "dark"
 
-Base30 = {
+local base30 = {
     white = "#f2f4f8",
     darker_black = "#0f0f0f",
     black = "#161616", --  nvim bg
@@ -35,7 +36,7 @@ Base30 = {
     lavender = "#c7d1ff",
 }
 
-Base16 = {
+local base16 = {
     color00 = "#161616",
     color01 = "#262626",
     color02 = "#393939",
@@ -54,9 +55,19 @@ Base16 = {
     color0F = "#82cfff",
 }
 
-PolishHL = {
+vim.g.oxocarbon_base30 = base30
+vim.g.oxocarbon_base16 = base16
+
+local polishhl = {
     syntax = {
-        Conditional = { fg = Base30.nord_blue },
-        Tag = { fg = Base30.white },
+        Conditional = { fg = base30.nord_blue },
+        Tag = { fg = base30.white },
     },
 }
+
+for _, file in pairs(vim.g.themeintegrations) do
+    local path = "user.theme.integrations." .. file
+    for k, v in pairs(require(path).set(base16, base30)) do
+        vim.api.nvim_set_hl(0, k, v)
+    end
+end

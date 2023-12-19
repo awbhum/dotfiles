@@ -1,7 +1,8 @@
+vim.g.colors_name = "melange"
 vim.cmd.syntax("reset")
 vim.opt.background = "dark"
 
-Base30 = {
+local base30 = {
     white = "#ECE1D7",
     darker_black = "#241f1a",
     black = "#2A2520", -- nvim bg
@@ -35,7 +36,7 @@ Base30 = {
     folder_bg = "#697893",
 }
 
-Base16 = {
+local base16 = {
     color00 = "#2A2520",
     color01 = "#39342f",
     color02 = "#433e39",
@@ -54,18 +55,28 @@ Base16 = {
     color0F = "#8E733F",
 }
 
-PolishHL = {
+vim.g.melange_base30 = base30
+vim.g.melange_base16 = base16
+
+local polishhl = {
     treesitter = {
-        ["@field"] = { fg = Base30.white },
-        ["@field.key"] = { fg = Base30.white },
+        ["@field"] = { fg = base30.white },
+        ["@field.key"] = { fg = base30.white },
         ["@function.macro"] = {
-            fg = Base30.vibrant_green,
+            fg = base30.vibrant_green,
         },
     },
 
     syntax = {
-        Include = { fg = Base30.vibrant_green },
-        Operator = { fg = Base30.firered },
-        Boolean = { fg = Base30.purple },
+        Include = { fg = base30.vibrant_green },
+        Operator = { fg = base30.firered },
+        Boolean = { fg = base30.purple },
     },
 }
+
+for _, file in pairs(vim.g.themeintegrations) do
+    local path = "user.theme.integrations." .. file
+    for k, v in pairs(require(path).set(base16, base30)) do
+        vim.api.nvim_set_hl(0, k, v)
+    end
+end

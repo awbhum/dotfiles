@@ -1,7 +1,8 @@
+vim.g.colors_name = "onelight"
 vim.cmd.syntax("reset")
 vim.opt.background = "dark"
 
-Base30 = {
+local base30 = {
     white = "#54555b",
     darker_black = "#efeff0",
     black = "#fafafa", --  nvim bg
@@ -34,7 +35,7 @@ Base30 = {
     folder_bg = "#6C6C6C",
 }
 
-Base16 = {
+local base16 = {
     color00 = "#fafafa",
     color01 = "#f4f4f4",
     color02 = "#e5e5e6",
@@ -53,29 +54,39 @@ Base16 = {
     color0F = "#986801",
 }
 
-PolishHL = {
+vim.g.onelight_base30 = base30
+vim.g.onelight_base16 = base16
+
+local polishhl = {
     telescope = {
-        TelescopePromptPrefix = { fg = Base30.white },
-        TelescopeSelection = { bg = Base30.one_bg, fg = Base30.white },
+        TelescopePromptPrefix = { fg = base30.white },
+        TelescopeSelection = { bg = base30.one_bg, fg = base30.white },
     },
 
     treesitter = {
-        ["@punctuation.bracket"] = { fg = Base30.nord_blue },
+        ["@punctuation.bracket"] = { fg = base30.nord_blue },
     },
 
     defaults = {
-        FloatBorder = { fg = Base16.color05 },
-        Pmenu = { bg = Base30.black2 },
+        FloatBorder = { fg = base16.color05 },
+        Pmenu = { bg = base30.black2 },
     },
 
     git = {
-        DiffAdd = { fg = Base16.color05 },
+        DiffAdd = { fg = base16.color05 },
     },
 
     tbline = {
-        TbLineThemeToggleBtn = { bg = Base30.one_bg3 },
+        TbLineThemeToggleBtn = { bg = base30.one_bg3 },
     },
 
-    whichkey = { WhichKeyDesc = { fg = Base30.white } },
-    statusline = { St_pos_text = { fg = Base30.white } },
+    whichkey = { WhichKeyDesc = { fg = base30.white } },
+    statusline = { St_pos_text = { fg = base30.white } },
 }
+
+for _, file in pairs(vim.g.themeintegrations) do
+    local path = "user.theme.integrations." .. file
+    for k, v in pairs(require(path).set(base16, base30)) do
+        vim.api.nvim_set_hl(0, k, v)
+    end
+end

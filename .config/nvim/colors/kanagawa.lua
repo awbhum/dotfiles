@@ -1,7 +1,8 @@
+vim.g.colors_name = "kanagawa"
 vim.cmd.syntax("reset")
 vim.opt.background = "dark"
 
-Base30 = {
+local base30 = {
     white = "#DCD7BA",
     darker_black = "#191922",
     black = "#1F1F28", --  nvim bg
@@ -34,7 +35,7 @@ Base30 = {
     folder_bg = "#7E9CD8",
 }
 
-Base16 = {
+local base16 = {
     color00 = "#1f1f28",
     color01 = "#2a2a37",
     color02 = "#223249",
@@ -53,17 +54,27 @@ Base16 = {
     color0F = "#d8616b",
 }
 
-PolishHL = {
+vim.g.kanagawa_base30 = base30
+vim.g.kanagawa_base16 = base16
+
+local polishhl = {
     treesitter = {
-        ["@include"] = { fg = Base30.purple },
-        ["@uri"] = { fg = Base30.blue },
-        ["@tag.delimiter"] = { fg = Base30.red },
-        ["@field.key"] = { fg = Base30.white },
-        ["@punctuation.bracket"] = { fg = Base30.pmenu_bg },
-        ["@punctuation.delimiter"] = { fg = Base30.white },
+        ["@include"] = { fg = base30.purple },
+        ["@uri"] = { fg = base30.blue },
+        ["@tag.delimiter"] = { fg = base30.red },
+        ["@field.key"] = { fg = base30.white },
+        ["@punctuation.bracket"] = { fg = base30.pmenu_bg },
+        ["@punctuation.delimiter"] = { fg = base30.white },
     },
 
     syntax = {
-        Number = { fg = Base30.baby_pink },
+        Number = { fg = base30.baby_pink },
     },
 }
+
+for _, file in pairs(vim.g.themeintegrations) do
+    local path = "user.theme.integrations." .. file
+    for k, v in pairs(require(path).set(base16, base30)) do
+        vim.api.nvim_set_hl(0, k, v)
+    end
+end

@@ -1,7 +1,8 @@
+vim.g.colors_name = "bearded_arc"
 vim.cmd.syntax("reset")
 vim.opt.background = "dark"
 
-Base30 = {
+local base30 = {
     white = "#ABB7C1",
     darker_black = "#19212e",
     black = "#1c2433", -- nvim bg
@@ -34,7 +35,7 @@ Base30 = {
     folder_bg = "#69C3FF",
 }
 
-Base16 = {
+local base16 = {
     color00 = "#1c2433",
     color01 = "#262e3d",
     color02 = "#303847",
@@ -53,9 +54,19 @@ Base16 = {
     color0F = "#B78AFF",
 }
 
-PolishHL = {
+vim.g.bearded_ark_base30 = base30
+vim.g.bearded_ark_base16 = base16
+
+local polishhl = {
     treesitter = {
-        ["@parameter"] = { fg = Base30.pink },
-        ["@attribute"] = { fg = Base30.purple },
+        ["@parameter"] = { fg = base30.pink },
+        ["@attribute"] = { fg = base30.purple },
     },
 }
+
+for _, file in pairs(vim.g.themeintegrations) do
+    local path = "user.theme.integrations." .. file
+    for k, v in pairs(require(path).set(base16, base30)) do
+        vim.api.nvim_set_hl(0, k, v)
+    end
+end

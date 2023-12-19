@@ -1,7 +1,8 @@
+vim.g.colors_name = "monochrome"
 vim.cmd.syntax("reset")
 vim.opt.background = "dark"
 
-Base30 = {
+local base30 = {
     white = "#D8DEE9",
     darker_black = "#1a1a1a",
     black = "#101010", --  nvim bg
@@ -34,7 +35,7 @@ Base30 = {
     folder_bg = "#7797b7",
 }
 
-Base16 = {
+local base16 = {
     color00 = "#101010",
     color01 = "#1f1f1f",
     color02 = "#2e2e2e",
@@ -53,8 +54,18 @@ Base16 = {
     color0F = "#ced4df",
 }
 
-PolishHL = {
+vim.g.monochrome_base30 = base30
+vim.g.monochrome_base16 = base16
+
+local polishhl = {
     treesitter = {
-        ["@punctuation.bracket"] = { fg = Base30.red },
+        ["@punctuation.bracket"] = { fg = base30.red },
     },
 }
+
+for _, file in pairs(vim.g.themeintegrations) do
+    local path = "user.theme.integrations." .. file
+    for k, v in pairs(require(path).set(base16, base30)) do
+        vim.api.nvim_set_hl(0, k, v)
+    end
+end

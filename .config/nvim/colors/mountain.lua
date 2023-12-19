@@ -1,7 +1,8 @@
+vim.g.colors_name = "mountain"
 vim.cmd.syntax("reset")
 vim.opt.background = "dark"
 
-Base30 = {
+local base30 = {
     white = "#F0f0f0",
     darker_black = "#090909",
     black = "#0f0f0f", --  nvim bg
@@ -34,7 +35,7 @@ Base30 = {
     folder_bg = "#8F8AAC",
 }
 
-Base16 = {
+local base16 = {
     color00 = "#0f0f0f",
     color01 = "#151515",
     color02 = "#191919",
@@ -53,8 +54,18 @@ Base16 = {
     color0F = "#b39193",
 }
 
-PolishHL = {
+vim.g.mountain_base30 = base30
+vim.g.mountain_base16 = base16
+
+local polishhl = {
     treesitter = {
-        ["@variable"] = { fg = Base16.color05 },
+        ["@variable"] = { fg = base16.color05 },
     },
 }
+
+for _, file in pairs(vim.g.themeintegrations) do
+    local path = "user.theme.integrations." .. file
+    for k, v in pairs(require(path).set(base16, base30)) do
+        vim.api.nvim_set_hl(0, k, v)
+    end
+end

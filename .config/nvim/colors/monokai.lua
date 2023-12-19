@@ -1,7 +1,8 @@
+vim.g.colors_name = "monokai"
 vim.cmd.syntax("reset")
 vim.opt.background = "dark"
 
-Base30 = {
+local base30 = {
     white = "#f5f4f1",
     darker_black = "#22231D",
     black = "#272822", --  nvim bg
@@ -34,7 +35,7 @@ Base30 = {
     folder_bg = "#61afef",
 }
 
-Base16 = {
+local base16 = {
     color00 = "#272822",
     color01 = "#383830",
     color02 = "#49483e",
@@ -53,17 +54,27 @@ Base16 = {
     color0F = "#cc6633",
 }
 
-PolishHL = {
+vim.g.monokai_base30 = base30
+vim.g.monokai_base16 = base16
+
+local polishhl = {
     treesitter = {
-        ["parameter"] = { fg = Base30.blue },
-        ["@field.key"] = { fg = Base30.white },
-        ["@string"] = { fg = Base30.sun },
-        ["@boolean"] = { fg = Base16.color09 },
-        ["@punctuation.bracket"] = { fg = Base30.sun },
-        ["@operator"] = { fg = Base30.red },
+        ["parameter"] = { fg = base30.blue },
+        ["@field.key"] = { fg = base30.white },
+        ["@string"] = { fg = base30.sun },
+        ["@boolean"] = { fg = base16.color09 },
+        ["@punctuation.bracket"] = { fg = base30.sun },
+        ["@operator"] = { fg = base30.red },
     },
 
     syntax = {
-        Operator = { fg = Base30.red },
+        Operator = { fg = base30.red },
     },
 }
+
+for _, file in pairs(vim.g.themeintegrations) do
+    local path = "user.theme.integrations." .. file
+    for k, v in pairs(require(path).set(base16, base30)) do
+        vim.api.nvim_set_hl(0, k, v)
+    end
+end

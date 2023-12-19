@@ -1,7 +1,8 @@
+vim.g.colors_name = "mito_laser"
 vim.cmd.syntax("reset")
 vim.opt.background = "dark"
 
-Base30 = {
+local base30 = {
     white = "#eee8d5",
     darker_black = "#1d1741",
     black = "#201947",
@@ -34,28 +35,38 @@ Base30 = {
     folder_bg = "#268bd2",
 }
 
-Base16 = {
-    color00 = Base30.black,
-    color01 = Base30.black2,
-    color02 = Base30.one_bg,
-    color03 = Base30.one_bg2,
-    color04 = Base30.one_bg3,
+local base16 = {
+    color00 = base30.black,
+    color01 = base30.black2,
+    color02 = base30.one_bg,
+    color03 = base30.one_bg2,
+    color04 = base30.one_bg3,
     color05 = "#eee8d5",
     color06 = "#efe9d8",
     color07 = "#fdf6e3",
-    color08 = Base30.red,
-    color09 = Base30.orange,
+    color08 = base30.red,
+    color09 = base30.orange,
     color0A = "#b58900",
     color0B = "#859900",
     color0C = "#2aa198",
     color0D = "#268bd2",
     color0E = "#6c71c4",
-    color0F = Base30.red,
+    color0F = base30.red,
 }
 
-PolishHL = {
+vim.g.mito_laser_base30 = base30
+vim.g.mito_laser_base16 = base16
+
+local polishhl = {
     treesitter = {
-        ["@tag.attribute"] = { fg = Base30.orange },
-        ["@tag.delimiter"] = { fg = Base30.cyan },
+        ["@tag.attribute"] = { fg = base30.orange },
+        ["@tag.delimiter"] = { fg = base30.cyan },
     },
 }
+
+for _, file in pairs(vim.g.themeintegrations) do
+    local path = "user.theme.integrations." .. file
+    for k, v in pairs(require(path).set(base16, base30)) do
+        vim.api.nvim_set_hl(0, k, v)
+    end
+end

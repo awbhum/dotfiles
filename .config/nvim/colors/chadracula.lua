@@ -1,7 +1,8 @@
+vim.g.colors_name = "chadracula"
 vim.cmd.syntax("reset")
 vim.opt.background = "dark"
 
-Base30 = {
+local base30 = {
     white = "#F8F8F2",
     darker_black = "#222430",
     black = "#282A36", --  nvim bg
@@ -34,7 +35,7 @@ Base30 = {
     folder_bg = "#BD93F9",
 }
 
-Base16 = {
+local base16 = {
     color00 = "#282936",
     color01 = "#3a3c4e",
     color02 = "#4d4f68",
@@ -53,9 +54,19 @@ Base16 = {
     color0F = "#F8F8F2",
 }
 
-PolishHL = {
+vim.g.chadracula_base30 = base30
+vim.g.chadracula_base16 = base16
+
+local polishhl = {
     treesitter = {
-        ["@function.builtin"] = { fg = Base30.cyan },
-        ["@number"] = { fg = Base30.purple },
+        ["@function.builtin"] = { fg = base30.cyan },
+        ["@number"] = { fg = base30.purple },
     },
 }
+
+for _, file in pairs(vim.g.themeintegrations) do
+    local path = "user.theme.integrations." .. file
+    for k, v in pairs(require(path).set(base16, base30)) do
+        vim.api.nvim_set_hl(0, k, v)
+    end
+end

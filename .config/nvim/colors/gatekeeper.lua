@@ -1,7 +1,8 @@
+vim.g.colors_name = "gatekeeper"
 vim.cmd.syntax("reset")
 vim.opt.background = "dark"
 
-Base30 = {
+local base30 = {
     white = "#cccdd1",
     darker_black = "#0a0a0a",
     black = "#101010", --  nvim bg
@@ -34,7 +35,7 @@ Base30 = {
     folder_bg = "#29adff",
 }
 
-Base16 = {
+local base16 = {
     color00 = "#101010",
     color01 = "#171717",
     color02 = "#1e1e1e",
@@ -53,9 +54,19 @@ Base16 = {
     color0F = "#ffccaa",
 }
 
-PolishHL = {
+vim.g.gatekeeper_base30 = base30
+vim.g.gatekeeper_base16 = base16
+
+local polishhl = {
     treesitter = {
-        ["@variable"] = { fg = Base30.orange },
-        ["@parameter"] = { fg = Base30.white },
+        ["@variable"] = { fg = base30.orange },
+        ["@parameter"] = { fg = base30.white },
     },
 }
+
+for _, file in pairs(vim.g.themeintegrations) do
+    local path = "user.theme.integrations." .. file
+    for k, v in pairs(require(path).set(base16, base30)) do
+        vim.api.nvim_set_hl(0, k, v)
+    end
+end

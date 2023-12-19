@@ -1,7 +1,8 @@
+vim.g.colors_name = "ayu_dark"
 vim.cmd.syntax("reset")
 vim.opt.background = "dark"
 
-Base30 = {
+local base30 = {
     white = "#ced4df",
     darker_black = "#05080e",
     black = "#0B0E14", --  nvim bg
@@ -34,7 +35,7 @@ Base30 = {
     folder_bg = "#98a3af",
 }
 
-Base16 = {
+local base16 = {
     color00 = "#0B0E14",
     color01 = "#1c1f25",
     color02 = "#24272d",
@@ -53,13 +54,23 @@ Base16 = {
     color0F = "#CBA6F7",
 }
 
-PolishHL = {
+vim.g.ayu_dark_base30 = base30
+vim.g.ayu_dark_base16 = base16
+
+local polishhl = {
     treesitter = {
-        luaTSField = { fg = Base16.color0D },
-        ["@tag.delimiter"] = { fg = Base30.cyan },
-        ["@function"] = { fg = Base30.orange },
-        ["@parameter"] = { fg = Base16.color0F },
-        ["@constructor"] = { fg = Base16.color0A },
-        ["@tag.attribute"] = { fg = Base30.orange },
+        luaTSField = { fg = base16.color0D },
+        ["@tag.delimiter"] = { fg = base30.cyan },
+        ["@function"] = { fg = base30.orange },
+        ["@parameter"] = { fg = base16.color0F },
+        ["@constructor"] = { fg = base16.color0A },
+        ["@tag.attribute"] = { fg = base30.orange },
     },
 }
+
+for _, file in pairs(vim.g.themeintegrations) do
+    local path = "user.theme.integrations." .. file
+    for k, v in pairs(require(path).set(base16, base30)) do
+        vim.api.nvim_set_hl(0, k, v)
+    end
+end

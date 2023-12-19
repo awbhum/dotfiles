@@ -1,7 +1,8 @@
+vim.g.colors_name = "gruvbox_light"
 vim.cmd.syntax("reset")
 vim.opt.background = "light"
 
-Base30 = {
+local base30 = {
     white = "#504945",
     darker_black = "#e8dbb2",
     black = "#F2E5BC", --  nvim bg
@@ -34,7 +35,7 @@ Base30 = {
     folder_bg = "#746d69",
 }
 
-Base16 = {
+local base16 = {
     color00 = "#F2E5BC",
     color01 = "#e3d6ad",
     color02 = "#e5d8af",
@@ -53,8 +54,18 @@ Base16 = {
     color0F = "#d65d0e",
 }
 
-PolishHL = {
+vim.g.gruvbox_light_base30 = base30
+vim.g.gruvbox_light_base16 = base16
+
+local polishhl = {
     tbline = {
-        TbLineThemeToggleBtn = { fg = Base30.black, bg = Base30.white },
+        TbLineThemeToggleBtn = { fg = base30.black, bg = base30.white },
     },
 }
+
+for _, file in pairs(vim.g.themeintegrations) do
+    local path = "user.theme.integrations." .. file
+    for k, v in pairs(require(path).set(base16, base30)) do
+        vim.api.nvim_set_hl(0, k, v)
+    end
+end

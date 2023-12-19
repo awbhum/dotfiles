@@ -1,7 +1,8 @@
+vim.g.colors_name = "wombat"
 vim.cmd.syntax("reset")
 vim.opt.background = "dark"
 
-Base30 = {
+local base30 = {
     white = "#e4e0d7",
     darker_black = "#1b1b1b",
     black = "#222222",
@@ -34,7 +35,7 @@ Base30 = {
     folder_bg = "#7BB0C9",
 }
 
-Base16 = {
+local base16 = {
     color00 = "#202020",
     color01 = "#303030",
     color02 = "#373737",
@@ -53,8 +54,18 @@ Base16 = {
     color0F = "#dc8c64",
 }
 
-PolishHL = {
+vim.g.wombat_base30 = base30
+vim.g.wombat_base16 = base16
+
+local polishhl = {
     treesitter = {
-        ["@punctuation.bracket"] = { fg = Base30.sun },
+        ["@punctuation.bracket"] = { fg = base30.sun },
     },
 }
+
+for _, file in pairs(vim.g.themeintegrations) do
+    local path = "user.theme.integrations." .. file
+    for k, v in pairs(require(path).set(base16, base30)) do
+        vim.api.nvim_set_hl(0, k, v)
+    end
+end

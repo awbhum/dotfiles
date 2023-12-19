@@ -1,7 +1,8 @@
+vim.g.colors_name = "onenord_light"
 vim.cmd.syntax("reset")
 vim.opt.background = "light"
 
-Base30 = {
+local base30 = {
     white = "#2a303c",
     darker_black = "#ced4df",
     black = "#D8DEE9", --  nvim bg
@@ -34,7 +35,7 @@ Base30 = {
     folder_bg = "#616773",
 }
 
-Base16 = {
+local base16 = {
     color00 = "#D8DEE9",
     color01 = "#f4f4f4",
     color02 = "#e5e5e6",
@@ -53,28 +54,38 @@ Base16 = {
     color0F = "#a3454e",
 }
 
-PolishHL = {
+vim.g.onenord_light_base30 = base30
+vim.g.onenord_light_base16 = base16
+
+local polishhl = {
     whichkey = {
-        WhichKeyDesc = { fg = Base30.white },
-        WhichKey = { fg = Base30.white },
+        WhichKeyDesc = { fg = base30.white },
+        WhichKey = { fg = base30.white },
     },
 
     telescope = {
-        TelescopePromptPrefix = { fg = Base30.white },
-        TelescopeSelection = { bg = Base30.one_bg, fg = Base30.white },
+        TelescopePromptPrefix = { fg = base30.white },
+        TelescopeSelection = { bg = base30.one_bg, fg = base30.white },
     },
 
     treesitter = {
-        ["@punctuation.bracket"] = { fg = Base30.nord_blue },
+        ["@punctuation.bracket"] = { fg = base30.nord_blue },
     },
 
-    defaults = { FloatBorder = { fg = Base16.color05 } },
+    defaults = { FloatBorder = { fg = base16.color05 } },
 
     statusline = {
-        St_pos_text = { fg = Base30.white },
+        St_pos_text = { fg = base30.white },
     },
 
     git = {
-        DiffAdd = { fg = Base16.color05 },
+        DiffAdd = { fg = base16.color05 },
     },
 }
+
+for _, file in pairs(vim.g.themeintegrations) do
+    local path = "user.theme.integrations." .. file
+    for k, v in pairs(require(path).set(base16, base30)) do
+        vim.api.nvim_set_hl(0, k, v)
+    end
+end

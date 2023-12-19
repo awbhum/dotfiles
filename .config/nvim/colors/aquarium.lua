@@ -1,7 +1,8 @@
+vim.g.colors_name = "aquarium"
 vim.cmd.syntax("reset")
 vim.opt.background = "dark"
 
-Base30 = {
+local base30 = {
     white = "#ced4df",
     darker_black = "#1c1c26",
     black = "#20202A", --  nvim bg
@@ -34,7 +35,7 @@ Base30 = {
     folder_bg = "#b8dceb",
 }
 
-Base16 = {
+local base16 = {
     color00 = "#20202A",
     color01 = "#2c2e3e",
     color02 = "#3D4059",
@@ -53,4 +54,14 @@ Base16 = {
     color0F = "#eAc1c1",
 }
 
-PolishHL = {}
+vim.g.aquarium_base30 = base30
+vim.g.aquarium_base16 = base16
+
+local polishhl = {}
+
+for _, file in pairs(vim.g.themeintegrations) do
+    local path = "user.theme.integrations." .. file
+    for k, v in pairs(require(path).set(base16, base30)) do
+        vim.api.nvim_set_hl(0, k, v)
+    end
+end

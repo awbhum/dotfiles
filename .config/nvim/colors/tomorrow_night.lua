@@ -1,7 +1,8 @@
+vim.g.colors_name = "tomorrow_night"
 vim.cmd.syntax("reset")
 vim.opt.background = "dark"
 
-Base30 = {
+local base30 = {
     white = "#C5C8C2",
     darker_black = "#191b1d",
     black = "#1d1f21", -- nvim bg
@@ -34,7 +35,7 @@ Base30 = {
     folder_bg = "#6f8dab",
 }
 
-Base16 = {
+local base16 = {
     color00 = "#1d1f21",
     color01 = "#282a2e",
     color02 = "#373b41",
@@ -53,9 +54,19 @@ Base16 = {
     color0F = "#a3685a",
 }
 
-PolishHL = {
+vim.g.tomorrow_night_base30 = base30
+vim.g.tomorrow_night_base16 = base16
+
+local polishhl = {
     treesitter = {
-        ["@function.builtin"] = { fg = Base30.yellow },
+        ["@function.builtin"] = { fg = base30.yellow },
     },
-    -- ["@punctuation.bracket"] = { fg = Base30.yellow },
+    -- ["@punctuation.bracket"] = { fg = base30.yellow },
 }
+
+for _, file in pairs(vim.g.themeintegrations) do
+    local path = "user.theme.integrations." .. file
+    for k, v in pairs(require(path).set(base16, base30)) do
+        vim.api.nvim_set_hl(0, k, v)
+    end
+end

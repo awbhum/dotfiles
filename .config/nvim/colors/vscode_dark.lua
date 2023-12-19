@@ -1,7 +1,8 @@
+vim.g.colors_name = "vscode_dark"
 vim.cmd.syntax("reset")
 vim.opt.background = "dark"
 
-Base30 = {
+local base30 = {
     white = "#dee1e6",
     darker_black = "#1a1a1a",
     black = "#1E1E1E", --  nvim bg
@@ -35,7 +36,7 @@ Base30 = {
     folder_bg = "#7A8A92",
 }
 
-Base16 = {
+local base16 = {
     --author of this template Tomas Iser, @tomasiser on github,
     color00 = "#1E1E1E",
     color01 = "#262626",
@@ -55,13 +56,23 @@ Base16 = {
     color0F = "#E9E9E9",
 }
 
-PolishHL = {
+vim.g.vscode_dark_base30 = base30
+vim.g.vscode_dark_base16 = base16
+
+local polishhl = {
     treesitter = {
-        ["@parameter"] = { fg = Base30.blue },
-        ["@keyword"] = { fg = Base30.blue },
-        ["@variable"] = { fg = Base30.cyan },
-        ["@field.key"] = { fg = Base30.green1 },
-        ["@keyword.return"] = { fg = Base16.color0E },
-        ["@keyword.function"] = { fg = Base30.teal },
+        ["@parameter"] = { fg = base30.blue },
+        ["@keyword"] = { fg = base30.blue },
+        ["@variable"] = { fg = base30.cyan },
+        ["@field.key"] = { fg = base30.green1 },
+        ["@keyword.return"] = { fg = base16.color0E },
+        ["@keyword.function"] = { fg = base30.teal },
     },
 }
+
+for _, file in pairs(vim.g.themeintegrations) do
+    local path = "user.theme.integrations." .. file
+    for k, v in pairs(require(path).set(base16, base30)) do
+        vim.api.nvim_set_hl(0, k, v)
+    end
+end

@@ -22,6 +22,25 @@ local plugins = {
     -- lsp / breadcrumbs
     --require("user.plugins.lsp"),
 
+    -- netrw tweaks
+    -- { "prichrd/netrw.nvim",
+    --    cmd = "netrw",
+    --    config = function()
+    --        require "user.plugins.netrw"
+    --    end,
+    -- },
+
+    -- status line
+    -- { "nvim-lualine/lualine.nvim",
+    --     event = {
+    --         "BufRead",
+    --         "BufNewFile",
+    --     },
+    --     config = function()
+    --         require "user.plugins.lualine"
+    --     end,
+    -- },
+
     -- comment
     { "numToStr/Comment.nvim",
         event = {
@@ -30,6 +49,14 @@ local plugins = {
         },
         config = function()
             require "user.plugins.comment"
+        end,
+    },
+
+    -- buffers per tab
+    { "tiagovla/scope.nvim",
+        event = "VimEnter",
+        config = function()
+            require "user.plugins.scope"
         end,
     },
 
@@ -96,22 +123,26 @@ local plugins = {
         end,
     },
 
-    -- status line
-    { "nvim-lualine/lualine.nvim",
-        event = {
-            "BufRead",
-            "BufNewFile",
+    -- file manager pane
+    { "nvim-tree/nvim-tree.lua",
+        cmd = {
+            "NvimTreeToggle",
+            "NvimTreeOpen",
+            "NvimTreeClose",
+            "NvimTreeRefresh",
+            "NvimTreeFindFile",
+            "NvimTreeFindFileToggle",
         },
         config = function()
-            require "user.plugins.lualine"
+            require "user.plugins.nvimtree"
         end,
     },
 
-    -- file explorer
-    { "nvim-tree/nvim-tree.lua",
-        cmd = "NvimTreeToggle",
+    -- buffer file manager
+    { "stevearc/oil.nvim",
+        cmd = "Oil",
         config = function()
-            require "user.plugins.nvimtree"
+            require "user.plugins.oil"
         end,
     },
 

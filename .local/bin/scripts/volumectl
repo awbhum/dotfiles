@@ -11,10 +11,10 @@ done
 # operation
 case "$1" in
     up)
-        [ "$vcmd" = "amixer" ] && amixer sset Master 2+
+        [ "$vcmd" = "amixer" ] && amixer sset Master 3+
         ;;
     down)
-        [ "$vcmd" = "amixer" ] && amixer sset Master 2-
+        [ "$vcmd" = "amixer" ] && amixer sset Master 3-
         ;;
     mute_toggle)
         [ "$vcmd" = "amixer" ] && amixer sset Master toggle

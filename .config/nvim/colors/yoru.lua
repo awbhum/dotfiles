@@ -1,7 +1,8 @@
+vim.g.colors_name = "yoru"
 vim.cmd.syntax("reset")
 vim.opt.background = "dark"
 
-Base30 = {
+local base30 = {
     white = "#edeff0",
     darker_black = "#060809",
     black = "#0c0e0f", --  nvim bg
@@ -35,7 +36,7 @@ Base30 = {
     folder_bg = "#6791C9",
 }
 
-Base16 = {
+local base16 = {
     color00 = "#0c0e0f",
     color01 = "#121415",
     color02 = "#161819",
@@ -54,4 +55,14 @@ Base16 = {
     color0F = "#e8646a",
 }
 
-PolishHL = {}
+vim.g.yoru_base30 = base30
+vim.g.yoru_base16 = base16
+
+local polishhl = {}
+
+for _, file in pairs(vim.g.themeintegrations) do
+    local path = "user.theme.integrations." .. file
+    for k, v in pairs(require(path).set(base16, base30)) do
+        vim.api.nvim_set_hl(0, k, v)
+    end
+end

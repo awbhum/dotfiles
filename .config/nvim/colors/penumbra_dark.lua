@@ -1,7 +1,8 @@
+vim.g.colors_name = "penumbra_dark"
 vim.cmd.syntax("reset")
 vim.opt.background = "dark"
 
-Base30 = {
+local base30 = {
     white = "#FFFDFB",
     darker_black = "#2b2e33",
     black = "#303338",
@@ -34,7 +35,7 @@ Base30 = {
     folder_bg = "#8C96EC",
 }
 
-Base16 = {
+local base16 = {
     color00 = "#303338",
     color01 = "#3a3d42",
     color02 = "#3d4045",
@@ -53,18 +54,28 @@ Base16 = {
     color0F = "#A1A641",
 }
 
-PolishHL = {
+vim.g.penumbra_dark_base30 = base30
+vim.g.penumbra_dark_base16 = base16
+
+local polishhl = {
     treesitter = {
-        ["@field.key"] = { fg = Base30.red },
-        ["@punctuation.bracket"] = { fg = Base16.color08 },
-        ["@constructor"] = { fg = Base30.orange },
-        ["@parameter"] = { fg = Base30.orange },
-        ["@tag.delimiter"] = { fg = Base16.color08 },
+        ["@field.key"] = { fg = base30.red },
+        ["@punctuation.bracket"] = { fg = base16.color08 },
+        ["@constructor"] = { fg = base30.orange },
+        ["@parameter"] = { fg = base30.orange },
+        ["@tag.delimiter"] = { fg = base16.color08 },
         ["@tag.attribute"] = { link = "@annotation" },
     },
 
     syntax = {
-        Operator = { fg = Base30.cyan },
-        Constant = { fg = Base30.red },
+        Operator = { fg = base30.cyan },
+        Constant = { fg = base30.red },
     },
 }
+
+for _, file in pairs(vim.g.themeintegrations) do
+    local path = "user.theme.integrations." .. file
+    for k, v in pairs(require(path).set(base16, base30)) do
+        vim.api.nvim_set_hl(0, k, v)
+    end
+end

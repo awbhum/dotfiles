@@ -1,7 +1,8 @@
+vim.g.colors_name = "nightowl"
 vim.cmd.syntax("reset")
 vim.opt.background = "dark"
 
-Base30 = {
+local base30 = {
     white = "#d6deeb",
     darker_black = "#010f20",
     black = "#011627",
@@ -34,7 +35,7 @@ Base30 = {
     folder_bg = "#82aaff",
 }
 
-Base16 = {
+local base16 = {
     color00 = "#011627",
     color01 = "#0c2132",
     color02 = "#172c3d",
@@ -53,10 +54,20 @@ Base16 = {
     color0F = "#f78c6c",
 }
 
-PolishHL = {
+vim.g.nightowl_base30 = base30
+vim.g.nightowl_base16 = base16
+
+local polishhl = {
     treesitter = {
-        ["@parameter"] = { fg = Base30.orange },
-        ["@keyword.return"] = { fg = Base30.cyan },
-        ["@conditional"] = { fg = Base30.cyan },
+        ["@parameter"] = { fg = base30.orange },
+        ["@keyword.return"] = { fg = base30.cyan },
+        ["@conditional"] = { fg = base30.cyan },
     },
 }
+
+for _, file in pairs(vim.g.themeintegrations) do
+    local path = "user.theme.integrations." .. file
+    for k, v in pairs(require(path).set(base16, base30)) do
+        vim.api.nvim_set_hl(0, k, v)
+    end
+end

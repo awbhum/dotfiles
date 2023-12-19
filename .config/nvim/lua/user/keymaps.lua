@@ -31,8 +31,10 @@ bind("", "<S-Right>", ":vertical resize +2<LF>", opts)
 bind("", "<S-Left>", ":vertical resize -2<LF>", opts)
 
 -- navigate buffers/tabs
-bind("", "<S-l>", ":tabnext<LF>", opts)
-bind("", "<S-h>", ":tabprevious<LF>", opts)
+bind("", "<S-l>", ":bnext<LF>", opts)
+bind("", "<S-h>", ":bprevious<LF>", opts)
+bind("", "<M-l>", ":tabnext<LF>", opts)
+bind("", "<M-h>", ":tabprevious<LF>", opts)
 
 -- easier moving on wrapped lines
 bind("", "j", "gj", opts)
@@ -96,7 +98,7 @@ bind("n", "<leader>p", ":Lazy<LF>", opts)
 bind("n", "<leader>ff", ":Telescope find_files<LF>", opts)
 bind("n", "<leader>fd", ":Telescope lsp_definitions<LF>", opts)
 bind("n", "<leader>fg", ":Telescope live_grep<LF>", opts)
-bind("n", "<leader>fb", ":Telescope buffers<LF>", opts)
+bind("n", "<leader>fb", ":Telescope scope buffers<LF>", opts)
 bind("n", "<leader>fh", ":Telescope help_tags<LF>", opts)
 bind("n", "<leader>fs", ":Telescope lsp_document_symbols<LF>", opts)
 bind("n", "<leader>fo", ":Telescope oldfiles<LF>", opts)
@@ -106,6 +108,9 @@ bind("n", "<leader>gb", ":Telescope git_bcommits<LF>", opts)
 
 -- toggle a terminal
 bind("n", "<leader>t", ":ToggleTerm<LF>", opts)
+
+-- oil
+bind("n", "-", ":Oil<LF>", opts)
 
 -- nvim tree keybinds
 bind("n", "<leader>n", ":NvimTreeToggle<LF>", opts)

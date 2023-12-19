@@ -1,7 +1,8 @@
+vim.g.colors_name = "doomchad"
 vim.cmd.syntax("reset")
 vim.opt.background = "dark"
 
-Base30 = {
+local base30 = {
     white = "#bbc2cf",
     darker_black = "#22262e",
     black = "#282c34", --  nvim bg
@@ -34,7 +35,7 @@ Base30 = {
     folder_bg = "#51afef",
 }
 
-Base16 = {
+local base16 = {
     color00 = "#282c34",
     color01 = "#32363e",
     color02 = "#3c4048",
@@ -53,9 +54,19 @@ Base16 = {
     color0F = "#c85a50",
 }
 
-PolishHL = {
+vim.g.doomchad_base30 = base30
+vim.g.doomchad_base16 = base16
+
+local polishhl = {
     treesitter = {
-        ["@field"] = { fg = Base30.blue },
-        ["@punctuation.bracket"] = { fg = Base30.yellow },
+        ["@field"] = { fg = base30.blue },
+        ["@punctuation.bracket"] = { fg = base30.yellow },
     },
 }
+
+for _, file in pairs(vim.g.themeintegrations) do
+    local path = "user.theme.integrations." .. file
+    for k, v in pairs(require(path).set(base16, base30)) do
+        vim.api.nvim_set_hl(0, k, v)
+    end
+end

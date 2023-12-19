@@ -1,7 +1,8 @@
+vim.g.colors_name = "dark_horizon"
 vim.cmd.syntax("reset")
 vim.opt.background = "dark"
 
-Base30 = {
+local base30 = {
     white = "#FFFFFF",
     darker_black = "#080808",
     black = "#0e0e0e", --  nvim bg
@@ -35,7 +36,7 @@ Base30 = {
     folder_bg = "#07929e",
 }
 
-Base16 = {
+local base16 = {
     color00 = "#0e0e0e",
     color01 = "#181818",
     color02 = "#292929",
@@ -54,15 +55,25 @@ Base16 = {
     color0F = "#d75271", -- Deprecated, Opening/Closing embedded language tags
 }
 
-PolishHL = {
+vim.g.dark_horizon_base30 = base30
+vim.g.dark_horizon_base16 = base16
+
+local polishhl = {
     syntax = {
-        Include = { fg = Base16.color0E, bold = true },
+        Include = { fg = base16.color0E, bold = true },
     },
 
     treesitter = {
-        ["@property"] = { fg = Base16.color0E },
-        ["@tag.delimiter"] = { fg = Base16.color05 },
-        ["@punctuation.bracket"] = { fg = Base30.yellow },
-        ["@punctuation.delimiter"] = { fg = Base30.yellow },
+        ["@property"] = { fg = base16.color0E },
+        ["@tag.delimiter"] = { fg = base16.color05 },
+        ["@punctuation.bracket"] = { fg = base30.yellow },
+        ["@punctuation.delimiter"] = { fg = base30.yellow },
     },
 }
+
+for _, file in pairs(vim.g.themeintegrations) do
+    local path = "user.theme.integrations." .. file
+    for k, v in pairs(require(path).set(base16, base30)) do
+        vim.api.nvim_set_hl(0, k, v)
+    end
+end

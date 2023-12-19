@@ -1,7 +1,8 @@
+vim.g.colors_name = "nightlamp"
 vim.cmd.syntax("reset")
 vim.opt.background = "dark"
 
-Base30 = {
+local base30 = {
     white = "#e0d6bd",
     darker_black = "#13141a",
     black = "#18191f", --nvim bg
@@ -34,7 +35,7 @@ Base30 = {
     folder_bg = "#90a0a0",
 }
 
-Base16 = {
+local base16 = {
     color00 = "#18191f",
     color01 = "#222329",
     color02 = "#2c2d33",
@@ -53,4 +54,14 @@ Base16 = {
     color0F = "#90a0a0",
 }
 
-PolishHL = {}
+vim.g.nightlamp_base30 = base30
+vim.g.nightlamp_base16 = base16
+
+local polishhl = {}
+
+for _, file in pairs(vim.g.themeintegrations) do
+    local path = "user.theme.integrations." .. file
+    for k, v in pairs(require(path).set(base16, base30)) do
+        vim.api.nvim_set_hl(0, k, v)
+    end
+end

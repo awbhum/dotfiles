@@ -1,7 +1,8 @@
+vim.g.colors_name = "jellybeans"
 vim.cmd.syntax("reset")
 vim.opt.background = "dark"
 
-Base30 = {
+local base30 = {
     white = "#e8e8d3",
     darker_black = "#101010",
     black = "#151515", --  nvim bg
@@ -34,7 +35,7 @@ Base30 = {
     folder_bg = "#8197bf",
 }
 
-Base16 = {
+local base16 = {
     color00 = "#151515",
     color01 = "#2e2e2e",
     color02 = "#3a3a3a",
@@ -53,4 +54,14 @@ Base16 = {
     color0F = "#cf6a4c",
 }
 
-PolishHL = {}
+vim.g.jellybeans_base30 = base30
+vim.g.jellybeans_base16 = base16
+
+local polishhl = {}
+
+for _, file in pairs(vim.g.themeintegrations) do
+    local path = "user.theme.integrations." .. file
+    for k, v in pairs(require(path).set(base16, base30)) do
+        vim.api.nvim_set_hl(0, k, v)
+    end
+end

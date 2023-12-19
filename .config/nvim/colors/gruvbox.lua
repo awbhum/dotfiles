@@ -1,7 +1,8 @@
+vim.g.colors_name = "gruvbox"
 vim.cmd.syntax("reset")
 vim.opt.background = "dark"
 
-Base30 = {
+local base30 = {
     white = "#ebdbb2",
     darker_black = "#232323",
     black = "#282828", --  nvim bg
@@ -34,7 +35,7 @@ Base30 = {
     folder_bg = "#749689",
 }
 
-Base16 = {
+local base16 = {
     color00 = "#282828",
     color01 = "#3c3836",
     color02 = "#423e3c",
@@ -53,12 +54,22 @@ Base16 = {
     color0F = "#d65d0e",
 }
 
-PolishHL = {
+vim.g.gruvbox_base30 = base30
+vim.g.gruvbox_base16 = base16
+
+local polishhl = {
     syntax = {
-        Operator = { fg = Base30.nord_blue },
+        Operator = { fg = base30.nord_blue },
     },
 
     treesitter = {
-        ["@operator"] = { fg = Base30.nord_blue },
+        ["@operator"] = { fg = base30.nord_blue },
     },
 }
+
+for _, file in pairs(vim.g.themeintegrations) do
+    local path = "user.theme.integrations." .. file
+    for k, v in pairs(require(path).set(base16, base30)) do
+        vim.api.nvim_set_hl(0, k, v)
+    end
+end

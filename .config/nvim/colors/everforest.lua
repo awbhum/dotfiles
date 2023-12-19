@@ -1,7 +1,8 @@
+vim.g.colors_name = "everforest"
 vim.cmd.syntax("reset")
 vim.opt.background = "dark"
 
-Base30 = {
+local base30 = {
     white = "#D3C6AA",
     darker_black = "#272f35",
     black = "#2b3339", --  nvim bg
@@ -34,7 +35,7 @@ Base30 = {
     folder_bg = "#7393b3",
 }
 
-Base16 = {
+local base16 = {
     color00 = "#2b3339",
     color01 = "#323c41",
     color02 = "#3a4248",
@@ -53,9 +54,19 @@ Base16 = {
     color0F = "#d699b6",
 }
 
-PolishHL = {
+vim.g.everforest_base30 = base30
+vim.g.everforest_base16 = base16
+
+local polishhl = {
     treesitter = {
-        ["@tag"] = { fg = Base30.orange },
-        ["@tag.delimiter"] = { fg = Base30.green },
+        ["@tag"] = { fg = base30.orange },
+        ["@tag.delimiter"] = { fg = base30.green },
     },
 }
+
+for _, file in pairs(vim.g.themeintegrations) do
+    local path = "user.theme.integrations." .. file
+    for k, v in pairs(require(path).set(base16, base30)) do
+        vim.api.nvim_set_hl(0, k, v)
+    end
+end

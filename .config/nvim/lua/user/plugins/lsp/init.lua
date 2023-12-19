@@ -9,16 +9,15 @@ return {
         "nvimtools/none-ls.nvim",
         { "neovim/nvim-lspconfig",
             dependencies = {
-                    { "SmiteshP/nvim-navic",
-                        config = function()
-                            require "user.plugins.lsp.navic"
-                        end,
-                    },
-                    { "LunarVim/breadcrumbs.nvim",
-                        config = function()
-                            require "user.plugins.lsp.breadcrumbs"
-                        end,
-                    },
+                { "SmiteshP/nvim-navic",
+                    config = function()
+                        require "user.plugins.lsp.navic"
+                    end,
+                },
+                { "LunarVim/breadcrumbs.nvim",
+                    config = function()
+                        require "user.plugins.lsp.breadcrumbs"
+                    end,
                 },
             },
         },

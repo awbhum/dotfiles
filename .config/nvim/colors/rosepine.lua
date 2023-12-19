@@ -1,7 +1,8 @@
+vim.g.colors_name = "rosepine"
 vim.cmd.syntax("reset")
 vim.opt.background = "dark"
 
-Base30 = {
+local base30 = {
     black = "#191724", --  nvim bg
     darker_black = "#13111e",
     white = "#e0def4",
@@ -34,7 +35,7 @@ Base30 = {
     folder_bg = "#6aadc8",
 }
 
-Base16 = {
+local base16 = {
     color00 = "#191724",
     color01 = "#1f1d2e",
     color02 = "#26233a",
@@ -53,4 +54,14 @@ Base16 = {
     color0F = "#524f67",
 }
 
-PolishHL = {}
+vim.g.rosepine_base30 = base30
+vim.g.rosepine_base16 = base16
+
+local polishhl = {}
+
+for _, file in pairs(vim.g.themeintegrations) do
+    local path = "user.theme.integrations." .. file
+    for k, v in pairs(require(path).set(base16, base30)) do
+        vim.api.nvim_set_hl(0, k, v)
+    end
+end

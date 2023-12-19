@@ -1,7 +1,8 @@
+vim.g.colors_name = "tokyodark"
 vim.cmd.syntax("reset")
 vim.opt.background = "dark"
 
-Base30 = {
+local base30 = {
     white = "#A0A8CD",
     darker_black = "#0c0d18",
     black = "#11121D", --  nvim bg
@@ -34,7 +35,7 @@ Base30 = {
     folder_bg = "#7199ee",
 }
 
-Base16 = {
+local base16 = {
     color00 = "#11121d",
     color01 = "#1b1c27",
     color02 = "#21222d",
@@ -53,4 +54,14 @@ Base16 = {
     color0F = "#f3627a",
 }
 
-PolishHL = {}
+vim.g.tokyodark_base30 = base30
+vim.g.tokyodark_base16 = base16
+
+local polishhl = {}
+
+for _, file in pairs(vim.g.themeintegrations) do
+    local path = "user.theme.integrations." .. file
+    for k, v in pairs(require(path).set(base16, base30)) do
+        vim.api.nvim_set_hl(0, k, v)
+    end
+end

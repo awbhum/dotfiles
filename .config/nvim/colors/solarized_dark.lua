@@ -1,7 +1,8 @@
+vim.g.colors_name = "solarized_dark"
 vim.cmd.syntax("reset")
 vim.opt.background = "dark"
 
-Base30 = {
+local base30 = {
     white = "#abb2bf",
     darker_black = "#002530",
     black = "#002b36", --  nvim bg
@@ -34,7 +35,7 @@ Base30 = {
     folder_bg = "#268bd2",
 }
 
-Base16 = {
+local base16 = {
     color00 = "#002b36",
     color01 = "#06313c",
     color02 = "#0a3540",
@@ -53,4 +54,14 @@ Base16 = {
     color0F = "#d33682",
 }
 
-PolishHL = {}
+vim.g.solarized_dark_base30 = base30
+vim.g.solarized_dark_base16 = base16
+
+local polishhl = {}
+
+for _, file in pairs(vim.g.themeintegrations) do
+    local path = "user.theme.integrations." .. file
+    for k, v in pairs(require(path).set(base16, base30)) do
+        vim.api.nvim_set_hl(0, k, v)
+    end
+end

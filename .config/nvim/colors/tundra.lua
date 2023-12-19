@@ -1,7 +1,8 @@
+vim.g.colors_name = "tundra"
 vim.cmd.syntax("reset")
 vim.opt.background = "dark"
 
-Base30 = {
+local base30 = {
     white = "#FFFFFF",
     darker_black = "#0b1221",
     black = "#111827", --  nvim bg
@@ -34,7 +35,7 @@ Base30 = {
     folder_bg = "#A5B4FC",
 }
 
-Base16 = {
+local base16 = {
     color00 = "#111827",
     color01 = "#1e2534",
     color02 = "#282f3e",
@@ -53,20 +54,30 @@ Base16 = {
     color0F = "#9CA3AF",
 }
 
-PolishHL = {
+vim.g.tundra_base30 = base30
+vim.g.tundra_base16 = base16
+
+local polishhl = {
     treesitter = {
-        ["@constructor"] = { fg = Base30.cyan },
-        ["@keyword"] = { fg = Base30.red },
-        ["@method.call"] = { fg = Base30.cyan },
-        ["@function.call"] = { fg = Base30.cyan },
-        ["@function.builtin"] = { fg = Base30.orange },
+        ["@constructor"] = { fg = base30.cyan },
+        ["@keyword"] = { fg = base30.red },
+        ["@method.call"] = { fg = base30.cyan },
+        ["@function.call"] = { fg = base30.cyan },
+        ["@function.builtin"] = { fg = base30.orange },
     },
 
     syntax = {
-        Constant = { fg = Base30.orange },
-        Conditional = { fg = Base30.baby_pink },
-        Repeat = { fg = Base30.baby_pink },
-        Type = { fg = Base30.baby_pink },
-        Operator = { fg = Base30.baby_pink },
+        Constant = { fg = base30.orange },
+        Conditional = { fg = base30.baby_pink },
+        Repeat = { fg = base30.baby_pink },
+        Type = { fg = base30.baby_pink },
+        Operator = { fg = base30.baby_pink },
     },
 }
+
+for _, file in pairs(vim.g.themeintegrations) do
+    local path = "user.theme.integrations." .. file
+    for k, v in pairs(require(path).set(base16, base30)) do
+        vim.api.nvim_set_hl(0, k, v)
+    end
+end

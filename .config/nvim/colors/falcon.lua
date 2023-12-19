@@ -1,7 +1,8 @@
+vim.g.colors_name = "falcon"
 vim.cmd.syntax("reset")
 vim.opt.background = "dark"
 
-Base30 = {
+local base30 = {
     white = "#F8F8FF",
     white2 = "#DFDFE5",
     tan = "#CFC1B2",
@@ -36,7 +37,7 @@ Base30 = {
     folder_bg = "#598cbf",
 }
 
-Base16 = {
+local base16 = {
     color00 = "#020222",
     color01 = "#0b0b2b",
     color02 = "#161636",
@@ -55,16 +56,26 @@ Base16 = {
     color0F = "#DFDFE5",
 }
 
-PolishHL = {
+vim.g.falcon_base30 = base30
+vim.g.falcon_base16 = base16
+
+local polishhl = {
     syntax = {
-        Statement = { fg = Base30.purple },
-        Type = { fg = Base30.white2 },
-        Include = { fg = Base30.tan },
-        Keyword = { fg = Base16.color0D },
-        Operator = { fg = Base30.red },
+        Statement = { fg = base30.purple },
+        Type = { fg = base30.white2 },
+        Include = { fg = base30.tan },
+        Keyword = { fg = base16.color0D },
+        Operator = { fg = base30.red },
     },
 
     treesitter = {
-        ["@keyword"] = { fg = Base16.color0D },
+        ["@keyword"] = { fg = base16.color0D },
     },
 }
+
+for _, file in pairs(vim.g.themeintegrations) do
+    local path = "user.theme.integrations." .. file
+    for k, v in pairs(require(path).set(base16, base30)) do
+        vim.api.nvim_set_hl(0, k, v)
+    end
+end

@@ -1,7 +1,8 @@
+vim.g.colors_name = "radium"
 vim.cmd.syntax("reset")
 vim.opt.background = "dark"
 
-Base30 = {
+local base30 = {
     white = "#d4d4d5",
     darker_black = "#0a0d11",
     black = "#101317", --  nvim bg
@@ -34,7 +35,7 @@ Base30 = {
     folder_bg = "#5fb0fc",
 }
 
-Base16 = {
+local base16 = {
     color00 = "#101317",
     color01 = "#1a1d21",
     color02 = "#23262a",
@@ -53,9 +54,19 @@ Base16 = {
     color0F = "#e87979",
 }
 
-PolishHL = {
+vim.g.radium_base30 = base30
+vim.g.radium_base16 = base16
+
+local polishhl = {
     treesitter = {
-        ["@punctuation.bracket"] = { fg = Base16.color07 },
+        ["@punctuation.bracket"] = { fg = base16.color07 },
         ["@parenthesis"] = { link = "@punctuation.bracket" },
     },
 }
+
+for _, file in pairs(vim.g.themeintegrations) do
+    local path = "user.theme.integrations." .. file
+    for k, v in pairs(require(path).set(base16, base30)) do
+        vim.api.nvim_set_hl(0, k, v)
+    end
+end

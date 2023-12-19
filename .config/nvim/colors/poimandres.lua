@@ -1,7 +1,8 @@
+vim.g.colors_name = "poimandres"
 vim.cmd.syntax("reset")
 vim.opt.background = "light"
 
-Base30 = {
+local base30 = {
     white = "#E4F0FB",
     ogwhite = "#ffffff",
     black = "#1b1e28",
@@ -36,59 +37,69 @@ Base30 = {
     folder_bg = "#91B4D5",
 }
 
-Base16 = {
-    color00 = Base30.black,
-    color01 = Base30.one_bg,
-    color02 = Base30.one_bg2,
-    color03 = Base30.one_bg3,
-    color04 = Base30.grey,
-    color05 = Base30.purple,
-    color06 = Base30.dark_purple,
-    color07 = Base30.ogwhite,
-    color08 = Base30.purple,
-    color09 = Base30.red,
-    color0A = Base30.teal,
-    color0B = Base30.teal,
-    color0C = Base30.blue,
-    color0D = Base30.seablue,
-    color0E = Base30.nord_blue,
-    color0F = Base30.ogwhite,
+local base16 = {
+    color00 = base30.black,
+    color01 = base30.one_bg,
+    color02 = base30.one_bg2,
+    color03 = base30.one_bg3,
+    color04 = base30.grey,
+    color05 = base30.purple,
+    color06 = base30.dark_purple,
+    color07 = base30.ogwhite,
+    color08 = base30.purple,
+    color09 = base30.red,
+    color0A = base30.teal,
+    color0B = base30.teal,
+    color0C = base30.blue,
+    color0D = base30.seablue,
+    color0E = base30.nord_blue,
+    color0F = base30.ogwhite,
 }
 
-PolishHL = {
+vim.g.poimandres_base30 = base30
+vim.g.poimandres_base16 = base16
+
+local polishhl = {
     treesitter = {
-        ["@variable"] = { fg = Base30.ogwhite },
-        ["@variable.builtin"] = { fg = Base30.dark_purple },
-        ["@function.call"] = { fg = Base30.purple },
-        ["@keyword.return"] = { fg = Base30.green },
-        ["@operator"] = { fg = Base30.nord_blue },
-        ["@keyword.operator"] = { fg = Base30.seablue },
-        ["@constant.builtin"] = { fg = Base30.seablue },
-        ["@constant"] = { fg = Base30.white },
-        ["@constructor"] = { fg = Base30.grey_fg },
-        ["@property"] = { fg = Base30.seablue },
-        ["@punctuation.delimiter"] = { fg = Base30.seablue },
-        ["@punctuation.special"] = { fg = Base30.purple },
-        ["@punctuation.bracket"] = { fg = Base30.purple },
+        ["@variable"] = { fg = base30.ogwhite },
+        ["@variable.builtin"] = { fg = base30.dark_purple },
+        ["@function.call"] = { fg = base30.purple },
+        ["@keyword.return"] = { fg = base30.green },
+        ["@operator"] = { fg = base30.nord_blue },
+        ["@keyword.operator"] = { fg = base30.seablue },
+        ["@constant.builtin"] = { fg = base30.seablue },
+        ["@constant"] = { fg = base30.white },
+        ["@constructor"] = { fg = base30.grey_fg },
+        ["@property"] = { fg = base30.seablue },
+        ["@punctuation.delimiter"] = { fg = base30.seablue },
+        ["@punctuation.special"] = { fg = base30.purple },
+        ["@punctuation.bracket"] = { fg = base30.purple },
         ["@type.builtin"] = { link = "Boolean" },
-        ["@tag.attribute"] = { fg = Base30.purple, italic = true, link = "" },
-        ["Label"] = { fg = Base30.seablue },
-        ["@none"] = { fg = Base30.dark_purple },
+        ["@tag.attribute"] = { fg = base30.purple, italic = true, link = "" },
+        ["Label"] = { fg = base30.seablue },
+        ["@none"] = { fg = base30.dark_purple },
         ["@constructor.tsx"] = { link = "Tag" },
     },
 
     telescope = {
-        TelescopeMatching = { fg = Base30.teal },
+        TelescopeMatching = { fg = base30.teal },
     },
 
     cmp = {
-        CmpItemAbbr = { fg = Base30.purple },
-        CmpItemAbbrMatch = { fg = Base30.dark_purple },
-        CmpSel = { bg = Base30.one_bg2, link = "" },
+        CmpItemAbbr = { fg = base30.purple },
+        CmpItemAbbrMatch = { fg = base30.dark_purple },
+        CmpSel = { bg = base30.one_bg2, link = "" },
     },
 
     syntax = {
-        Include = { fg = Base30.blue },
-        Type = { fg = Base30.purple },
+        Include = { fg = base30.blue },
+        Type = { fg = base30.purple },
     },
 }
+
+for _, file in pairs(vim.g.themeintegrations) do
+    local path = "user.theme.integrations." .. file
+    for k, v in pairs(require(path).set(base16, base30)) do
+        vim.api.nvim_set_hl(0, k, v)
+    end
+end

@@ -7,6 +7,35 @@ local globals = {
     nord_bold = true,
     mapleader = " ",
     maplocalleader = " ",
+    cmp_ui = {
+        icons = true,
+        lspkind_text = true,
+        style = "atom", -- default/flat_light/flat_dark/atom/atom_colored
+        border_color = "grey_fg", -- only applicable for "default" style, use color names from base30 variables
+        selected_item_bg = "colored", -- colored / simple
+    },
+    themeintegrations = {
+        "alpha",
+        "cmp",
+        "defaults",
+        "devicons",
+        "git",
+        "illuminate",
+        "indentline",
+        "lsp",
+        "lspsaga",
+        "mason",
+        "navic",
+        "notify",
+        "nvimtree",
+        "rainbowdelimiters",
+        "semantic_tokens",
+        "syntax",
+        "telescope",
+        "term",
+        "treesitter",
+    },
+    telescope_style = "bordered",
 }
 
 local settings = {
@@ -14,11 +43,18 @@ local settings = {
     autoindent = true,
     autowrite = true,
     background = "dark",
-    backspace = "indent,eol,start",
+    backspace = {
+        "indent",
+        "eol",
+        "start",
+    },
     backup = false,
     clipboard = "unnamedplus",
     compatible = false,
-    completeopt = { "menuone", "noselect" },
+    completeopt = {
+        "menuone",
+        "noselect",
+    },
     cmdheight = 1,
     cursorline = true,
     conceallevel = 0,
@@ -45,7 +81,17 @@ local settings = {
     relativenumber = true,
     pumheight = 10,
     ruler = true,
-    scrolloff = 14,
+    scrolloff = 16,
+    sessionoptions = {
+        "curdir",
+        "folds",
+        "globals",
+        "help",
+        "buffers",
+        "tabpages",
+        "terminal",
+        "winsize",
+    },
     shell = "/bin/sh",
     shiftround = true,
     shiftwidth = 4,
@@ -71,7 +117,11 @@ local settings = {
     viminfo = "",
     visualbell = true,
     wildmenu = true,
-    wildmode = "longest,list,full",
+    wildmode = {
+        "longest",
+        "list",
+        "full",
+    },
     wrap = false,
     writebackup = true,
 }

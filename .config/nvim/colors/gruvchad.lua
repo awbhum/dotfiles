@@ -1,7 +1,8 @@
+vim.g.colors_name = "gruvchad"
 vim.cmd.syntax("reset")
 vim.opt.background = "dark"
 
-Base30 = {
+local base30 = {
     white = "#c7b89d",
     darker_black = "#1a1d1e",
     black = "#1e2122", --  nvim bg
@@ -34,7 +35,7 @@ Base30 = {
     folder_bg = "#6d8dad",
 }
 
-Base16 = {
+local base16 = {
     color00 = "#1e2122",
     color01 = "#2c2f30",
     color02 = "#36393a",
@@ -53,4 +54,14 @@ Base16 = {
     color0F = "#d65d0e",
 }
 
-PolishHL = {}
+vim.g.gruvchad_base30 = base30
+vim.g.gruvchad_base16 = base16
+
+local polishhl = {}
+
+for _, file in pairs(vim.g.themeintegrations) do
+    local path = "user.theme.integrations." .. file
+    for k, v in pairs(require(path).set(base16, base30)) do
+        vim.api.nvim_set_hl(0, k, v)
+    end
+end

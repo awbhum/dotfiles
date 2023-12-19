@@ -1,7 +1,8 @@
+vim.g.colors_name = "blossom_light"
 vim.cmd.syntax("reset")
 vim.opt.background = "light"
 
-Base30 = {
+local base30 = {
     white = "#695d57",
     darker_black = "#dfd8d5",
     black = "#e6dfdc", --  nvim bg
@@ -34,7 +35,7 @@ Base30 = {
     folder_bg = "#746d6a",
 }
 
-Base16 = {
+local base16 = {
     color00 = "#e6dfdc",
     color01 = "#ded7d4",
     color02 = "#d7d0cd",
@@ -53,21 +54,31 @@ Base16 = {
     color0F = "#976153",
 }
 
-PolishHL = {
+vim.g.blossom_light_base30 = base30
+vim.g.blossom_light_base16 = base16
+
+local polishhl = {
     whichkey = {
-        WhichKeyDesc = { fg = Base30.white },
-        WhichKey = { fg = Base30.white },
+        WhichKeyDesc = { fg = base30.white },
+        WhichKey = { fg = base30.white },
     },
 
     tbline = {
         TbLineThemeToggleBtn = {
-            fg = Base30.black,
-            bg = Base30.white,
+            fg = base30.black,
+            bg = base30.white,
         },
     },
 
-    -- IndentBlanklineContextStart = { bg = Base30.black2 },
+    -- IndentBlanklineContextStart = { bg = base30.black2 },
     statusline = {
-        St_pos_text = { fg = Base30.white },
+        St_pos_text = { fg = base30.white },
     },
 }
+
+for _, file in pairs(vim.g.themeintegrations) do
+    local path = "user.theme.integrations." .. file
+    for k, v in pairs(require(path).set(base16, base30)) do
+        vim.api.nvim_set_hl(0, k, v)
+    end
+end

@@ -1,7 +1,8 @@
+vim.g.colors_name = "penumbra_light"
 vim.cmd.syntax("reset")
 vim.opt.background = "light"
 
-Base30 = {
+local base30 = {
     white = "#3E4044",
     light_grey = "#b0a89e",
     grey_fg2 = "#bab2a8",
@@ -35,7 +36,7 @@ Base30 = {
     coal = "#8a8a8a",
 }
 
-Base16 = {
+local base16 = {
     color00 = "#FFF7ED",
     color01 = "#FFF7ED",
     color02 = "#F2E6D4",
@@ -54,16 +55,26 @@ Base16 = {
     color0F = "#ca7081",
 }
 
-PolishHL = {
+vim.g.penumbra_light_base30 = base30
+vim.g.penumbra_light_base16 = base16
+
+local polishhl = {
     treesitter = {
-        ["@function.builtin"] = { fg = Base30.teal },
-        ["@field.key"] = { fg = Base30.red },
-        ["@punctuation.bracket"] = { fg = Base30.coal },
-        ["@field"] = { fg = Base30.coal },
+        ["@function.builtin"] = { fg = base30.teal },
+        ["@field.key"] = { fg = base30.red },
+        ["@punctuation.bracket"] = { fg = base30.coal },
+        ["@field"] = { fg = base30.coal },
     },
 
     syntax = {
-        Constant = { fg = Base30.red },
-        Include = { fg = Base30.dark_purple },
+        Constant = { fg = base30.red },
+        Include = { fg = base30.dark_purple },
     },
 }
+
+for _, file in pairs(vim.g.themeintegrations) do
+    local path = "user.theme.integrations." .. file
+    for k, v in pairs(require(path).set(base16, base30)) do
+        vim.api.nvim_set_hl(0, k, v)
+    end
+end
