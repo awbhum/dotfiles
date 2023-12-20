@@ -3,8 +3,6 @@ if not indentline_status_ok then
     return
 end
 
-local icons = require "user.icons"
-
 local opts = {
     enabled = true,
     debounce = 200,
@@ -28,7 +26,7 @@ local opts = {
     },
 
     scope = {
-        enabled = true,
+        enabled = false,
         char = nil,
         show_start = true,
         show_end = true,

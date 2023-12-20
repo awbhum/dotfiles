@@ -21,16 +21,18 @@ local opts = {
     persist_size = false,
     direction = "float",
     close_on_exit = true, -- close the terminal window when the process exits
+
     shell = os.getenv("SHELL"), -- use the login shell
 
     float_opts = {
-        border = "rounded",
+        border = "single",
         winblend = 0,
         highlights = {
-            border = "Normal",
-            background = "Normal",
+            border = "NonText",
+            background = "NormalFloat",
         },
     },
+
     winbar = {
         enabled = true,
         name_formatter = function(term) --  term: Terminal
@@ -110,10 +112,10 @@ vim.api.nvim_create_autocmd({ "TermEnter" }, {
     end,
 })
 
-local opts = { noremap = true, silent = true }
+local kmapopts = { noremap = true, silent = true }
 function _G.set_terminal_keymaps()
-    vim.api.nvim_buf_set_keymap(0, "t", "<m-h>", [[<C-\><C-n><C-W>h]], opts)
-    vim.api.nvim_buf_set_keymap(0, "t", "<m-j>", [[<C-\><C-n><C-W>j]], opts)
-    vim.api.nvim_buf_set_keymap(0, "t", "<m-k>", [[<C-\><C-n><C-W>k]], opts)
-    vim.api.nvim_buf_set_keymap(0, "t", "<m-l>", [[<C-\><C-n><C-W>l]], opts)
+    vim.api.nvim_buf_set_keymap(0, "t", "<m-h>", [[<C-\><C-n><C-W>h]], kmapopts)
+    vim.api.nvim_buf_set_keymap(0, "t", "<m-j>", [[<C-\><C-n><C-W>j]], kmapopts)
+    vim.api.nvim_buf_set_keymap(0, "t", "<m-k>", [[<C-\><C-n><C-W>k]], kmapopts)
+    vim.api.nvim_buf_set_keymap(0, "t", "<m-l>", [[<C-\><C-n><C-W>l]], kmapopts)
 end

@@ -20,7 +20,7 @@ vim.opt.rtp:prepend(install_path)
 
 local plugins = {
     -- lsp / breadcrumbs
-    --require("user.plugins.lsp"),
+    require("user.plugins.lsp"),
 
     -- netrw tweaks
     -- { "prichrd/netrw.nvim",
@@ -209,7 +209,7 @@ local opts = {
     ui = {
         size = { width = 0.8, height = 0.8 },
         wrap = true,
-        border = "rounded",
+        border = "single",
         title_pos = "center", ---@type "center" | "left" | "right"
         pills = true, ---@type boolean
         icons = {

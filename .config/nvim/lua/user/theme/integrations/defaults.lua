@@ -4,6 +4,8 @@ function M.set(col16, col30)
     local defaults = {
         Normal              = { fg = col16.color05, bg = col16.color00, },
         NormalFloat         = { bg = col30.darker_black },
+        StatusLine          = { fg = col30.white, bg = col30.statusline_bg },
+        StatusLineNC        = { fg = col30.grey_fg2, bg = col30.statusline_bg },
 
         Cursor              = { fg = col16.color00, bg = col16.color05, },
         CursorColumn        = { bg = col16.color01, sp = "none", },
@@ -63,7 +65,7 @@ function M.set(col16, col30)
         VisualNOS           = { fg = col16.color08, },
 
         DevIconDefault      = { fg = col30.red },
-        Directory           = { fg = col16.color0D, },
+        Directory           = { fg = col16.color0D, ctermfg = 4 },
 
         FoldColumn          = { fg = col16.color0C, bg = col16.color01, },
         Folded              = { fg = col30.light_grey, bg = col30.black2, },
