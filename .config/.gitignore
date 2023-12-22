@@ -7,7 +7,7 @@ elinks/socket*
 amfora/config.toml
 foot/foot.ini
 nvim/nvim-qt.conf
-nvim/lua/user/theme/init.lua
+nvim/init.lua
 nvim/lua/user/theme/default.lua
 nvim/lua/user/plugins/base46.lua
 nvim/lua/user/themedefault.lua

@@ -59,13 +59,6 @@ autocmd("VimResized", {
     command = "tabdo wincmd ="
 })
 
--- set theme asynchronously
-autocmd("VimEnter", {
-    callback = function()
-        require("user.theme").init()
-    end,
-})
-
 -- remove trailing whitespaces from the end of lines
 --autocmd("BufWritePre", {
 --    pattern = "*",

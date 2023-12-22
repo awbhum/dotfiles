@@ -14,4 +14,4 @@ require "user.lazy"
 require "user.theme"
 
 -- use variable colorscheme
-vim.cmd.colorscheme("nord")
+vim.cmd.colorscheme("#::vim-colorscheme::#")

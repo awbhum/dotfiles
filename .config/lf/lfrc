@@ -22,12 +22,12 @@ set info time:size
 set infotimefmtnew '1/2/06 03:04 PM'
 set infotimefmtold '1/2/06 03:04 PM'
 set mouse false
-set number false
+set number true
 set numberfmt "\033[90m"
 set period 5
 set preserve "mode:timestamps"
 set preview true
-set relativenumber false
+set relativenumber true
 set scrolloff 8
 set shellopts '-eu'
 set smartcase true
