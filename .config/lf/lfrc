@@ -22,7 +22,7 @@ set info time:size
 set infotimefmtnew '1/2/06 03:04 PM'
 set infotimefmtold '1/2/06 03:04 PM'
 set mouse false
-set number true
+set number false
 set numberfmt "\033[90m"
 set period 5
 set preserve "mode:timestamps"
@@ -154,5 +154,5 @@ map i :rename # before extension
 map a :rename; cmd-right # after extension
 map B bulkrename
 map b $set-wallpaper $f
-map V push :!nvim<space>-p<space>
+map V push :!nvim<space>
 map Y $printf "%s" "$fx" | clipboard-copy

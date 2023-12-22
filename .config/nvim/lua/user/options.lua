@@ -36,6 +36,8 @@ local globals = {
         "treesitter",
     },
     telescope_style = "bordered",
+    transparency = false,
+    theme_cache = vim.fn.stdpath("config") .. "/colors/"
 }
 
 local settings = {

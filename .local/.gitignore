@@ -1,5 +1,6 @@
 cache
 state
+share/Trash
 share/history
 share/*history
 share/amfora
