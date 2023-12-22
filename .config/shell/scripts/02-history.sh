@@ -22,3 +22,6 @@ export LESSHISTFILE="${XDG_DATA_HOME:-$HOME/.local/share}/history/less_history"
 
 # python history file
 export PYTHON_HISTORY_FILE="${XDG_DATA_HOME:-$HOME/.local/share}/history/python_history"
+
+# node repl history file
+export NODE_REPL_HISTORY="${XDG_DATA_HOME:-$HOME/.local/share}/history/node_repl_history"

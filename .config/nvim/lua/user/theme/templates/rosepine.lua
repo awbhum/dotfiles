@@ -1,5 +1,7 @@
 local M = {}
 
+M.type = "dark"
+
 M.base30 = {
     black = "#191724", --  nvim bg
     darker_black = "#13111e",

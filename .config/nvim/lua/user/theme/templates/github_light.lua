@@ -1,5 +1,7 @@
 local M = {}
 
+M.type = "light"
+
 M.base30 = {
     white = "#24292e",
     darker_black = "#f3f5f7",

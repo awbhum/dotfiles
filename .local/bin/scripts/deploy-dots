@@ -4,3 +4,6 @@
 
 # generate themed config files from templates
 command -v generate-theme >/dev/null 2>&1 && generate-theme
+
+# prevent this script from getting run again
+:>${XDG_DATA_HOME:-$HOME/.local/share}/dots/.configured.txt
