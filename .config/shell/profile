@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# supported shells: bash, zsh, dash, ksh93, mksh, oksh
+# supported shells: bash, dash, ksh93, mksh, oksh, posh, yash, zsh
 
 # --------------------------------- Part 1: Run always -------------------------------------
 
@@ -90,7 +90,7 @@ done
 case "$USERPROFILE" in
     "") export USERPROFILE="y" ;;
      *) return 0 ;;
-esac 
+esac
 
 # --------------------------------- Part 2: Run once -------------------------------------
 
