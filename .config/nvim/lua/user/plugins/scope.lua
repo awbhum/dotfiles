@@ -6,22 +6,16 @@ end
 local opts = {
     hooks = {
         pre_tab_enter = function()
-            return
         end,
         post_tab_enter = function()
-            return
         end,
         pre_tab_leave = function()
-            return
         end,
         post_tab_leave = function()
-            return
         end,
         pre_tab_close = function()
-            return
         end,
         post_tab_close = function()
-            return
         end,
     },
 }

@@ -22,7 +22,7 @@ local opts = {
 
         color_devicons = true,
         border = true,
-        borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
+        borderchars = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
         entry_prefix = "  ",
         prompt_prefix = "  ",
         selection_caret = "  ",

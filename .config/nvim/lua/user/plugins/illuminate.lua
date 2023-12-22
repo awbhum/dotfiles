@@ -14,7 +14,9 @@ local opts = {
 
     under_cursor = true,
     min_count_to_highlight = 1,
-    should_enable = function(bufnr) return true end,
+    should_enable = function(bufnr)
+        return true
+    end,
     case_insensitive_regex = false,
 
     filetypes_denylist = {

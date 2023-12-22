@@ -62,7 +62,7 @@ autocmd("VimResized", {
 -- set theme asynchronously
 autocmd("VimEnter", {
     callback = function()
-        require("user.theme")
+        require("user.theme").init()
     end,
 })
 

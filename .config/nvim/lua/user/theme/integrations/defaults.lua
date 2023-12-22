@@ -12,7 +12,7 @@ function M.set(col16, col30)
         SignColumn          = { fg = col16.color03, sp = "NONE", },
         ColorColumn         = { bg = col30.black2, },
 
-        LineNr              = { fg = col30.grey },
+        LineNr              = { fg = col30.grey, ctermfg = 8 },
         CursorLine          = { bg = col30.black2, },
         CursorLineSign      = { bg = col30.black2, },
         CursorLineNr        = { fg = col30.white, bg = col30.black2 },
@@ -35,7 +35,7 @@ function M.set(col16, col30)
         MatchWord           = { bg = col30.grey, fg = col30.white, },
         MatchParen          = { link = "MatchWord" },
 
-        Comment             = { fg = col30.grey_fg },
+        Comment             = { fg = col30.grey_fg, ctermfg = 8 },
         NonText             = { fg = col16.color03, },
 
         FloatBorder         = { fg = col30.blue },

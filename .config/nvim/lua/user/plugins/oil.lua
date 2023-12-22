@@ -3,7 +3,7 @@ if not oil_status_ok then
     return
 end
 
-opts = {
+local opts = {
     -- use oil as the default file manager
     default_file_explorer = false,
 
