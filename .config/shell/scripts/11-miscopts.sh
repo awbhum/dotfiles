@@ -28,7 +28,7 @@ export FZF_DEFAULT_COMMAND="find ."
 export XINITRC="${XDG_CONFIG_HOME:-$HOME/.config}/x11/xinitrc"
 
 # move xauthority out of ~, doesn't work with all display managers/desktops
-case "$WM_USE" in
+case "$X_WM_USE" in
     '(placeholder)') export XAUTHORITY="$HOME/.Xauthority" ;;
     *) export XAUTHORITY="${XDG_DATA_HOME:-$HOME/.local/share}/xauthority" ;;
 esac

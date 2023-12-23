@@ -16,6 +16,12 @@ case "$1" in
     down)
         [ "$vcmd" = "amixer" ] && amixer sset Master 3-
         ;;
+    mute)
+        [ "$vcmd" = "amixer" ] && amixer sset Master mute
+        ;;
+    unmute)
+        [ "$vcmd" = "amixer" ] && amixer sset Master unmute
+        ;;
     mute_toggle)
         [ "$vcmd" = "amixer" ] && amixer sset Master toggle
         ;;

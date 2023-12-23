@@ -17,10 +17,10 @@ export WWW_HOME="https://duckduckgo.com"
 #export DISABLE_GNUPG="y"
 
 # session type, can be 'x11' or 'wayland'
-export XDG_SESSION_TYPE="x11"
+export XDG_SESSION_TYPE="wayland"
 
 # specify the window manager to use, see xinitrc for information
-export WM_USE="dwm"
+export X_WM_USE="dwm"
 
 # rust install dir
 export CARGO_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/cargo"

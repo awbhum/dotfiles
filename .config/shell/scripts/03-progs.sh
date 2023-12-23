@@ -45,12 +45,13 @@ done
     done
 }
 
+
 # image viewer
 for i in catimg timg fbida mpv fbpdf fbv tiv viu
     do export IMGVIEWER="xdg-terminal-exec $i"
 done
 [ -n "$DISPLAY" ] && {
-    for i in deepin-image-viewer aloadimage gthumb feh ahoviewer eom geeqie gpicview mirage lximage-qt viewnior phototonic swayimg gwenview nomacs qview qimgv feh qiv vimiv pqiv imv sxiv nsxiv celluloid mpv
+    for i in deepin-image-viewer aloadimage gthumb feh ahoviewer eom geeqie gpicview mirage lximage-qt viewnior phototonic swayimg gwenview nomacs qview qimgv feh celluloid mpv qiv vimiv pqiv imv sxiv nsxiv
         do export IMGVIEWER="$i"
     done
 }

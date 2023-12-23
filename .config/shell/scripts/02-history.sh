@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# history file
+# shell history file
 export HISTFILE="${XDG_DATA_HOME:-$HOME/.local/share}/history/${SHNAME}_history"
 
 # 4096 entries of command history
@@ -9,7 +9,7 @@ export HISTFILESIZE="4096"
 export SAVEHIST="4096"
 
 # history time format
-export HISTTIMEFORMAT="(%F %R) "
+export HISTTIMEFORMAT="(%F %T) "
 
 # ignore space-prepended commands and duplicates
 export HISTCONTROL="ignoredups:ignorespace"

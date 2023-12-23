@@ -15,4 +15,5 @@ river/theme.sh
 zathura/zathurarc
 vim/vimrc
 mpv/mpv_sub-delay.json
+mpv/libplacebo.cache
 window-geometry.conf

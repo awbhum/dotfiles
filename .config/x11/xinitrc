@@ -16,15 +16,15 @@
 }
 
 # run dwm commands
-[ "$WM_USE" = "dwm" ] && {
+[ "$X_WM_USE" = "dwm" ] && {
     exec dwmblocks &
     exec dbus-launch --exit-with-session dwm
     exit
 }
 
 # invalid wm_use at this point
-[ -n "$WM_USE" ] && {
-    printf "\n${0##*/}: error: No startup rule for $WM_USE\n\n"
+[ -n "$X_WM_USE" ] && {
+    printf "\n${0##*/}: error: No startup rule for $X_WM_USE\n\n"
 } || {
-    printf "\n${0##*/}: error: No WM_USE specified\n\n"
+    printf "\n${0##*/}: error: No X_WM_USE specified\n\n"
 }

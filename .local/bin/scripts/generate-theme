@@ -16,6 +16,7 @@ for i in $(find ${XDG_CONFIG_HOME:-$HOME/.config} ${XDG_DATA_HOME:-$HOME/.local/
     dir="${i%/*}"
     name="${i##*___}"
     printf "sed <$i >$dir/$name\n"
+    # substitution for fonts, colors, vim colorschemes, and directories
     sed \
         -e "s/#::font-monospace::#/$theme_font_monospace/g" \
         -e "s/#::font-serif::#/$theme_font_serif/g" \
@@ -23,7 +24,7 @@ for i in $(find ${XDG_CONFIG_HOME:-$HOME/.config} ${XDG_DATA_HOME:-$HOME/.local/
         -e "s/#::font-sans-serif::#/$theme_font_sans_serif/g" \
         -e "s/#::vim-colorscheme::#/${theme_vim_colorscheme:-default}/g" \
         -e "s/#::vim-colorscheme-alt::#/${theme_vim_colorscheme_alt:-default}/g" \
-        -e "s/#::darkerbg::#/$theme_darker/g" \
+        -e "s/#::rootbg::#/$theme_rootbg/g" \
         -e "s/#::darkbg::#/$theme_darkbg/g" \
         -e "s/#::mainbg::#/$theme_mainbg/g" \
         -e "s/#::statusbg::#/$theme_statusbg/g" \
