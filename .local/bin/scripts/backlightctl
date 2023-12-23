@@ -1,0 +1,29 @@
+#!/bin/sh
+
+# volume control independent of the sound server used
+progs=""
+[ -n "$DISPLAY" ] && progs="xbacklight xsel light brightnessctl"
+[ -n "$WAYLAND_DISPLAY" ] && progs="light brillo"
+
+for i in $progs; do
+    command -v $i >/dev/null 2>&1 && bcmd="$i"
+done
+
+# if no volume control command is available, exit
+[ -n "$bcmd" ] || exit 1
+
+# operation
+case "$1" in
+    up)
+        [ "$bcmd" = "xbacklight" ] && xbacklight -inc 5
+        [ "$bcmd" = "light" ] && light -A 5
+        [ "$bcmd" = "brillo" ] && brillo -A 5
+        [ "$bcmd" = "brightnessctl" ] && brightnessctl +5
+        ;;
+    down)
+        [ "$bcmd" = "xbacklight" ] && xbacklight -dec 5
+        [ "$bcmd" = "light" ] && light -U 5
+        [ "$bcmd" = "brillo" ] && brillo -U 5
+        [ "$bcmd" = "brightnessctl" ] && brightnessctl -5
+        ;;
+esac
