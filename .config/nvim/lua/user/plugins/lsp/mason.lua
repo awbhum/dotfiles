@@ -4,6 +4,8 @@ if not mason_status_ok then
 end
 
 local servers = {
+    "als",
+    "arduino_language_server",
     "lua_ls",
     "awk_ls",
     "bashls",
