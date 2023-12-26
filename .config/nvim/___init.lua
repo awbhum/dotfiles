@@ -11,7 +11,7 @@ require "user.autocmds"
 require "user.theme"
 
 -- use variable colorscheme
-vim.cmd.colorscheme("#::vim-colorscheme::#")
+vim.cmd("silent! colorscheme #::vim-colorscheme::#")
 
 -- lazy.nvim package manager
 require "user.lazy"
