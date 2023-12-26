@@ -13,6 +13,7 @@ printf "\n\033[1mPower information:\033[22m\n"
 
 # for each battery
 for i in /sys/class/power_supply/BAT*; do
+    [ -r "$i" ] || continue
     b_mfr="$(cat $i/manufacturer)"
     b_model="$(cat $i/model_name)"
     b_perc="$(cat $i/capacity)"
