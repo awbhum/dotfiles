@@ -20,7 +20,7 @@ vim.opt.rtp:prepend(install_path)
 
 local plugins = {
     -- lsp / breadcrumbs
-    require("user.plugins.lsp"),
+    --require("user.plugins.lsp"),
 
     -- netrw tweaks
     -- { "prichrd/netrw.nvim",
