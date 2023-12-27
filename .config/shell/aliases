@@ -5,7 +5,7 @@ unalias -a
 
 # change the term name for elinks if needed
 case "$TERM" in
-    screen-256color) alias elinks="TERM=linux elinks" ;;
+    screen-256color) alias elinks="TERM=xterm-256color elinks" ;;
 esac
 
 # use ~/.config/x11/xinitrc
