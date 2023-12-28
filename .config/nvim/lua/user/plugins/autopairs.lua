@@ -10,7 +10,7 @@ local opts = {
     },
 
     enable_check_bracket_line = false,
-    check_ts = true,
+    check_ts = false,
 
     ts_config = {
         lua = { "string", "source" },

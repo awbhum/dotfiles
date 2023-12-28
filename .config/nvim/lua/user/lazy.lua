@@ -41,17 +41,6 @@ local plugins = {
     --     end,
     -- },
 
-    -- comment
-    { "numToStr/Comment.nvim",
-        event = {
-           "BufRead",
-           "BufNewFile"
-        },
-        config = function()
-            require "user.plugins.comment"
-        end,
-    },
-
     -- buffers per tab
     { "tiagovla/scope.nvim",
         event = "VimEnter",
@@ -71,7 +60,7 @@ local plugins = {
     -- self explanatory
     { "windwp/nvim-autopairs",
         event = {
-            "BufRead",
+            "BufReadPost",
             "BufNewFile",
         },
         config = function()
@@ -103,7 +92,7 @@ local plugins = {
     -- highlight current word
     { "RRethy/vim-illuminate",
         event = {
-            "BufRead",
+            "BufReadPost",
             "BufNewFile",
         },
         config = function()
@@ -114,7 +103,7 @@ local plugins = {
     -- vscode-like indent indicator
     { "lukas-reineke/indent-blankline.nvim",
         event = {
-            "BufRead",
+            "BufReadPost",
             "BufNewFile",
         },
         main = "ibl",
@@ -169,8 +158,14 @@ local plugins = {
 
     -- treesitter syntax highlighting
     { "nvim-treesitter/nvim-treesitter",
+        cmd = {
+            "TSUpdate",
+            "TSUpdateSync",
+            "TSToggle",
+            "TSInstall",
+        },
         event = {
-            "BufRead",
+            "BufReadPost",
             "BufNewFile",
         },
         build = ":TSUpdate",
@@ -212,30 +207,6 @@ local opts = {
         border = "single",
         title_pos = "center", ---@type "center" | "left" | "right"
         pills = true, ---@type boolean
-        icons = {
-            cmd = " ",
-            config = "",
-            event = "",
-            ft = " ",
-            init = " ",
-            import = " ",
-            keys = " ",
-            lazy = "󰒲 ",
-            loaded = "●",
-            not_loaded = "○",
-            plugin = " ",
-            runtime = " ",
-            require = "󰢱 ",
-            source = " ",
-            start = "",
-            task = "✔ ",
-            list = {
-                "●",
-                "➜",
-                "★",
-                "‒",
-            },
-        },
         throttle = 20, -- how frequently should the ui process render events
     },
 
@@ -309,7 +280,7 @@ local opts = {
     -- so :help works even for plugins that don't have vim docs.
     -- when the readme opens with :help it will be correctly displayed as markdown
     readme = {
-        enabled = true,
+        enabled = false,
         root = vim.fn.stdpath("state") .. "/lazy/readme",
         files = { "README.md", "lua/**/README.md" },
         skip_if_doc_exists = true,
