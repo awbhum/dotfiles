@@ -23,11 +23,11 @@ export MANPAGER="$PAGER"
 
 
 # browser
-for i in w3m links lynx amfora elinks
+for i in amfora w3m links lynx elinks links2
     do command -v $i >/dev/null 2>&1 && export BROWSER="xdg-terminal-exec $i"
 done
 [ -n "$DISPLAY" ] && {
-    for i in chromium netsurf midori dillo eolie falkon firefox konqueror badwolf librewolf icecat
+    for i in google-chrome chromium-browser chromium netsurf midori dillo eolie falkon iceweaasel seamonkey mozilla firefox konqueror badwolf librewolf icecat
         do command -v $i >/dev/null 2>&1 && export BROWSER="$i"
     done
 }

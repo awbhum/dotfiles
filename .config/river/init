@@ -22,9 +22,9 @@ riverctl float-filter-add "float"
 riverctl float-filter-add "popup"
 
 # set app-ids of views which should use client side decorations
-riverctl csd-filter-add "firefox"
-riverctl csd-filter-add "gedit"
-riverctl csd-filter-add "emacs"
+#riverctl csd-filter-add "firefox"
+#riverctl csd-filter-add "gedit"
+#riverctl csd-filter-add "emacs"
 
 # set trackpad by grabbing the event
 for pad in $(riverctl list-inputs | grep -i touchpad); do
