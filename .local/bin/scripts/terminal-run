@@ -1,4 +1,4 @@
 #!/bin/sh
 
 # script to run a program in a terminal
-eval "${DISPLAY:+$TERMINAL -e }$@"
+eval "exec ${DISPLAY:+$TERMINAL -e }$@"

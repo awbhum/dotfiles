@@ -275,6 +275,8 @@ audio/x-ms-wma=audio.desktop;
 
 # torrent
 application/x-bittorrent=torrent.desktop;
+application/bittorrent=torrent.desktop;
+application/torrent=torrent.desktop;
 
 # mail
 application/mbox=mail.desktop;

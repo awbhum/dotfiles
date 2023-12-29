@@ -2,27 +2,27 @@
 
 # volume control independent of the sound server used
 for i in amixer pamixer; do
-    command -v $i >/dev/null 2>&1 && vcmd="$i"
+    command -v $i >/dev/null 2>&1 && volcmd="$i"
 done
 
 # if no volume control command is available, exit
-[ -n "$vcmd" ] || exit 1
+[ -n "$volcmd" ] || exit 1
 
 # operation
 case "$1" in
     up)
-        [ "$vcmd" = "amixer" ] && amixer sset Master 3+
+        [ "$volcmd" = "amixer" ] && amixer sset Master 3+
         ;;
     down)
-        [ "$vcmd" = "amixer" ] && amixer sset Master 3-
+        [ "$volcmd" = "amixer" ] && amixer sset Master 3-
         ;;
     mute)
-        [ "$vcmd" = "amixer" ] && amixer sset Master mute
+        [ "$volcmd" = "amixer" ] && amixer sset Master mute
         ;;
     unmute)
-        [ "$vcmd" = "amixer" ] && amixer sset Master unmute
+        [ "$volcmd" = "amixer" ] && amixer sset Master unmute
         ;;
     mute_toggle)
-        [ "$vcmd" = "amixer" ] && amixer sset Master toggle
+        [ "$volcmd" = "amixer" ] && amixer sset Master toggle
         ;;
 esac

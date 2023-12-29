@@ -46,9 +46,6 @@ searchdirs() {
     unset dirs
 }
 
-# command to run
-termcmd="$TERMINAL -e"
-
 # load the theme config file
 [ -r "${XDG_DATA_HOME:-$HOME/.local/share}/dots/themes/theme.conf" ] && {
     . "${XDG_DATA_HOME:-$HOME/.local/share}/dots/themes/theme.conf"
@@ -63,8 +60,8 @@ termcmd="$TERMINAL -e"
 cmd="$(find $(searchdirs) -type f -executable -printf '%f\n' | sort -u | $menu)"
 
 case "$cmd" in
-    *\!) $termcmd ${cmd%!} ;;
-    *) ${cmd} ;;
+    *\!) exec xdg-terminal-exec ${cmd%!} ;;
+    *) exec ${cmd} ;;
 esac
 
 exit

@@ -26,7 +26,7 @@ export MANPAGER="$PAGER"
 for i in amfora w3m links lynx elinks links2
     do command -v $i >/dev/null 2>&1 && export BROWSER="xdg-terminal-exec $i"
 done
-[ -n "$DISPLAY" ] && {
+[ -n "${WAYLAND_DISPLAY:-$DISPLAY}" ] && {
     for i in google-chrome chromium-browser chromium netsurf midori dillo eolie falkon iceweaasel seamonkey mozilla firefox konqueror badwolf librewolf icecat
         do command -v $i >/dev/null 2>&1 && export BROWSER="$i"
     done
@@ -37,8 +37,8 @@ done
 for i in timg mpv
     do command -v $i >/dev/null 2>&1 && export VPLAYER="xdg-terminal-exec $i"
 done
-[ -n "$DISPLAY" ] && {
-    for i in rage-player ffplay mplayer smplayer qmplay2 vlc celluloid mpv
+[ -n "${WAYLAND_DISPLAY:-$DISPLAY}" ] && {
+    for i in rage-player ffplay vlc mplayer smplayer qmplay2 celluloid mpv
         do command -v $i >/dev/null 2>&1 && export VPLAYER="$i"
     done
 }
@@ -48,7 +48,7 @@ done
 for i in catimg timg fbida mpv fbpdf fbv tiv viu
     do command -v $i >/dev/null 2>&1 && export IMGVIEWER="xdg-terminal-exec $i"
 done
-[ -n "$DISPLAY" ] && {
+[ -n "${WAYLAND_DISPLAY:-$DISPLAY}" ] && {
     for i in deepin-image-viewer aloadimage gthumb feh ahoviewer eom geeqie gpicview mirage lximage-qt viewnior phototonic swayimg gwenview nomacs qview qimgv feh celluloid mpv qiv vimiv pqiv imv sxiv nsxiv
         do command -v $i >/dev/null 2>&1 && export IMGVIEWER="$i"
     done
@@ -59,7 +59,7 @@ done
 for i in lesspdf fbv fbpdf
     do command -v $i >/dev/null 2>&1 && export READER="xdg-terminal-exec $i"
 done
-[ -n "$DISPLAY" ] && {
+[ -n "${WAYLAND_DISPLAY:-$DISPLAY}" ] && {
     for i in gv sioyek atril xreader qpdfview lumina-pdf xpdf epdfview katarakt mupdf apvlv zathura
         do command -v $i >/dev/null 2>&1 && export READER="$i"
     done
@@ -67,7 +67,7 @@ done
 
 
 # terminal file manager preferred
-[ -n "$DISPLAY" ] && {
+[ -n "${WAYLAND_DISPLAY:-$DISPLAY}" ] && {
     for i in nautilus caja rox xfe pcmanfm thunar nemo krusader dolphin qtfm
         do command -v $i >/dev/null 2>&1 && export FILEMGR="$i"
     done
