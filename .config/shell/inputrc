@@ -63,7 +63,6 @@ $if mode=vi
     "G": end-of-history
     "/": non-incremental-reverse-search-history
     "x": delete-char
-    "a": self-insert
     "dw": kill-word
     "db": backward-kill-word
     "yw": copy-forward-word

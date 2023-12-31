@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# whether or not custom xdg-utils should use system applications
+export XDG_SYSTEM_DESKTOP_ENTRIES="n"
+
 # choose the terminal emulator
 for i in xterm urxvt aterm terminator kitty konsole gnome-terminal mate-terminal qterminal lxterminal wezterm roxterm st foot alacritty
     do command -v $i >/dev/null 2>&1 && export TERMINAL="$i"

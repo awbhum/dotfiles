@@ -1,5 +1,5 @@
 [Desktop Entry]
 Type=Application
 Name=File Manager
-Exec=/usr/bin/env open-program file-manager %u
+Exec=open-program file-manager %u
 Name[C]=file.desktop

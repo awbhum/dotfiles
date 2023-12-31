@@ -85,7 +85,6 @@ text/x-yaml=text.desktop;
 application/x-yaml=text.desktop;
 text/x.gcode=text.desktop;
 text/x-gcode=text.desktop;
-application/sdp=text.desktop;
 application/ecmascript=text.desktop;
 application/emma+xml=text.desktop;
 application/shf+xml=text.desktop;
@@ -217,6 +216,7 @@ image/x-icon=file.desktop;
 
 # video
 application/mp4=video.desktop;
+application/mxf=video.desktop;
 video/3gpp=video.desktop;
 video/3gpp2=video.desktop;
 video/h261=video.desktop;
@@ -277,6 +277,7 @@ audio/x-ms-wma=audio.desktop;
 application/x-bittorrent=torrent.desktop;
 application/bittorrent=torrent.desktop;
 application/torrent=torrent.desktop;
+x-scheme-handler/magnet=torrent.desktop;
 
 # mail
 application/mbox=mail.desktop;

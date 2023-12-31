@@ -1,6 +1,7 @@
 #!/bin/sh
 
 # set the wallpaper
+requirecmd readlink file ln shuf || exit 1
 
 # location of link to wallpaper
 bgloc="${XDG_DATA_HOME:-$HOME/.local/share}/bg"

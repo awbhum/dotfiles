@@ -1,4 +1,5 @@
 #!/bin/sh
 
 # script to run a program in a terminal
-eval "exec ${DISPLAY:+$TERMINAL -e }$@"
+dpy="${WAYLAND_DISPLAY:-$DISPLAY}"
+eval "exec ${dpy:+$TERMINAL -e }$@"

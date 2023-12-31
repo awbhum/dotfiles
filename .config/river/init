@@ -3,7 +3,7 @@
 all_tags=$(((1 << 32) - 1))
 
 # update env
-riverctl spawn "dbus-update-activation-environment SEATD_SOCK DISPLAY WAYLAND _DISPLAY XDG_CURRENT_DESKTOP=river"
+riverctl spawn "dbus-update-activation-environment SEATD_SOCK DISPLAY WAYLAND _DISPLAY XDG_CURRENT_DESKTOP=X-Generic"
 
 # move the cursor to the center of the new focused window
 riverctl set-cursor-warp on-focus-change
@@ -37,6 +37,9 @@ done
 
 # include theme if possible
 [ -r "${XDG_CONFIG_HOME:-$HOME/.config}/river/theme.sh" ] && . "${XDG_CONFIG_HOME:-$HOME/.config}/river/theme.sh"
+
+# set current desktop to generic session
+export XDG_CURRENT_DESKTOP="X-Generic"
 
 # passthrough mode for nested compositors/vms
 riverctl declare-mode passthrough

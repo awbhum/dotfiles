@@ -1,5 +1,5 @@
 [Desktop Entry]
 Type=Application
 Name=Document Reader
-Exec=/usr/bin/env open-program document-reader %u
+Exec=open-program document-reader %u
 Name[C]=document.desktop

@@ -1,5 +1,5 @@
 [Desktop Entry]
 Type=Application
 Name=Browser
-Exec=/usr/bin/env open-program browser %u
+Exec=open-program browser %u
 Name[C]=browser.desktop

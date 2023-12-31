@@ -23,23 +23,23 @@ local plugins = {
     --require("user.plugins.lsp"),
 
     -- netrw tweaks
-    -- { "prichrd/netrw.nvim",
-    --    cmd = "netrw",
-    --    config = function()
-    --        require "user.plugins.netrw"
-    --    end,
-    -- },
+    --{ "prichrd/netrw.nvim",
+    --   cmd = "netrw",
+    --   config = function()
+    --       require "user.plugins.netrw"
+    --   end,
+    --},
 
     -- status line
-    -- { "nvim-lualine/lualine.nvim",
-    --     event = {
-    --         "BufRead",
-    --         "BufNewFile",
-    --     },
-    --     config = function()
-    --         require "user.plugins.lualine"
-    --     end,
-    -- },
+    --{ "nvim-lualine/lualine.nvim",
+    --    event = {
+    --        "BufRead",
+    --        "BufNewFile",
+    --    },
+    --    config = function()
+    --        require "user.plugins.lualine"
+    --    end,
+    --},
 
     -- buffers per tab
     { "tiagovla/scope.nvim",
@@ -58,15 +58,15 @@ local plugins = {
     },
 
     -- self explanatory
-    { "windwp/nvim-autopairs",
-        event = {
-            "BufReadPost",
-            "BufNewFile",
-        },
-        config = function()
-            require "user.plugins.autopairs"
-        end,
-    },
+    --{ "windwp/nvim-autopairs",
+    --    event = {
+    --        "BufReadPost",
+    --        "BufNewFile",
+    --    },
+    --    config = function()
+    --        require "user.plugins.autopairs"
+    --    end,
+    --},
 
     -- completion/snippets
     { "hrsh7th/nvim-cmp",

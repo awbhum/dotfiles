@@ -1,5 +1,5 @@
 [Desktop Entry]
 Type=Application
 Name=Image Viewer
-Exec=/usr/bin/env open-program image-viewer %F
+Exec=open-program image-viewer %F
 Name[C]=image.desktop
