@@ -2,4 +2,11 @@
 
 # script to run a program in a terminal
 dpy="${WAYLAND_DISPLAY:-$DISPLAY}"
-eval "exec ${dpy:+$TERMINAL -e }$@"
+
+# wrap arguments in quotes
+while [ "$#" -gt 0 ]; do
+    args="${args:+$args }\"$1\""
+    shift
+done
+
+eval "exec ${dpy:+$TERMINAL -e }$args"
