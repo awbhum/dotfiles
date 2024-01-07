@@ -66,3 +66,10 @@ unsetopt AUTO_CD AUTO_PUSHD CHASE_DOTS CHASE_LINKS PUSHD_TO_HOME ALWAYS_LAST_PRO
 
 # load ~/.config/shell/aliases
 [ -r "${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliases" ] && . ${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliases
+
+# load scripts in zrc.d
+[ -d "${XDG_CONFIG_HOME:-$HOME/.config}/shell/zshrc.d" ] && {
+    for i in ${XDG_CONFIG_HOME:-$HOME/.config}/shell/zshrc.d/*.sh; do
+        [ -r "$i" ] && . "$i"
+    done
+}

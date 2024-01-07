@@ -138,6 +138,7 @@ map q quit
 map gh
 map H cd ~
 map g top
+map v calcdirsize
 map C toggleexecbit "$f"
 map D delete
 map E extract

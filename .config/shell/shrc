@@ -47,3 +47,10 @@ export PROMPT_COMMAND="export PS1=\"\$(print-prompt)\""
 for i in cd pushd popd; do
     eval "_$i() { command $i \$@; set_ps1; }; alias $i=_$i"
 done
+
+# load scripts in rc.d
+[ -d "${XDG_CONFIG_HOME:-$HOME/.config}/shell/shrc.d" ] && {
+    for i in ${XDG_CONFIG_HOME:-$HOME/.config}/shell/shrc.d/*.sh; do
+        [ -r "$i" ] && . "$i"
+    done
+}

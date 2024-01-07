@@ -38,3 +38,10 @@ export PROMPT_COMMAND="export PS1=\"\$(print-prompt)\""
 
 # load ~/.config/shell/aliases
 [ -r "${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliases" ] && . ${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliases
+
+# load scripts in bashrc.d
+[ -d "${XDG_CONFIG_HOME:-$HOME/.config}/shell/bashrc.d" ] && {
+    for i in ${XDG_CONFIG_HOME:-$HOME/.config}/shell/bashrc.d/*.sh; do
+        [ -r "$i" ] && . "$i"
+    done
+}
