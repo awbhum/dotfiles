@@ -13,14 +13,14 @@ incr="0"
 # get terminal geometry
 gettermgeom() {
     lines="${LINES:-$(tput lines)} / 2.1"
-    lines="$(printf "$lines\n" | bc -ql | awk -F. '{print $1}')"
+    lines="$(printf -- "$lines\n" | bc -ql | awk -F. '{print $1}')"
     cols="${COLUMNS:-$(tput cols)} / 2.2"
-    cols="$(printf "$cols\n" | bc -ql | awk -F. '{print $1}')"
+    cols="$(printf -- "$cols\n" | bc -ql | awk -F. '{print $1}')"
 }
 
 # clear screen
 clearscreen() {
-    printf "\033[H\033[2J"
+    printf -- "\033[H\033[2J"
 }
 
 # logic for word printing
@@ -32,17 +32,17 @@ loopfn() {
         sleep "$delay"
         clearscreen
         gettermgeom
-        eval "printf \"\\033[${lines};${cols}H\""
+        eval "printf -- \"\\033[${lines};${cols}H\""
     }
-    printf "$space${bold:+\033[1m}$i${bold:+\033[0m}"
+    printf -- "$space${bold:+\033[1m}$i${bold:+\033[0m}"
     space=" "
 }
 
 # init function
 startspeedread() {
     # amount of time to wait between word prints
-    delay="$(printf "( 60 / ${speed:-300} )\n" | bc -ql)"
-    printf "\033[?1049h"
+    delay="$(printf -- "( 60 / ${speed:-300} )\n" | bc -ql)"
+    printf -- "\033[?1049h"
     eval "$(cat <<END
         for i in \$(cat); do
             loopfn
@@ -53,7 +53,7 @@ END
 
 # exit function
 closespeedread() {
-    printf "\033[?1049l"
+    printf -- "\033[?1049l"
     exit
 }
 
